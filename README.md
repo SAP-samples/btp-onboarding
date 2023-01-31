@@ -19,11 +19,11 @@ This mission includes the following steps:
 
 The following requirements have to be met: 
 
-Access to  [SAP Business Technology Platform](https://account.hana.ondemand.com/#/home/welcome)
+Access to  [SAP Business Technology Platform](https://account.hana.ondemand.com/#/home/welcome) .
+
 Having your Welcome emails from SAP prepared, containg your initial user, which has the entitlements of your company attached.
 
 For more information see the following step-by-step guides:
-
 
 
 ### Setup your BTP Enterprise Account
