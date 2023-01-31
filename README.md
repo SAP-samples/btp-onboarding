@@ -1,42 +1,61 @@
-# SAP-samples/repository-template
-This default template for SAP Samples repositories includes files for README, LICENSE, and .reuse/dep5. All repositories on github.com/SAP-samples will be created based on this template.
+# Geting Started with your SAP BTP Enterprise Account
 
-# Containing Files
-
-1. The LICENSE file:
-In most cases, the license for SAP sample projects is `Apache 2.0`.
-
-2. The .reuse/dep5 file: 
-The [Reuse Tool](https://reuse.software/) must be used for your samples project. You can find the .reuse/dep5 in the project initial. Please replace the parts inside the single angle quotation marks < > by the specific information for your repository.
-
-3. The README.md file (this file):
-Please edit this file as it is the primary description file for your project. You can find some placeholder titles for sections below.
-
-# Getting Started with SAP BTP Enterprise Account
-
-<!-- Please include descriptive title -->
-
-<!--- Register repository https://api.reuse.software/register, then add REUSE badge:
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/REPO-NAME)](https://api.reuse.software/info/github.com/SAP-samples/REPO-NAME)
--->
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-cloud-foundry-fiori-hello-world)](https://api.reuse.software/info/github.com/SAP-samples/btp-cloud-foundry-fiori-hello-world)
 
 ## Description
-<!-- Please include SEO-friendly description -->
+Your company has acquired an SAP Business Technology Platform Enterprise Account (a global account of type enterprise, not trial). You have received two initial emails and you now want to start using the platform. What are the first steps you need to perform in order to onboard to your SAP BTP Enterprise Account? What are the initial administrative tasks and decisions which need to be made? This first mission for new enterprise accounts will help answer these questions. You will learn how to set up your global account, sub-accounts, check your entitlements, set up quotas, and start leveraging your SAP BTP Services.
+This mission includes the following steps:
 
-## Requirements
+* Get familiar with the fundamental concepts of **SAP BTP: Global Accounts, Subaccounts, Provider, Regions, Runtimes**
+* Prepare your 2 initial emails you received from SAP
+* Login for the first time to your Enterprise Account
+* Setup your **SAP BTP global account** - to give you access the to the SAP BTP Cockpit administration interface. 
+* Create your first **Subaccount**, so you can start working with SAP BTP.
+* Add additional members to global and subaccount
+ 
 
-## Download and Installation
 
-## Known Issues
-<!-- You may simply state "No known issues. -->
+### Prerequisites
 
-## How to obtain support
-[Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
+The following requirements have to be met: 
+
+Access to  [SAP Business Technology Platform](https://account.hana.ondemand.com/#/home/welcome)
+Having your Welcome emails from SAP prepared, containg your initial user, which has the entitlements of your company attached.
+
+For more information see the following step-by-step guides:
+
+
+
+### Setup your BTP Enterprise Account
+
+To setup your BTP Enterprise Account follow this step-by-step guides:
+
+1. [Welcome to SAP BTP Enterprise Account!](getting_started_ea/2_setup_ga/1_read_first.md)
+2. [Your initial login to your Global Account](getting_started_ea/2_setup_ga/2_initial_login.md)
+3. [Add Additional Global Account Members](getting_started_ea/2_setup_ga/3_add_ga_members.md)
+4. [Check your Entitlements for the Global Account](getting_started_ea/2_setup_ga/5_check_entitlements.md)
+
+
+
+### Setup your BTP Sub-Account
+
+1. [Use Booster for creating a Cloud Foundry Subaccount](getting_started_ea/3_setup_suba/1_booster.md) 
+2. [Create Organizations and Spaces manually](getting_started_ea/3_setup_suba/3_cf_orgs_spaces.md)
+3. [Add Members to Subaccount](getting_started_ea/3_setup_suba/4_suba_members.md)
+
+
+ 
+
+### Known Issues
+"No known issues.
+
+### How to obtain support
+[Create an issue](https://github.com/SAP-samples/btp-cloud-foundry-fiori-hello-world/issues) in this repository if you find a bug.
  
 For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
 
-## Contributing
-If you wish to contribute code, offer fixes or improvements, please send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
+### Contributing
+Contribution is not planned for this repo.
 
-## License
-Copyright (c) 2023 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+### License
+Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
