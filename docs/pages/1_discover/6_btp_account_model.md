@@ -15,7 +15,7 @@ An SAP BTP global (enterprise) account is the realization of a contract you made
 
 <br>
 
-#### Entitlements
+#### Entitlements of your Global Account
 
 When you purchase an enterprise account, you’re entitled to provision and consume resources, such as a set of BTP services and the amount of resources they may consume. 
 

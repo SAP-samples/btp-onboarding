@@ -44,21 +44,14 @@ If you are working with many SAP solutions, you may want to check your assigned 
 
 <br>
 
-### Further Information
-
-#### Optional Preparation: Live Sessions including onboarding Sessions
-
-See monthly regional onboarding Webinars: Live Sessions
+### SAP Support for Enterprise Accounts
 
 #### How to change the Global Account Administrator for the SAP BTP? 
 
-If you want to change this user,  create a ticket at the SAP Support Portal.
-Select the component **BC-NEO-CIS-OPS** (find guidance at help.sap.com: "Getting Support")
+If you want to change this user,  create a ticket at the SAP Support Portal. <br>
+Select the component **BC-NEO-CIS-OPS** (find guidance at help.sap.com: "Getting Support").
 
 #### Support for S-User
-
-If you need support with authorizations for your S-User ID, see SAP Support.
-See also SAP Note 1808560 - How to reset an S-User ID password
 
 In case you need support for your S-user for SAP ID service, you may create a ticket in the component **XX-SER-SAPSMP-USR** (SAP Support Portal - User Administration)
 

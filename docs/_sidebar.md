@@ -25,8 +25,8 @@
 - Create a Subaccount
 
   - [Create a Subaccount using a Booster](pages/3_setup_suba/1_booster.md)
-  - [Create a Subaccount manually (1)](pages/3_setup_suba/2_suba_manual.md)
-  - [Create a Subaccount manually (2)](pages/3_setup_suba/3_cf_orgs_spaces.md)
+  - [Create a Subaccount manually](pages/3_setup_suba/2_suba_manual.md)
+    - [Enable Cloud Foundry](pages/3_setup_suba/3_cf_orgs_spaces.md)
   - [Add Members to Subaccount](pages/3_setup_suba/4_suba_members.md)
   - [Delete a Subaacount](pages/3_setup_suba/5_suba_delete.md)
   - [Appendix: Use Command Line](pages/3_setup_suba/6_use_cli.md)

@@ -1,5 +1,6 @@
 ## Use Booster for creating a Cloud Foundry Subaccount
 
+A Subaccount in a SAP BTP Global Account is the place where you run your BTP services. You need at least one. <br>
 
 ### Access Boosters in Cloud Cockpit
 
