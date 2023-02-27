@@ -1,4 +1,4 @@
-# Geting Started with your SAP BTP Enterprise Account
+# Get Started with your SAP BTP Enterprise Account
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-cloud-foundry-fiori-hello-world)](https://api.reuse.software/info/github.com/SAP-samples/btp-cloud-foundry-fiori-hello-world)
 
