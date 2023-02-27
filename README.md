@@ -1,6 +1,6 @@
 # Get Started with your SAP BTP Enterprise Account
 
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-cloud-foundry-fiori-hello-world)](https://api.reuse.software/info/github.com/SAP-samples/btp-cloud-foundry-fiori-hello-world)
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-onboarding)](https://api.reuse.software/info/github.com/SAP-samples/btp-onboarding)
 
 ## Description
 Your company has acquired an SAP Business Technology Platform Enterprise Account (a global account of type enterprise, not trial). You have received two initial emails and you now want to start using the platform. What are the first steps you need to perform in order to onboard to your SAP BTP Enterprise Account? What are the initial administrative tasks and decisions which need to be made? This first mission for new enterprise accounts will help answer these questions. You will learn how to set up your global account, sub-accounts, check your entitlements, set up quotas, and start leveraging your SAP BTP Services.
