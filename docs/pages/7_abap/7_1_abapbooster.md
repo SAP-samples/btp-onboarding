@@ -1,4 +1,4 @@
-## Use Booster for Creating an ABAP Subaccount
+## Use a Booster for creating a Subaccount with an ABAP Environment
 
 A Subaccount in a SAP BTP Global Account is the place where you run your BTP services. You need at least one. <br>
 
