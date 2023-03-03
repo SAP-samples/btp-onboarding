@@ -23,26 +23,11 @@ Access to  [SAP Business Technology Platform](https://account.hana.ondemand.com/
 
 Having your Welcome emails from SAP prepared, containg your initial user, which has the entitlements of your company attached.
 
-For more information see the following step-by-step guides:
 
+### Get Started
 
-### Setup your BTP Enterprise Account
-
-To setup your BTP Enterprise Account follow this step-by-step guides:
-
-1. [Welcome to SAP BTP Enterprise Account!](getting_started_ea/2_setup_ga/1_read_first.md)
-2. [Your initial login to your Global Account](getting_started_ea/2_setup_ga/2_initial_login.md)
-3. [Add Additional Global Account Members](getting_started_ea/2_setup_ga/3_add_ga_members.md)
-4. [Check your Entitlements for the Global Account](getting_started_ea/2_setup_ga/5_check_entitlements.md)
-
-
-
-### Setup your BTP Sub-Account
-
-1. [Use Booster for creating a Cloud Foundry Subaccount](getting_started_ea/3_setup_suba/1_booster.md) 
-2. [Create Organizations and Spaces manually](getting_started_ea/3_setup_suba/3_cf_orgs_spaces.md)
-3. [Add Members to Subaccount](getting_started_ea/3_setup_suba/4_suba_members.md)
-
+For more information see the step-by-step guide on [GitHub Pages](https://sap-samples.github.io/btp-onboarding/#/) 
+or as mission in [Discovery Center (external link)](https://discovery-center.cloud.sap/missiondetail/3019/).
 
  
 
