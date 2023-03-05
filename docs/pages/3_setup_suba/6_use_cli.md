@@ -8,7 +8,9 @@ It is an alternative to the SAP BTP cockpit for all users who prefer to work in 
 ### More information and Tutorials
 
 
-* SAP Help Portal documentation [Account Administration Using the SAP BTP Command Line Interface](help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli-feature-set-b?locale=en-US). 
+* SAP Help Portal: [Account Administration Using the SAP BTP Command Line Interface](help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli-feature-set-b?locale=en-US). 
+* SAP Help Portal: [Setting Up an Enterprise Global Account via the Command Line](https://help.sap.com/docs/btp/sap-business-technology-platform/setting-up-global-account-via-command-line?locale=en-US)
+* SAP Help Portal: [Setting Up a Trial Account via the Command Line](https://help.sap.com/docs/btp/sap-business-technology-platform/setting-up-trial-account-via-command-line?locale=en-US)
 * SAP Tutorial [Get Started with the SAP BTP Command Line Interface (btp CLI)](https://developers.sap.com/tutorials/cp-sapcp-getstarted.html)
 * SAP Tutorial [Enable SAP BTP, Kyma Runtime Using the Command Line](https://developers.sap.com/tutorials/btp-cli-setup-kyma-cluster.html)
 * SAP Tutorial (only Linux) [Automate Account Operations with the Command Line Interface (CLI)](https://developers.sap.com/tutorials/cp-cli-automate-operations.html)
