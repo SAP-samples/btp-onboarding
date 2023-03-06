@@ -35,6 +35,11 @@
   - [Create ABAP Environment using a Booster](pages/7_abap/7_1_abapbooster.md)
   - [Create ABAP Environment manually](pages/7_abap/7_2_abapman.md)
 
+- Use btp CLI (optional)
+  
+  - [Create a Subaccount using btp CLI](pages/6_btp_cli/6_2_btpcli_setup.md)
+  - [Further Information about btp CLI](pages/6_btp_cli/6_1_btpcli_intro.md)
+
 - Further Information
   - [Appendix: Use Command Line](pages/3_setup_suba/6_use_cli.md)
   - [See it on Discovery Center](https://discovery-center.cloud.sap/missiondetail/3019/)
