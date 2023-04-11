@@ -8,7 +8,7 @@ SAP Business Technology Platform ([SAP BTP](https://www.sap.com/products/technol
 - Integration
 - Artificial Intelligence
 
-Personalize experiences for SAP applications, innovate faster with business conetxt and run on a trusted enterprise-grade platform.
+Personalize experiences for SAP applications, innovate faster with business context and run on a trusted enterprise-grade platform.
 
 Explore the [SAP BTP use cases](https://www.sap.com/products/technology-platform/use-cases.html?sort=title_asc) and See how BTP can help you meet your business challenges.
 
