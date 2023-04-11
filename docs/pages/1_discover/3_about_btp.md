@@ -2,7 +2,7 @@
 
 SAP Business Technology Platform ([SAP BTP](https://www.sap.com/products/technology-platform.html)) is an integrated offering comprised of the following solution portfolios:
 
-- Application Development and Automation with SAP Build and Pro-code development
+- Application Development and Automation with SAP Build (Low-code) and Pro-code development
 - Extended Planning and Analysis
 - Data and Analytics
 - Integration
