@@ -47,6 +47,5 @@ Create one subaccount in Cloud Foundry and 3 cloud foundry spaces for dev, test,
 In the NEO environment use 3 subaccounts for dev, test, and prod, typically in one Global Account.
 For more information, see SAP Help - [Setting Up Your Account Model](https://help.sap.com/docs/btp/best-practices/setting-up-your-account-model?locale=en-US).
  
-**Note:** You cannot create subaccounts in a trial account.
 
  
