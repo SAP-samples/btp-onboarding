@@ -16,7 +16,7 @@ SAP BTP offers more than 90+ services and when you plan to use them, it is impor
 
 <br>
 
-![](images/1_btp_cloud_services.png)
+![](images/1_btp_cloud_capa.png)
 
 <br>
 
