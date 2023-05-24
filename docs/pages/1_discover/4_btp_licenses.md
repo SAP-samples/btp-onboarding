@@ -1,7 +1,7 @@
 ## Enterprise Accounts and Commercial Models 
 
 SAP offers two commercial models for BTP enterprise accounts: 
-- **Consumption-based coomercial model** in the flaovors
+- **Consumption-based commercial model** in the flaovors
     - Cloud Platform Enterprise Agreement (CPEA)
     - Pay-As-You-Go (PAYG)
 - **Subscription-based commercial model**. 
