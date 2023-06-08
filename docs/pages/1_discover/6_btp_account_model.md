@@ -21,7 +21,7 @@ When you purchase an enterprise account, you’re entitled to provision and cons
 
 **[Entitlements](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/c8248745dde24afb91479361de336111.html?locale=en-US)** are purchased and managed at the global account level, from where they are distributed to subaccounts with, which consume them.
 
-The amount of resources you may consume are defined in the **Service Plans** of a BTP service. E.g. [SAP BTP, Cloud Foundry Runtime](https://discovery-center.cloud.sap/serviceCatalog/cloud-foundry-runtime?region=all&tab=service_plan) offers in the commercial model CPEA the service plans **Free** with the limited resource of 4 GB memory to consume. The service plan **Standard** let you choose the amount of memory you want to consume.
+The amount of resources you may consume are defined in the **Service Plans** of a BTP service. For example, [SAP BTP, Cloud Foundry Runtime](https://discovery-center.cloud.sap/serviceCatalog/cloud-foundry-runtime?region=all&tab=service_plan) offers in the commercial model CPEA the service plan "**Free**" with the limited resource of 4 GB memory to consume. The service plan "**Standard**" let you choose the amount of memory you want to consume.
 
 
 Some BTP services need an explicit **"Quota"** for a subaccount, means a certain amount of the available entitlement is distributed to a specific subaccount.
