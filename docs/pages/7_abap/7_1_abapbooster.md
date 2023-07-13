@@ -108,7 +108,10 @@ Check the summary of the subaccount details before you execute the booster.
 
 Press **"Finish"** and the booster will be executed.
 
-    ![Find Boosters](images/7_ab_9_progress.png)
+<br>
+<img src="images/7_ab_9_progress.png"> 
+</p>
+<br>
 
 After the booster has been executed successfully, you get a Success popup. <br>
 Click on "Navigate to Subaccount".
