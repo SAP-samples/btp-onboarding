@@ -110,7 +110,7 @@ Press **"Finish"** and the booster will be executed.
 
     ![Find Boosters](images/7_ab_9_progress.png)
 
-After the booster has executed successfully, you get a Success popup. <br>
+After the booster has been executed successfully, you get a Success popup. <br>
 Click on "Navigate to Subaccount".
 
 ![Booster success message](images/7_ab_10_done.png)
