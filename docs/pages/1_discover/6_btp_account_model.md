@@ -43,8 +43,6 @@ If the provider is SAP, they have NEO environment with a limited set of services
 
 A subbaccount is used to manage **subaccount members**, **BTP services and applications** and their **quotas** (if required) and **tools** like the Business Application Studio.
 
-Providers are either SAP or our Infrastructure-as-a-Service (IaaS) partners Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), and Alibaba Cloud. The third-party region providers operate the infrastructure layer of the regions, whereas SAP operates the platform layer and Cloud Foundry.
-
 They operate in different locations in the world, called **regions**. For more information, see [Discovery Center](https://discovery-center.cloud.sap/viewServices?provider=all&regions=all&showFilters=true). Click the small world icon in the filter bar.
 
 ![](images/6_dc_filter_bar.png)
