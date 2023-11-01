@@ -1,14 +1,14 @@
 ## Enterprise Accounts and Commercial Models 
 
 SAP offers two commercial models for BTP enterprise accounts: 
-- **Consumption-based commercial model** in the flaovors
+- **Consumption-based commercial model** in the flavors
     - Cloud Platform Enterprise Agreement (CPEA)
     - Pay-As-You-Go (PAYG)
 - **Subscription-based commercial model**. 
 
 <br>
 
-The consumption-based models **Pay-As-You-Go (PAYG)** and **Cloud Platform Enterprise Agreement (CPEA)** offer in additon **Free Tier Service Plans**. 
+The consumption-based models **Pay-As-You-Go (PAYG)** and **Cloud Platform Enterprise Agreement (CPEA)** offer, in addition, **Free Tier Service Plans**. 
 This provides you an easy way to trial certain SAP services within your enterprise account, free of charge to see if they can meet your needs. 
 If your proof of concept proves successful, you can seamlessly update from the free model to the paid model without having to redo any of your work.
 
@@ -28,18 +28,18 @@ If your proof of concept proves successful, you can seamlessly update from the f
 Contract auto-renews every three months with monthly billing. 
 It can be upgraded to a Cloud Platform Enterprise Agreement (CPEA).
 
-If you want to try out an SAP pay-as-you-go account with free tier service plans, you can follow the tutorial [Set Up an SAP BTP Account for Tutorials](https://developers.sap.com/group.btp-setup.html).
+If you want to try out an SAP pay-as-you-go account with free tier service plans, follow the tutorial [Set Up an SAP BTP Account for Tutorials](https://developers.sap.com/group.btp-setup.html).
 
 
 
 #### SAP BTP, Cloud Platform Enterprise Agreement (CPEA) including Free Tier Service Plans
 
 This model allows for the consumption of cloud credits based on actual usage with the highest flexibility. 
-With just one contract, you can get access to all services available under SAP BTP EA and configure them in your global account. 
+With just one contract, you can access all services available under SAP BTP EA and configure them in your global account. 
 This includes new features available after the contract signing date. 
 Consume services based on project requirements, without having to change your contract, and only get charged for what is used.
 
-Contact your SAP sales representative for more information. 
+Please reach out to your SAP sales representative for more information. 
 
 <br>
 
@@ -58,6 +58,6 @@ You can add new services or modify your contract by contacting your SAP sales re
 ### Trial
 
 Get a free single-user SAP BTP trial license in case you have no access to BTP. 
-This gives you access to our community and all the technical resources, tutorials or blogs you need. 
+This gives you access to our community and all the technical resources, tutorials, or blogs you need. 
 Visit the [SAP Developer Center](https://developers.sap.com/) or the [BTP Trial cockpit](https://account.hanatrial.ondemand.com/trial/#/home/trial).
 
