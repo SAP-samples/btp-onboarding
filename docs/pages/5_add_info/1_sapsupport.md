@@ -4,30 +4,32 @@
 ### Getting Support for SAP BTP
 
 
-Visit help.sap.com [Getting Support](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/5dd739823b824b539eee47b7860a00be.html) for further information <be>
-Visit [SAP for Me](https://me.sap.com/home)
+Visit SAP Support Portal [Getting Support](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/5dd739823b824b539eee47b7860a00be.html) for further information <br>
+Visit [SAP for Me](https://me.sap.com/home) <br>
+Visit the [Customer Interaction Center](https://support.sap.com/en/contact-us/cic.html) for a call, chat, or mail based support <br>
 Optional: Visit the [SAP BTP Community](https://community.sap.com/topics/business-technology-platform) <br>
 Optional: Visit [Guided Answers for SAP BTP](https://ga.support.sap.com/dtp/viewer/) <br>
-Optional: Visit the [Customer Interaction Center](https://support.sap.com/en/contact-us/cic.html) for a call, chat, or mail based support <br>
-Optional: [Welcome to the SAP BTP Learning Group[(https://groups.community.sap.com/t5/sap-btp-learning/gh-p/SAP-BTP-Learning) <be>
-Optional: Visit SAP Support Portal - [SAP BTP Support Home Page](https://support.sap.com/en/product/support-by-product/01200615320800003694.html) <be>
+Optional: [Welcome to the SAP BTP Learning Group[(https://groups.community.sap.com/t5/sap-btp-learning/gh-p/SAP-BTP-Learning) <br>
+Optional: Visit SAP Support Portal - [SAP BTP Support Home Page](https://support.sap.com/en/product/support-by-product/01200615320800003694.html) <br>
 
 <br>
 
 
 ### Using Customer Interaction Center
 
-For more information about the Customer Interaction Center CIC, see SAP note [560499 - Customer Interaction Center: Hotline - Email - Chat](https://launchpad.support.sap.com/#/notes/560499).
+For more information about the Customer Interaction Center CIC, see SAP note [560499 - Customer Interaction Center: Hotline - Email - Chat](https://me.sap.com/notes/560499).
 
 <br>
 
 
-### Using SAP ONE Support Launchpad or SAP for Me
+### Using SAP for Me
 
 For creating a support ticket SAP ONE Support Launchpad, you need to have an S-User.
 
-As entitled S-User, you may create an additional S-User, who can support you. Use the User Management in [SAP for Me](https://me.sap.com/servicessupport) to create and delete user IDs for new employees and assign them the required authorizations.
+As entitled S-User, you may create an additional S-User, who can support you. 
 
-See also Note [1271482 - How does an administrator create or delete S-User IDs - SAP ONE Support Launchpad](https://launchpad.support.sap.com/#/notes/1271482)
-<br>
+Use the User Management in [SAP for Me](https://me.sap.com/servicessupport) to create and delete user IDs for new employees and assign them the required authorizations.
+
+See also Note [1271482 - How does an administrator create or delete S-User IDs - SAP ONE Support Launchpad](https://me.sap.com/notes/1271482)
+
 
