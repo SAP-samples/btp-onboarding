@@ -1,7 +1,7 @@
 ## SAP Store
 
-[SAP Store](https://store.sap.com/dcp/en/) is the online marketplace where customers around the world can discover, try, buy, and renew more than 1,800 enterprise solutions from SAP and its trusted partners.
+The [SAP Store](https://www.sap.com/store.html) is the online marketplace where customers around the world can discover, try, buy, and renew more than 1,800 enterprise solutions from SAP and its trusted partners.
 
+You can find more information about BTP pricing on the [SAP home page](https://www.sap.com/products/technology-platform/pricing.html). 
 
-In SAP Store you can find for example [SAP BTP](https://store.sap.com/dcp/en/product/display-9999951781_live_v1/sap-business-technology-platform). 
-You can choose between a Pay-As-You-Go license and a Cloud Platform Enterprise Agreement (CPEA).
+You can choose for example between a Pay-As-You-Go license and a Cloud Platform Enterprise Agreement (CPEA).
