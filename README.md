@@ -21,13 +21,20 @@ The following requirements have to be met:
 
 Access to  [SAP Business Technology Platform](https://account.hana.ondemand.com/#/home/welcome) .
 
-Having your Welcome emails from SAP prepared, containg your initial user, which has the entitlements of your company attached.
+Having your Welcome emails from SAP prepared, containing your initial user, which has the entitlements of your company attached.
+
+For more information see the following step-by-step guides:
 
 
-### Get Started
+### Setup your BTP Enterprise Account
 
-For more information see the step-by-step guide on [GitHub Pages](https://sap-samples.github.io/btp-onboarding/#/) 
-or as mission in [Discovery Center (external link)](https://discovery-center.cloud.sap/missiondetail/3019/).
+This repo contains additional files for Discovery Center mission
+
+To setup your BTP Enterprise Account follow this step-by-step guides:
+
+[Get Started with SAP BTP Enterprise Account](https://discovery-center.cloud.sap/missiondetail/3019/3297/)
+
+
 
  
 
