@@ -4,8 +4,9 @@ Now we shall see an example to understand how Joule for Consultants works with t
 
 ## Scenario: Provide proper understanding on how to start migration with RISE methodology
 ### Outome: An SAP RISE Migration Onboarding Story
-#### Step 1: Understand the process
-##### Prompt 1: What is SAP RISE Methodology?
+<b> Step 1: Understand the Process </b>
+
+<b> Prompt 1: What is SAP RISE Methodology?</b>
 <br>
 <p align="center"> 
 <img src="images/5.1.1.png"> 
@@ -13,8 +14,9 @@ Now we shall see an example to understand how Joule for Consultants works with t
 <p align="center"> <b>Image 1</b> </p>
 <br>
 
-#### Step 2: Get Guidance & Instructions to start the process
-##### Prompt 2: For RISE Methodology, can you provide the Initial Assessment and Planning steps in detail
+<b> Step 2: Get Guidance & Instructions to start the process </b>
+
+<b> Prompt 2: For RISE Methodology, can you provide the Initial Assessment and Planning steps in detail? </b>
 <br>
 <p align="center"> 
 <img src="images/5.1.2.png"> 
@@ -22,8 +24,9 @@ Now we shall see an example to understand how Joule for Consultants works with t
 <p align="center"> <b>Image 2</b> </p>
 <br>
 
-#### Step 3: Understanding Step 1: Discover
-##### Prompt 3: In RISE methodology, Discover phase, what key decisions i need to make?
+<b> Step 3: Understanding Step 1: Discover</b>
+
+<b> Prompt 3: In RISE methodology, Discover phase, what key decisions I need to make?</b>
 <br>
 <p align="center"> 
 <img src="images/5.1.3.png"> 
@@ -31,8 +34,9 @@ Now we shall see an example to understand how Joule for Consultants works with t
 <p align="center"> <b>Image 3</b> </p>
 <br>
 
-#### Step 4: Understanding Step 2: Discover: Readiness check
-##### Prompt 4: In the discovery phase of  RISE methodology, how do I Perform SAP Readiness Check for SAP S/4HANA
+<b> Step 4: Understanding Step 2: Discover: Readiness check </b>
+
+<b> Prompt 4: In the discovery phase of  RISE methodology, how do I Perform SAP Readiness Check for SAP S/4HANA? </b>
 
 <br>
 <p align="center"> 
