@@ -1,4 +1,4 @@
-In this section, we will show you how to activate analytical insights in the context of an existing Joule formation.
+In this section, we will show you how to activate Joule for DataSphere in the context of an existing Joule formation.
 Within your SAP BTP Global Account, navigate to <b>System Landscapes</b>, click on <b>Formations</b>, and search for the Joule formation you have already set up. In my case, I am using one of the existing formations, which has multiple SAP products connected to one Joule instance, as shown below. You can click on Include System
 
  <br>
