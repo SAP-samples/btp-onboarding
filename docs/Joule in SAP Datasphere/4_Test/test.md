@@ -4,7 +4,7 @@ Login to Datasphere and click on the Joule icon.
 
 <br>
 <p align="center"> 
-<img src="images/4.1.1.png"> 
+<img src="images/4.1.2.png"> 
 </p>
 <br>
 <p align="center" </p>
