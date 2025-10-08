@@ -1,6 +1,6 @@
 ## Joule in SAP Mobile Start Architecture Diagram 
 
-![Mobile Start Architecture](images/Img1.png)
+![Mobile Start Architecture](images/Img2.png)
 
 **<p align="center"> Image 1: Mobile Start Architecture</p>**
 
