@@ -3,7 +3,7 @@
 Make sure all the system prerequisites are met.
 
 - SAP Business Technology Platform subscription and tenant (will be provided by SAP)
-- Subscription of SAP Build Work Zone
+- Subscription of SAP Build Work Zone, Standard Plan
 - SAP Cloud application license in which Joule is available
 - Joule instance connected to business systems
 - SAP Cloud Identity Services
@@ -11,7 +11,7 @@ Make sure all the system prerequisites are met.
 ## SAP Build Work Zone, Standard Edition – Foundation plan 
 ### Pre-requisites: 
 
-- If you have Joule instance, make sure to have Work Zone as a part of it. 
+- If you have Joule instance, make sure to have Work Zone and Cloud Identity Service as a part of it i.e, create a formation having Work Zone and Cloud Identity Service as an Integration with Joule.
 
 - If Joule instance is not there, please follow the steps given <a href="https://discovery-center.cloud.sap/missiondetail/4538/4826/?tab=projectboard">here</a>. 
 
