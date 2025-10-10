@@ -1,0 +1,1 @@
+{"exportTime":"2025-10-09 18:17:30.777740523","destination":{"Type":"HTTP","Authentication":"NoAuthentication","sap-start":"true","ariba.realm":"<<realmname>>","ProxyType":"Internet","URL":"https://s1-DATACENTER.ariba.com","Name":"Ariba_Buyer_RT","Description":"Ariba Buyer RunTime"}}
