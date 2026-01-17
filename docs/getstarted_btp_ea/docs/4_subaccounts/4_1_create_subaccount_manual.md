@@ -1,4 +1,4 @@
-# Create a Cloud Foundry Subaccount manually
+# Create a Cloud Foundry Subaccount
 
 This part of the mission, "Get Started with SAP BTP Enterprise Account," guides you through the first steps to create your first Subaccount in your SAP BTP Global Enterprise Account and perform the initial configurations.
 
@@ -23,11 +23,11 @@ Open SAP BTP Cockpit in your Global Account.
 
 1. Navigate to "Account Explorer". Click on the "Create" drop-down button and select "Subaccount."
   
-   ![Create Subaccount](images_03/3_2_1_man_create_suba_1.png)
+   ![Create Subaccount](images_04/4_1_1_man_create_suba_1.png)
 
 2. Specify a Subaccount name and a Subdomain name. 
 
-   This will become part of the URL for accessing applications that you subscribe to from this subaccount.
+   This will be part of the URL for accessing the applications you subscribe to from this subaccount.
    The subdomain name must be unique across all subaccounts in the same region. 
 
 3. Select the region (which also determines the infrastructure provider). 
@@ -40,7 +40,7 @@ Open SAP BTP Cockpit in your Global Account.
 
 5. Select "Create". The Subaccount will be created. Enter your Subaccount.
 
-   ![Create Subaccount](images_03/3_2_2_man_suba_create_2.png)
+   ![Create Subaccount](images_04/4_1_2_man_suba_create_2.png)
 
    
 5. A new tile appears on the Global Account page with the subaccount details. 
@@ -61,11 +61,11 @@ For more information, see SAP Help Portal, [Create a Subaccount](https://help.sa
 
 2. You should be added as the first Subaccount User with the Default Identity Provider.
 
-    ![](images_03/3_2_3_man_user.png)
+    ![](images_04/4_1_3_man_user.png)
 
 3. Click on it. You should have assigned the Subaccount Administrator role collection.
 
-    ![](images_03/3_2_4_man_user_rc.png)
+    ![](images_04/4_1_4_man_user_rc.png)
 
 4. Optional: Add additional Subaccount Administrator.
 
@@ -82,7 +82,7 @@ This tutorial enables the **Cloud Foundry runtime**. Guides for the other runtim
 - You’re a subaccount administrator.
 - You have a free Cloud Foundry quota assigned to your subaccount.
 
-   ![free Cloud Foundry Quota](images_03/3_2_5_man_free_cf_quota.png)
+   ![free Cloud Foundry Quota](images_04/4_1_5_man_free_cf_quota.png)
 
 #### Procedure
 
@@ -92,7 +92,7 @@ This tutorial enables the **Cloud Foundry runtime**. Guides for the other runtim
   
    Check the "Enable Cloud Foundry" button.
    
-    ![Enable Cloud Foundry](images_03/3_2_6_man_enable_cf.png)
+    ![Enable Cloud Foundry](images_04/4_1_6_man_enable_cf.png)
 
 3. A form opens. Keep the preconfigured values or change the following entries: 
 
@@ -100,7 +100,7 @@ This tutorial enables the **Cloud Foundry runtime**. Guides for the other runtim
     - **Instance Name**: Consider a CLI-friendly name 
     - **Org Name**: Each Cloud Foundry environment has exactly one "Organization".
    
-    ![Fill out Cloud Foundry form](images_03/3_2_7_man_cloudfoundry.png)
+    ![Fill out Cloud Foundry form](images_04/4_1_7_man_cloudfoundry.png)
 
 6. Choose "Create".
 
@@ -108,13 +108,13 @@ This tutorial enables the **Cloud Foundry runtime**. Guides for the other runtim
 
 8. Click on "Create Space".
 
-    ![Create Cloud Foundry Space](images_03/3_2_8_man_create_space.png)
+    ![Create Cloud Foundry Space](images_04/4_1_8_man_create_space.png)
 
 9. Provide a Space Name. Typically, choose "dev" or "test".
 
     Assign yourself as Space Developer and Space Manager.
 
-    ![Create Cloud Foundry Space](images_03/3_2_9_man_create_space_2.png)
+    ![Create Cloud Foundry Space](images_04/4_1_9_man_create_space_2.png)
 
 8. Refresh your browser, and you will see a new navigation entry "Cloud Foundry". Browse the navigation entries "Spaces", "Quotas", and "Org Members".  
     
