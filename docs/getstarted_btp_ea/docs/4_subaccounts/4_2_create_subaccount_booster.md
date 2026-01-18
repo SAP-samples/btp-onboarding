@@ -13,7 +13,7 @@ Note: You can delete your Subaccount if you no longer need it.
 
 You can find Boosters under the ** Boosters ** entry in your global account navigation.
 
-<img src="images_04/4_2_1_boosters_find.png" alt="Find Boosters" />
+<img src="images_04/4_2_1_boosters_find.png" alt="Find Boosters" width="400"/>
 
 
 
@@ -30,7 +30,7 @@ In the boosters overview, select the "Prepare an Account for Development" booste
 
 Press **Start** to run the Booster.
 
-<img src="images_04/4_2_2_booster_choose.png" alt="Find Boosters" />
+<img src="images_04/4_2_2_booster_choose.png" alt="Find Boosters" width="400" />
 
 
 
@@ -38,7 +38,7 @@ Press **Start** to run the Booster.
 
 The prerequisites will be checked and marked as green if authorizations and entitlements are fulfilled. Click **Next** to continue.
 
-<img src="images_04/4_2_3_booster_step1.png" alt="Check Prerequisite in Booster Step 1" />
+<img src="images_04/4_2_3_booster_step1.png" alt="Check Prerequisite in Booster Step 1" width="400"/>
 
 Click **Next** to continue.
 
@@ -58,14 +58,14 @@ Provide your details in the booster form:
 7. Click on **Next**.
 
 
-<img src="images_04/4_2_4_booster_step2.png" alt="Find Boosters" />
+<img src="images_04/4_2_4_booster_step2.png" alt="Find Boosters" width="600" />
 
 
 ### Booster Step 3 - Add Users
 
 Provide the Subaccount admin users and the developers who will access the system. Click on Next.
 
-<img src="images_04/4_2_5_booster_step3.png" alt="Find Boosters" />
+<img src="images_04/4_2_5_booster_step3.png" alt="Find Boosters" width="400" />
 
 
 ### Step 4 - Review and Run Booster
@@ -75,16 +75,12 @@ Before executing the Booster, review the summary of the subaccount details.
 
 1. Press **Finish**, the Booster will execute.
 
-   <div style="text-align: center;">
-   <img src="images_04/4_2_6_booster_step4.png" alt="Find Boosters" width="400" align=center />
-   </div>
+     <img src="images_04/4_2_6_booster_step4.png" alt="Find Boosters" width="400" />
 
 
 2. You should be able to see that your Booster has executed successfully.
 
-   <div style="text-align: center;">
-   <img src="images_04/4_2_7_booster_success.png" alt="Booster success message" width="400"/>
-   </div>
+     <img src="images_04/4_2_7_booster_success.png" alt="Booster success message" width="400"/>
 
 
 After completion, you can access the Subaccount for further configuration, deployment, or development.
