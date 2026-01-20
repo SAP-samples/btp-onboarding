@@ -14,16 +14,17 @@ In your global account, navigate to the Account Explorer page.
  
    You can also select the `...` Actions menu button of your global account to create a directory.
 
-   <img src="images_03/3_1_1_createdirectory.png" alt="Create a new Directory in BTP Global Account" />
+   <img src="images_03/3_1_1_createdirectory.png" alt="Create a new Directory in BTP Global Account" width="800" />
 
 
-2. In the Create Directory dialog box, enter a display name for your new directory and choose a parent. The parent can be the global account or another directory.
+2. In the Create Directory dialog box, enter a display name for your new directory, for example `my_first_directory`.  
+   Choose a parent, either your global account or another directory.
 
    Optional: Under Advanced --> Labels, you can assign labels to the directory for filtering directories. Subaccounts in this directory's path also inherit these labels. You can also add labels later.
    
    Optional: You can enable entitlement and user management for the directory and its subaccounts. Leave empty for now; you can enable both after creating the directory.
 
-   <img src="images_03/3_1_2_createdirectory.png" alt="Create a new Directory in BTP Global Account" />
+   <img src="images_03/3_1_2_createdirectory.png" alt="Create a new Directory in BTP Global Account" width="400" />
 
 
 3. Review the details of your directory and choose Create to finalize the process. Your directory will be created.
@@ -35,21 +36,21 @@ You can manage your Account Explorer Hierarchy by adding subaccounts to the dire
 
 1. in the `...` Action menu of your Subaccount, click "Move".
 
-   <img src="images_03/3_1_5_move_sub.png" alt="Add a subbacount to a directory" />
+   <img src="images_03/3_1_5_move_sub.png" alt="Add a subbacount to a directory" width="800" />
 
 2. Select your directory.
 
-   <img src="images_03/3_1_6_movesub2.png" alt="Add a subbacount to a directory" />
+   <img src="images_03/3_1_6_movesub2.png" alt="Add a subbacount to a directory" width="400" />
 
 3. Select your Subaccount and select your new parent - your directory.
 
    Click "Move".
 
-   <img src="images_03/3_1_7_movesub3.png" alt="Add a subbacount to a directory" />
+   <img src="images_03/3_1_7_movesub3.png" alt="Add a subbacount to a directory" width="400" />
 
 4. As a result, the Subaccount has now moved under the directory.
 
-   <img src="images_03/3_1_8_movesub4.png" alt="Add a subbacount to a directory" />
+   <img src="images_03/3_1_8_movesub4.png" alt="Add a subbacount to a directory" width="400" />
 
 
 
@@ -59,7 +60,7 @@ You can manage your Account Explorer Hierarchy by adding subaccounts to the dire
 
 With this feature, you can manage and assign entitlements on the directory level. 
 
-<img src="images_03/3_1_11_dir_entitle.png" alt="Enable directory entitlement management" width="400">
+<img src="images_03/3_1_11_dir_entitle.png" alt="Enable directory entitlement management" width="600">
 
 <!--  ![Enable directory entitlement management](images_03/3_1_11_dir_entitle.png) -->
 
@@ -71,7 +72,7 @@ All other services, service plans, and service-plan quotas can only be consumed 
 
 This picture shows a Global Account with an entity assignment to a test directory and a test subaccount.
 
-<img src="images_03/3_1_12_assignentitlements.png" alt="Assign services to directory and subaccounts" />
+<img src="images_03/3_1_12_assignentitlements.png" alt="Assign services to directory and subaccounts" width="800" />
 
 The commercial model of the Global Account is "Subscription", so some Cloud Foundry Service Plans require quota. Note: The limit of quota in the directory is the maximum that the directory's Subaccounts are allowed to consume.
 

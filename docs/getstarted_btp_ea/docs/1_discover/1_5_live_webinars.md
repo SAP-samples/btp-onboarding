@@ -1,6 +1,6 @@
 # Live Webinars about SAP BTP Onboarding 
 
-SAP conducts monthly webinars to ensure all new customers are aware of how BTP fits into the overall strategy of driving customers toward becoming intelligent, sustainable enterprises, as well as the general functionalities of BTP.
+SAP conducts monthly webinars to ensure all new customers understand how BTP fits into the overall strategy of driving customers toward becoming intelligent, sustainable enterprises, as well as BTP's general functionalities.
 
 The [SAP BTP Onboarding Resource Center](https://support.sap.com/en/product/onboarding-resource-center/business-technology-platform.html) page provides access to live webinars, recorded & deep-dive sessions, and a blog series that can help you in your SAP BTP onboarding journey. 
 

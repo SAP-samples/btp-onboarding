@@ -20,7 +20,7 @@ For more information about the Customer Interaction Center CIC, see SAP note [56
 
 ### Using SAP ONE Support Launchpad or SAP for Me
 
-To create a support ticket on SAP ONE Support Launchpad, you need to have an S-User.
+To create a support ticket in SAP ONE Support Launchpad, you need an S-User.
 
 As an S-User, you can create an additional S-User to support you. Use the User Management in [SAP ONE Support Launchpad](https://launchpad.support.sap.com/) or [SAP for Me](https://me.sap.com/servicessupport) to create and delete user IDs for new employees and assign them the required authorizations.
 

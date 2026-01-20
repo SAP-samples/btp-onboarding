@@ -26,7 +26,7 @@ The User Registration & Onboarding e-mail contains a button labeled "Activate my
 
 For more information, see the [S-User Welcome Page](https://support.sap.com/en/my-support/users/welcome.html).
 
-![welcome email](images_02/2_1_1_first_email_suser.png)
+<img src="images_ga/3_1_1_first_email_suser.png" alt="welcome email" width="600">
 
 
 
@@ -35,7 +35,7 @@ For more information, see the [S-User Welcome Page](https://support.sap.com/en/m
 
 You will receive your second e-mail from "System & Provisioning" shortly after the first e-mail. 
 
-![second welcome email](images_02/2_1_2_second_email_access.png)
+<img src="images_ga/3_1_2_second_email_access.png" alt="second welcome email" width="600">
 
 
 The S-user of the Global Account Administrator is attached to your SAP BTP Global Account and your entitlements from your consumption or subscription license. You must log in with the correct URL and S-User to receive the proper entitlements.
@@ -46,7 +46,7 @@ If you are working with multiple SAP solutions, you may want to verify your assi
 
 ### Getting Support
 
-To get assistance, use the available support channels provided by SAP for Me. To report a case in SAP for Me, proceed as follows:
+To get assistance, use the support channels available from SAP for Me. To report a case in SAP for Me, proceed as follows:
 
   1. Open [SAP for Me Customer Portal](https://me.sap.com/) and log in.
   2. Open the Services & Support dashboard.
@@ -67,16 +67,13 @@ For any other non-technical assistance, please visit the [Customer Interaction C
 
 Click on the "System URL"  provided in the "System Access Information" e-mail you received.
 
->**Note:** For the first login to SAP BTP Enterprise Accounts, it is essential to log on with the Global Account Administrator credentials that you received in your e-mail. In case you are not an administrator, the best option is to contact your Administrator for access.
+>**Note:** For the first login to SAP BTP Enterprise Accounts, it is essential to log on with the Global Account Administrator credentials that you received in your e-mail. If you are not an administrator, the best option is to contact your administrator to request access.
 
-Sign in with your S-User credentials.
+1. Sign in with your S-User credentials.
 
 **Result:** You get forwarded to the SAP BTP Cockpit Home and see your Global Account.
 
 
-![SAP BTP Cockpit Home](images_02/2_1_4_btp_cockpit_home.png)
+<img src="images_ga/3_1_4_btp_cockpit_home.png" alt="SAP BTP Cockpit Home" width="600">
 
 <br>
-
-
-

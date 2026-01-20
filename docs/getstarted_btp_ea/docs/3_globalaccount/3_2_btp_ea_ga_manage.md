@@ -15,7 +15,7 @@ Navigate to https://cockpit.btp.cloud.sap to access the cockpit. Depending on yo
 
 When you have only one Global Account, logging in automatically directs you to your Global Account and the Account Explorer page.
 
-When you have multiple Global Accounts, a pop-up appears, allowing you to select your Global Account first.
+When you have multiple Global Accounts, a pop-up appears that lets you select your Global Account first.
 
 Depending on your geographic location, you can also choose one of the following gateways to access your SAP BTP cockpit. These gateways only define where you access the cockpit from. They don't restrict access to resources running in other regions in any way:
 
@@ -25,9 +25,9 @@ Depending on your geographic location, you can also choose one of the following 
 - EU-Access: https://eu-access.cockpit.btp.cloud.sap (restricts processing of personal data to EEA/Switzerland)
 
 
-After a successful login, you will be directed to your global account home page, SAP BTP Cockpit.
+After a successful login, you will be directed to your global account home page in the SAP BTP Cockpit.
 
-![SAP BTP Cockpit Home](images_02/2_1_4_btp_cockpit_home.png)
+<img src="images_ga/3_1_4_btp_cockpit_home.png" alt="SAP BTP Cockpit Home" width="600">
 
 For more information about your **SAP BTP Cockpit** of your Global Account, see SAP blog [SAP BTP Cockpit – Global Account Technical Overview](https://blogs.sap.com/2022/01/04/sap-btp-onboarding-series-sap-btp-cockpit-global-account-technical-overview/).
 
@@ -42,11 +42,10 @@ For more information about your **SAP BTP Cockpit** of your Global Account, see 
 
 1. Click on the small question mark icon. The context-aware "Help Topics" open. 
 
-2. Stay on "Help Topics". Click on "Global Account Settings".
+2. Stay on "Help Topics". Click on "Global Account Settings".  
    It shows you where you find the "Settings" icon.
 
-
-   ![SAP BTP Cockpit Help Topics](images_02/2_2_2_cockpit_help.png)
+   <img src="images_ga/3_2_2_cockpit_help.png" alt="SAP BTP Cockpit Help Topics" width="700">
 
 3. Optional: Try out other Cockpit pages and their Help Topics.
 
@@ -54,11 +53,11 @@ For more information about your **SAP BTP Cockpit** of your Global Account, see 
 
 1. Click on the second tab (Guided Tours) of the Help screen.
 
-   ![SAP BTP Cockpit Guided Tours](images_02/2_2_3_guided_tours.png)
+   <img src="images_ga/3_2_3_guided_tours.png" alt="SAP BTP Cockpit Guided Tours" width="400">
 
 2. Click on "Getting Started". A short Guided Tour starts. Click through the steps and take your tour.
 
-   ![SAP BTP Cockpit Guided Tours](images_02/2_2_4_guided_tour.png)
+   <img src="images_ga/3_2_4_guided_tour.png" alt="SAP BTP Cockpit Guided Tours" width="400">
 
 3. Optional: Try out other Cockpit pages and their Guided Tours.
 
@@ -66,15 +65,17 @@ For more information about your **SAP BTP Cockpit** of your Global Account, see 
 
 ### Enable Joule in SAP BTP Cockpit
 
-1. Open "Global Account Setting" in Cockpit.
+1. Open "Global Account Settings" in Cockpit.
 
 2. Have a look at "General" Information about your account.
 
 3. Click "Joule". Activate Joule and save.
 
-   ![SAP BTP Cockpit activate Joule](images_02/2_2_5_activate_joule.png)
+   <img src="images_ga/3_2_5_activate_joule.png" alt="SAP BTP Cockpit activate Joule" width="400">
 
-You can now open Joule in your Cockpit by clicking the small diamond icon in your Cockpit.
+4. You can now open Joule in your Cockpit by clicking the small diamond icon in your Cockpit.
+
+   <img src="images_ga/3_2_6_btpga_joule.png" alt="SAP BTP Cockpit use Joule" width="700">
 
 
 
@@ -86,7 +87,7 @@ You can now open Joule in your Cockpit by clicking the small diamond icon in you
 
 In the Account Explorer, you can create and manage Subaccounts and Directories. 
 
-A global account can contain one or more subaccounts. Subaccounts in a global account are independent from each other. 
+A global account can contain one or more subaccounts. Subaccounts in a global account are independent of each other. 
 
 In subaccounts, you deploy applications, use services, and manage your subscriptions. You can use them to manage members, authorizations, and entitlements.
 
@@ -98,7 +99,7 @@ A directory can contain other directories and subaccounts to create a hierarchic
 
 #### Change the Display Name of your Global Account
 
-Global account administrators can change the name of the global account in the Account Explorer.
+Global account administrators can change the global account name in the Account Explorer.
 
 1. In the Account Explorer view, click on Directories and Subaccounts, select the table view, and then select the global account for which you'd like to change the display name and select the "Edit" pencil on its tile towards the right of the screen.
 
@@ -106,7 +107,7 @@ Global account administrators can change the name of the global account in the A
 
 3. Enter your name and save your changes.
 
-   ![Change the display name of your global account](images_02/2_1_6_ga_name_change.png)
+   <img src="images_ga/3_1_6_ga_name_change.png" alt="Change the display name of your global account" width="700">
 
 
 
@@ -122,14 +123,14 @@ Boosters are multi-step forms (also known as wizards) that enable you to activat
 
 You can access them directly from your global account in the SAP BTP cockpit by choosing Boosters in the navigation menu. 
 
-![](images_02/2_1_9_boosters.png)
+<img src="images_ga/3_1_9_boosters.png" alt="" width="400">
 
 
 Click on a booster to see what this booster can set up for you. Check the tabs "Overview", "Components", and "Additional Resources".
 
 You will execute a booster later in this mission.
 
-![](images_02/2_1_10_booster_abap.png)
+<img src="images_ga/3_1_10_booster_abap.png" alt="" width="400">
 
 <br>
 
@@ -153,20 +154,25 @@ Systems are added to the list in one of the following ways:
 
 - Subaccount/(your-subaccount-name)
 
-  The subscription has been discovered and added automatically through the subaccount.
+  The subscription has been discovered and automatically added to the subaccount.
 
 - Manually-Added
   
   Specifies that the system has been manually added to the list by the global account administrator using the Add System button and completing the wizard. 
 
-One system is particularly important for this mission: Your Cloud Identity Services tenant. You will need it to set up an Identity Provider. If you do not have one, you can create one later in this mission.
+One system is significant for this mission: Your Cloud Identity Services tenant. You will need it to set up an Identity Provider. If you do not have one, you can create one later in this mission.
 
-![System Landscape - Systems](images_02/2_1_11_systems_landscape.png)
+<img src="images_ga/3_1_11_systems_landscape.png" alt="System Landscape - Systems" width="400">
 
 
 #### Formations
 
-A formation is a logical grouping of SAP systems that can be integrated as part of a business scenario. Formations enable you to combine SAP solution systems, simplifying connectivity setup and providing a unified view of all components required for implementing your integration or extension scenario. 
+Formations enable you to combine SAP solution systems, simplifying connectivity setup and providing a unified view of all components required for implementing your integration or extension scenario. 
+
+For example, setting up "Joule Studio" requires a Formation between "Joule", "SAP Build Process Automation", and "Cloud Identity Services".
+
+<img src="images_ga/3_2_7_formation_example.png" alt="System Landscape - Formations" width="600">
+
 
 You will create a formation later in this mission.
 
@@ -193,7 +199,7 @@ The entitlements that are available in your enterprise account are determined by
 In the SAP BTP cockpit global account, navigate to "Entitlements" --> "Service Assignments".
 
 
-![Check your entitlements](images_02/2_1_7_entitlements_services.png)
+<img src="images_ga/3_1_7_entitlements_services.png" alt="Check your entitlements" width="500">
 
 
 - **Service** shows available BTP Services in your global account, which you can assign in Subaccounts. You can look up all available services and solutions in the [SAP Discovery Center - Services](https://discovery-center.cloud.sap/serviceCatalog?showFilters=true&regions=all).
@@ -213,7 +219,7 @@ In the SAP BTP cockpit global account, navigate to "Entitlements" --> "Service A
 
   This figure illustrates an example of a subscription-based commercial model with a limited amount of memory allocated for the Cloud Foundry Runtime.
 
-   ![](images_02/2_1_8_entitlements_subscription.png)
+   <img src="images_ga/3_1_8_entitlements_subscription.png" alt="" width="500">
 
 
 <br>
@@ -226,10 +232,9 @@ See the next chapter.
 
 ### Cost and Usage
 
-SAP BTP cockpit supports advanced usage and cost monitoring of services in your global account. You can compare the usage and costs of multiple services and subaccounts, see monthly trends, and drill down into subaccounts and service plans for detailed information.
+SAP BTP cockpit supports advanced usage and cost monitoring of services in your global account. You can compare usage and costs across multiple services and subaccounts, view monthly trends, and drill down into subaccounts and service plans for detailed information.
 
 
 For more information, see [SAP Help Portal - Monitoring Usage and Consumption Costs in Your Global Account](https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-and-consumption-costs-in-your-global-account?locale=en-US&version=LATEST)
 
 <br>
-

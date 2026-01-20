@@ -24,7 +24,7 @@ SAP BTP capabilities are delivered as services. Before using a service, familiar
 
 Available SAP BTP services are listed in the [Discovery Center Service Catalog](https://discovery-center.cloud.sap/serviceCatalog?provider=all&regions=all&showFilters=true). 
 
-![Browse Discovery Center Services](images_01/1_2_1_dc_services_catalog.png)
+<img src="images_01/1_2_1_dc_services_catalog.png" alt="Browse Discovery Center Services" width="800">
 
 
 
@@ -37,7 +37,7 @@ If you select a service, you can find under the tab **Pricing** information abou
 
 
 
-![Pricing of Discovery Center Services](images_01/1_2_2_dc_services_pricing.png)
+<img src="images_01/1_2_2_dc_services_pricing.png" alt="Pricing of Discovery Center Services" width="800">
 
 
 

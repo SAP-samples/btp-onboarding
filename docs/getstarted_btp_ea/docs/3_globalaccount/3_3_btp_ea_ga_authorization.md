@@ -1,6 +1,6 @@
 # Managing Authentication and Authorization in a Global Account
 
-This page describes the tasks administrators of SAP BTP must perform to ensure user authentication and assign authorization information to users and user groups.
+This page describes the tasks that SAP BTP administrators must perform to ensure user authentication and to assign authorization information to users and user groups.
 
 For more information, see SAP Help Portal, [Security Administration: Managing Authentication and Authorization](https://help.sap.com/docs/btp/sap-business-technology-platform/security-administration-managing-authentication-and-authorization?locale=en-US&version=LATEST).
 
@@ -34,7 +34,7 @@ In a new Global Account, you just have 2 Role Collections:
 - Global account administrator and
 - Global account viewer
 
-![Role Collections in Global Account](images_02/2_3_1_ga_rolecollections.png)
+<img src="images_ga/3_3_1_ga_rolecollections.png" alt="Role Collections in Global Account" width="800">
 
 Note: As a Global Account Administrator, you can also add yourself to Subaccounts.
 
@@ -50,7 +50,7 @@ You have to add ("Create") users from the default identity provider individually
 
 Optional: Log in to [SAP ID service](https://account.sap.com/sam/landing) and check your user account and credentials in SAP ID Service.
 
-![User Account in Default Identity Services](images_02/2_3_2_defaultidprovider.png)   
+   <img src="images_ga/3_3_2_defaultidprovider.png" alt="User Account in Default Identity Services" width="500">
 
 
 For more information, see [SAP Help Portal - Default Identity Provider](https://help.sap.com/docs/btp/sap-business-technology-platform/default-identity-provider?locale=en-US&version=LATEST).
@@ -70,19 +70,19 @@ For example, S-Users can authenticate with the SAP ID service, which is the defa
 
 3. Choose "Create".
 
-   ![Add platform user in global account](images_02/2_3_5_create_platform_user.png)
+   <img src="images_ga/3_3_5_create_platform_user.png" alt="Add platform user in global account" width="600">
 
 4. Enter the e-mail address, and choose the default identity provider. Ensure that the Email ID is associated with an S-user.
 
    Choose "Create".
 
-   ![Add platform user in global account](images_02/2_3_6_add_user2.png)
+   <img src="images_ga/3_3_6_add_user2.png" alt="Add platform user in global account" width="400">
 
 6. Click on the new user. In the detail window, click on "Role Collections" and "Assign Role Collections".
 
 7. Add the required role, "Global Account Administrator" or "Global Account Viewer". 
 
-   ![Add platform user in global account](images_02/2_3_7_assign_rolec.png)
+   <img src="images_ga/3_3_7_assign_rolec.png" alt="Add platform user in global account" width="600">
 
 
 
@@ -95,7 +95,8 @@ For more information, see [SAP Help Portal - Add Members to Your Global Account]
 
 
 
-## Custom Identity Provider for your Global Account
+
+## Platform User Management with Custom Identity Provider
 
 SAP recommends that you use a custom tenant of SAP Cloud Identity Services. Using SAP Cloud Identity Services eases integration with other SAP solutions. You can also use SAP Cloud Identity Services as a proxy to your corporate identity provider.
 
@@ -113,18 +114,18 @@ Locate your Cloud Identity Services custom tenant in your System Landscape, or r
 
 1. Locate your CIS in System Landscape.
 
-   ![](images_02/2_3_9_landscape_cis.png)
+   <img src="images_ga/3_3_9_landscape_cis.png" alt="" width="700">
 
    If you do not have or find a Cloud Identity Services tenant, see SAP Help Portal [Get Your Tenant](https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/get-your-tenant?locale=en-US&version=LATEST).
 
 
 2. Click the System URL or email link to access your user profile. The URL should be sth. like https://abcd0efgh.accounts.ondemand.com/.
 
-   ![User Account in Cloud Identity Services](images_02/2_3_3_user_in_cis.png)   
+   <img src="images_ga/3_3_3_user_in_cis.png" alt="User Account in Cloud Identity Services" width="500">
 
 3. If you are a tenant administrator, you can access the admin UI by adding /admin: https://abcd0efgh.accounts.ondemand.com/admin.
 
-   ![User Account in Cloud Identity Services](images_02/2_3_4_cis_tenant.png)   
+   <img src="images_ga/3_3_4_cis_tenant.png" alt="User Account in Cloud Identity Services" width="500">
 
 
 
@@ -147,36 +148,38 @@ For more information about Platform Users, see [Platform Users](https://help.sap
 
 #### Procedure
 
-1. Navigate to "Security" --> "Establish Trust".
+1. Navigate to "Security" --> "Trust Configuration". 
 
-   ![Establish Trust](images_02/2_3_10_establishtrust.png)
+   Click on "Establish Trust".
+
+   <img src="images_ga/3_3_10_establishtrust.png" alt="Establish Trust" width="600">
 
 2. Select your cloud identity services tenant you want to use.
 
-   ![Establish Trust](images_02/2_3_11_trust_1.png)
+   <img src="images_ga/3_3_11_trust_1.png" alt="Establish Trust" width="600">
 
-3. Configure the name for the Customer Identity Provider for Platform Users 
+3. Configure the name for the Customer Identity Provider for Platform Users, or keep the default values.
 
-   ![Establish Trust](images_02/2_3_12_trust_2.png)
+   <img src="images_ga/3_3_12_trust_2.png" alt="Establish Trust" width="600">
    
-4. Select the domain you want to use. Default is "accounts.ondemand.com".
+4. Select the domain you want to use. Default is `accounts.ondemand.com`. Keep the other default values.
 
-   ![Establish Trust](images_02/2_3_13_trust_3.png)
+   <img src="images_ga/3_3_13_trust_3.png" alt="Establish Trust" width="600">
 
 5. Review your configurations and click "Finish".
    
-   ![Establish Trust](images_02/2_3_14_trust_4.png)
+   <img src="images_ga/3_3_14_trust_4.png" alt="Establish Trust" width="600">
 
 6. On successful completion, you get a success message:
 
-   ![Establish Trust](images_02/2_3_16_trustplatformuser_success.png)
+   <img src="images_ga/3_3_16_trustplatformuser_success.png" alt="Establish Trust" width="600">
    
 7. Check the results. You can now create user accounts with users from the customer identity provider.
 
-   ![Establish Trust](images_02/2_3_15_trust_result.png)
+   <img src="images_ga/3_3_15_trust_result.png" alt="Establish Trust" width="600">
 
 
-### Manage Platform Users
+### Manage Platform Users in Global Accounts
 
 
 If you want to access your BTP cockpit with a Platform User from SAP Cloud Identity Services, you must provide BTP the Identity Provider you want to use with the idp parameter.
@@ -198,17 +201,17 @@ You can add the user to a User Group. In this example, named `GlobalAccountAdmin
 
 3. "Add" a User. Choose "Set initial password" as you cannot send him an activation email. 
 
-   ![Add Test User](images_02/2_3_21_addtestuser.png)
+   <img src="images_ga/3_3_21_addtestuser.png" alt="Add Test User" width="600">
 
 4. Click on the new user to edit the details.
 
    Check "Verify email". Otherwise, CIS might try to verify the dummy email address.
 
-   ![Add Test User](images_02/2_3_22_verifymail.png)
+   <img src="images_ga/3_3_22_verifymail.png" alt="Add Test User" width="400">
 
 5. Assign a User Group. If you assign role collections to this user group in SAP BTP, the user will already have the required authorizations after the first login. 
 
-   ![Created Test User](images_02/2_3_23_cis_usergroup.png)
+   <img src="images_ga/3_3_23_cis_usergroup.png" alt="Created Test User" width="600">
 
 5. Use a new browser.
 
@@ -216,7 +219,7 @@ You can add the user to a User Group. In this example, named `GlobalAccountAdmin
 
    Change your password. Check your user profile.
 
-   ![Created Test User](images_02/2_3_24_userprofile.png)
+   <img src="images_ga/3_3_24_userprofile.png" alt="Created Test User" width="500">
 
 
 6. Go to your BTP Cockpit and authenticate with an active Global Account Administrator.
@@ -227,7 +230,7 @@ You can add the user to a User Group. In this example, named `GlobalAccountAdmin
 
    All users belonging to this user group will now have "Global Account Administrator" authorizations!
 
-   ![Add Role Collection to User Group](images_02/2_3_25_rolec_usergroup.png)
+   <img src="images_ga/3_3_25_rolec_usergroup.png" alt="Add Role Collection to User Group" width="600">
 
 
 8. Use a new browser and access your BTP Cockpit with your test user.
@@ -236,6 +239,6 @@ You can add the user to a User Group. In this example, named `GlobalAccountAdmin
 
 9. Check your authorizations. For example, you might add yourself to a Subaccount as Subaccount Administrator.
 
-   ![Add me as Admin](images_02/2_3_26_addmeasadmin.png)
+   <img src="images_ga/3_3_26_addmeasadmin.png" alt="Add me as Admin" width="500">
 
 Congratulations!

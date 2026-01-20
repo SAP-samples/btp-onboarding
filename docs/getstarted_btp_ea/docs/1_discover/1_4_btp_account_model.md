@@ -9,12 +9,12 @@ Global accounts are **region- and environment-independent**.
 
 A global (enterprise) account is the realization of a contract you made with SAP. 
 
-A global account is used to manage global account members, subaccounts, entitlements and quotas. You receive entitlements and quotas to use platform resources per global account and then distribute the entitlements and quotas to the subaccount for actual consumption. 
+A global account is used to manage global account members, subaccounts, entitlements, and quotas. You receive entitlements and quotas for platform resources per global account, and then distribute them to the subaccount for actual consumption. 
 
 
 A global account can contain one or more subaccounts in which you run applications and services. 
 
-![SAP BTP account model](images_01/1_4_1_btp_account_model.png)
+<img src="images_01/1_4_1_btp_account_model.png" alt="SAP BTP account model" width="800">
 
 Global Accounts are managed using the **SAP BTP Cockpit**. For more information and alternatives to manage your global Account, see [SAP Help Portal - Account Administration](https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration?locale=en-US&version=LATEST).
 
@@ -27,7 +27,7 @@ A global account can contain one or more subaccounts in which you deploy applica
 
 The entitlements and quotas purchased for a global account must be assigned to the individual subaccounts.
 
-Each subaccount is associated with one **region** and one **provider** running in that region. Each region represents a geographical location (for example, Europe, US East) where applications, data, or services are hosted.
+Each subaccount is associated with one **region** and one **provider** running in that region. Each region represents a geographic location (for example, Europe or US East) where applications, data, or services are hosted.
 
 Regions are provided by the Infrastructure-as-a-Service (IaaS) partner Amazon Web Services (AWS), Microsoft Azure, Google Cloud, and Alibaba Cloud. The third-party region providers operate the infrastructure layer of the regions, whereas SAP operates the platform layer and Cloud Foundry.
 
@@ -37,12 +37,12 @@ For an overview of all available regions, see [Discovery Center](https://discove
 
 Click the small world icon in the filter bar.
 
-![Discovery Center filter bar](images_01/1_4_2_dc_filter_bar.png)
+<img src="images_01/1_4_2_dc_filter_bar.png" alt="Discovery Center filter bar" width="600">
 
 
 As a result, you will see an overview map for Regions and Providers.
 
-![Discovery Center regions map](images_01/1_4_3_dc_regions_map.png)
+<img src="images_01/1_4_3_dc_regions_map.png" alt="Discovery Center regions map" width="600">
 
 
 
@@ -59,11 +59,11 @@ Infrastructure Providers such as AWS, Azure, GCP, or Alibaba Cloud provide the [
 
 The SAP data center provides the NEO Environment with a limited set of services.
 
-To actually use an environment in a subaccount, you need to enable it by creating an instance of that environment, which will be explained later in the mission. 
+To use an environment in a subaccount, you need to enable it by creating an instance of that environment, as explained later in the mission. 
 
 
 
->**Note:** Not all Services, Applications, or Environments are available in all Regions and on all Providers. Different Providers, Environments, and Regions may have a different set of available services.
+>**Note:** Not all Services, Applications, or Environments are available in all Regions and on all Providers. Different Providers, Environments, and Regions may offer different sets of available services.
 
 
 #### Entitlements and Quotas
@@ -72,14 +72,13 @@ When you purchase an enterprise account, you're entitled  to use a specific set 
 
 SAP BTP services always have an associated **Service Plan**. The service plan defines the amount of resources the service may consume.
 
-For example, [SAP BTP, Cloud Foundry Runtime](https://discovery-center.cloud.sap/serviceCatalog/cloud-foundry-runtime?region=all&tab=service_plan) offers, in the commercial model CPEA, the service plan "**Free**" with a limited resource allocation of 4 GB of memory for consumption. The service plan "**Standard**" allows you to choose the amount of memory you want to allocate.
+For example, [SAP BTP, Cloud Foundry Runtime](https://discovery-center.cloud.sap/serviceCatalog/cloud-foundry-runtime?region=all&tab=service_plan) offers, in the commercial model CPEA, the service plan "**Free**" with a limited resource allocation of 4 GB of memory. The service plan "**Standard**" allows you to choose the amount of memory you want to allocate.
 
-Entitlements are purchased and managed at the global account level, from where entitlements are distributed to subaccounts, which consume them.
+Entitlements are purchased and managed at the global account level, from which they are distributed to subaccounts that consume them.
 
 Some BTP services, such as Cloud Foundry Runtime, require an explicit "Quota" for a subaccount, which means a specific amount of the available entitlement is allocated to a particular subaccount.
 
 When you remove quotas from a subaccount, they become available again at the global account level and can be assigned to other subaccounts.
 
 
-<br> 
-
+<br>

@@ -109,7 +109,7 @@ Under this commercial agreement:
 
 Some services in SAP BTP Enterprise Accounts are **Always Free**, indicating that the service plan is free of additional charges, as it is already included in your overall SAP BTP contract. 
 
-Some services in SAP BTP Enterprise Accounts are available as **Free Tier**. Free Tier **service plans** are a way for developers and users to explore and build on specific SAP BTP **services** with no time limits, offering persistent, productive usage of selected services with defined free capacities, unlike the time-bound 90-day Trial Account. It's accessed via a Pay-As-You-Go (PAYG) or SAP BTP Enterprise Agreement (BTPEA) / Cloud Platform Enterprise Agreement (CPEA) licenses, allowing for testing, prototyping, and migration of projects to production, with options to upgrade to paid plans as usage grows. 
+Some services in SAP BTP Enterprise Accounts are available as **Free Tier**. Free Tier **service plans** enable developers and users to explore and build on specific SAP BTP **services** with no time limits, offering persistent, productive use of selected services with defined free capacities, unlike the time-bound 90-day Trial Account. It's accessed via a Pay-As-You-Go (PAYG) or SAP BTP Enterprise Agreement (BTPEA) / Cloud Platform Enterprise Agreement (CPEA) license, allowing testing, prototyping, and migrating projects to production, with the option to upgrade to paid plans as usage grows. 
 
 For an overview of available Always Free & Free Tier services, visit [SAP Discovery Center, Services](https://discovery-center.cloud.sap/viewServices?regions=all&commercialModel=all&provider=all&quickFilter=freetierservices).
 
@@ -133,25 +133,25 @@ If you want to try out an SAP pay-as-you-go account with free tier service plans
 
 3. Select the commercial model, where free service plans are available, e.g., "PAYG" or "SAP BTPEA".
 
-   ![Select the commercial model](images_01/1_3_1_btpea_cf_free_1.png)
+   <img src="images_01/1_3_1_btpea_cf_free_1.png" alt="Select the commercial model" width="700">
 
-4. Open the description for Service Plan "Free". Compare to the description for "Standard", esp. the price information.
+4. Open the description for the Service Plan "Free". Compare to the description for "Standard", esp. the price information.
 
 5. Click on "Add to Estimator" (optional: Reset your estimate beforehand).
 
 6. Click on the small calculator icon and select your estimate.
 
-   ![select your estimate](images_01/1_3_2_btpea_cf_free_2.png)
+   <img src="images_01/1_3_2_btpea_cf_free_2.png" alt="select your estimate" width="500">
 
 7. Check the calculated service estimate.
 
-   ![calculated service estimate](images_01/1_3_3_btpea_cf_free_3.png)
+   <img src="images_01/1_3_3_btpea_cf_free_3.png" alt="calculated service estimate" width="400">
 
 <br>
 
 ### Optional: Using SAP BTP Trial Accounts for Single Users
 
-A trial account lets you try out SAP BTP for free for 90 days. The services provided for the trial account allow for the restricted use of platform resources and services. Access is open to everyone. Trial accounts are intended for personal exploration, your own non-productive testing, and evaluation of the services in accordance with SAP BTP trial terms and conditions. A SAP BTP trial account must not be used for production use or team development. You are not permitted to use the trial account in any productive or commercial manner.
+A trial account lets you try out SAP BTP for free for 90 days. The services provided for the trial account are subject to restricted service plans for the use of platform resources and services. Access is open to everyone. Trial accounts are intended for personal exploration, your own non-productive testing, and evaluation of the services in accordance with SAP BTP trial terms and conditions. A SAP BTP trial account must not be used for production use or team development. You are not permitted to use the trial account in any productive or commercial manner.
 
 The setup and configuration of BTP services in the Trial Account typically differ from those in Enterprise Accounts.
 

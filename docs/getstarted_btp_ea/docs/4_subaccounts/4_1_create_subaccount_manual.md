@@ -21,13 +21,13 @@ Prerequisites: You are a global account administrator.
 
 Open SAP BTP Cockpit in your Global Account.
 
-1. Navigate to "Account Explorer". Click on the "Create" drop-down button and select "Subaccount."
+1. Navigate to "Account Explorer". Click the "Create" drop-down button, then select "Subaccount."
   
     <img src="images_04/4_1_1_man_create_suba_1.png" alt="Create Subaccount" width="600" />
 
 2. Specify a Subaccount name and a Subdomain name. 
 
-   This will be part of the URL for accessing the applications you subscribe to from this subaccount.
+   This will be part of the URL used to access the applications you subscribe to from this subaccount.
    The subdomain name must be unique across all subaccounts in the same region. 
 
 3. Select the region (which also determines the infrastructure provider). 
@@ -40,7 +40,7 @@ Open SAP BTP Cockpit in your Global Account.
 
 5. Select "Create". The Subaccount will be created. Enter your Subaccount.
 
-    <img src="images_04/4_1_2_man_suba_create_2.png" alt="Create Subaccount" width="600" />
+    <img src="images_04/4_1_2_man_suba_create_2.png" alt="Create Subaccount" width="500" />
 
    
 5. A new tile appears on the Global Account page with the subaccount details. 
@@ -193,5 +193,3 @@ If you want to delete your subaccount, e.g., because it was a test or sandbox su
 2. Choose the subaccount that you want to delete.
 3. The subaccount doesn't contain any active subscriptions, service instances, brokers, or platforms.
 4. Choose `Delete Subaccount` and confirm the operation.
-
-

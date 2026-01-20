@@ -23,7 +23,7 @@ Some examples of available missions are:
 
 ### SAP Fiori and UI5
 
-This mission will let you create a simple Cloud Foundry web page, based on SAPUI5, Fiori, and an optional launchpad service. You will learn how to set up and use Business Application Studio, the IDE of BTP.
+This mission will let you create a simple Cloud Foundry web page based on SAPUI5 and Fiori, with an optional launchpad service. You will learn how to set up and use Business Application Studio, the IDE of BTP.
 
 Mission [Get started on SAP BTP, creating a Hello World app with SAPUI5/Fiori](https://discovery-center.cloud.sap/missiondetail/3585/3628/).
 
@@ -31,7 +31,7 @@ Mission [Get started on SAP BTP, creating a Hello World app with SAPUI5/Fiori](h
 
 ### Setup the additional runtime environment ABAP
 
-You can use a booster to automate some of the required steps for setting up the ABAP environment in SAP BTP. Automation includes creating a subaccount and space, configuring the required entitlements, and assigning administrators and developers to the subaccount.
+You can use a booster to automate some of the steps required to set up the ABAP environment in SAP BTP. Automation includes creating a subaccount and space, configuring the required entitlements, and assigning administrators and developers to the subaccount.
 
 Mission [Getting Started with SAP BTP, ABAP environment](https://discovery-center.cloud.sap/missiondetail/3061/3116/).
 
@@ -39,7 +39,7 @@ Mission [Getting Started with SAP BTP, ABAP environment](https://discovery-cente
 
 ### Setup additional runtime KYMA
 
-With this, you can now obtain a Kubernetes-based offering as part of SAP BTP, alongside the Cloud Foundry application runtime or the ABAP runtime, allowing you to choose the option that best suits your needs.
+With this, you can now obtain a Kubernetes-based offering as part of SAP BTP, alongside the Cloud Foundry or ABAP application runtime, allowing you to choose the option that best suits your needs.
 
 Mission [Getting Started with the SAP BTP, Kyma runtime](https://discovery-center.cloud.sap/missiondetail/3252/3281/).
 <br> 
