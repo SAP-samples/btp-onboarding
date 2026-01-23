@@ -136,7 +136,7 @@ You will execute a booster later in this mission.
 
 ### System Landscape
 
-The Unified Customer Landscape is a service that offers customer landscape management capabilities. The frontend representation of this service is the System Landscape page in the SAP BTP cockpit. 
+The **Unified Customer Landscape** service provides capabilities for automated integration and extensibility of SAP and third-party systems. You maintain your Unified Customer Landscape service with the **System Landscape** page in the SAP BTP cockpit.
 
 The System Landscape page of the SAP BTP cockpit provides a visual overview of the SAP and third-party systems associated with the specified global account. 
 
@@ -162,14 +162,15 @@ Systems are added to the list in one of the following ways:
 
 One system is significant for this mission: Your Cloud Identity Services tenant. You will need it to set up an Identity Provider. If you do not have one, you can create one later in this mission.
 
-<img src="images_ga/3_1_11_systems_landscape.png" alt="System Landscape - Systems" width="400">
+<img src="images_ga/3_1_11_systems_landscape.png" alt="System Landscape - Systems" width="700">
 
+<br>
 
 #### Formations
 
-Formations enable you to combine SAP solution systems, simplifying connectivity setup and providing a unified view of all components required for implementing your integration or extension scenario. 
+Formations enable you to combine "Systems", simplifying connectivity setup and providing a unified view of all components required for implementing your integration or extension scenario. 
 
-For example, setting up "Joule Studio" requires a Formation between "Joule", "SAP Build Process Automation", and "Cloud Identity Services".
+For example, setting up "Joule Studio" requires a Formation Type "Integration with Joule" the "Systems" "Joule", "SAP Build Process Automation", and "Cloud Identity Services".
 
 <img src="images_ga/3_2_7_formation_example.png" alt="System Landscape - Formations" width="600">
 
