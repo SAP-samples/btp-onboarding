@@ -5,7 +5,7 @@
 
 The mission is designed for **SAP BTP Enterprise Accounts**, not for **SAP BTP Trial Accounts**.
 
-You need to be a **Global Account administrator** or an **IT Contact** (an administrator nominated in the contract as the customer's "IT Contact") for your BTP Enterprise Account. 
+You need to be a **Global Account administrator** or an **IT Contact** (an administrator nominated in the contract as the customer's "IT Contact") for your SAP BTP Enterprise Account. 
 
 
 ## Welcome
