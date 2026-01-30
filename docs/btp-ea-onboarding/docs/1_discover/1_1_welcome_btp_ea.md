@@ -1,21 +1,22 @@
 # Get Started with SAP BTP Enterprise Accounts
 
 
+## Target Audience for this mission
+
+The mission is designed for **SAP BTP Enterprise Accounts**, not for **SAP BTP Trial Accounts**.
+
+You need to be a **Global Account administrator** or an **IT Contact** (an administrator nominated in the contract as the customer's "IT Contact") for your BTP Enterprise Account. 
+
+
 ## Welcome
 
 Welcome to the mission "Get Started with SAP BTP Enterprise Accounts"! 
 
 SAP Business Technology Platform (SAP BTP) is an SAP platform that integrates the following technology portfolios: application development, process automation, integration, data, analytics, enterprise planning, and artificial intelligence.
 
-
 This mission explains the basic platform concepts and capabilities of the SAP Business Technology Platform (SAP BTP).
 
 If you want to jump-start in the BTP cockpit, skip this chapter.
-
-
-## Target Group for this mission
-
-The mission "Get Started with SAP BTP Enterprise Accounts" is designed for **Global Account administrators** and **IT Contacts** (an administrator who is nominated in the contract as the customers "IT Contact") who received a new SAP BTP **Enterprise Account**. 
 
 
 
