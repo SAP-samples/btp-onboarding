@@ -1,0 +1,429 @@
+opencollection: 1.0.0
+info:
+  name: j4c-dg-sharepoint
+config:
+  environments:
+    - name: j4c-dg-sharepoint
+      variables:
+        - name: AiCore_AI_API_URL
+          value: <placeholder>
+        - name: AiCore_clientid
+          value: <placeholder>
+        - name: AiCore_clientsecret
+          value: <placeholder>
+        - name: AiCore_url
+          value: <placeholder>
+        - name: MS_Entra_Tenant_ID
+          value: <placeholder>
+        - name: MS_Entra_Application_ID
+          value: <placeholder>
+        - name: MS_Entra_Application_Client_Secret
+          value: <placeholder>
+        - name: SharePoint_URL
+          value: <placeholder>
+        - name: resource_group
+          value: j4c-custom-documents
+        - name: generic_secret
+          value: sharepoint
+        - name: pipeline_id
+          value: ''
+items:
+  - info:
+      name: 01_get_token
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: get_token
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AiCore_url}}/oauth/token'
+          headers:
+            - name: Content-Type
+              value: application/x-www-form-urlencoded
+          body:
+            type: form-urlencoded
+            data:
+              - name: grant_type
+                value: client_credentials
+              - name: client_id
+                value: '{{AiCore_clientid}}'
+              - name: client_secret
+                value: '{{AiCore_clientsecret}}'
+        runtime:
+          scripts:
+            - type: after-response
+              code: |-
+                if (res.getStatus() == 200) {
+                  bru.setVar("access_token", res.body.access_token);
+                }
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+  - info:
+      name: 02_resource_group
+      type: folder
+      seq: 2
+    items:
+      - info:
+          name: create
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups'
+          body:
+            type: json
+            data: |-
+              {
+                "resourceGroupId": "{{resource_group}}",
+                "labels": [
+                  {
+                    "key": "ext.ai.sap.com/document-grounding",
+                    "value": "true"
+                  }
+                ]
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: get_by_id
+          type: http
+          seq: 2
+        http:
+          method: GET
+          url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: Additional requests
+          type: folder
+          seq: 3
+        request:
+          auth: inherit
+        items:
+          - info:
+              name: get_all
+              type: http
+              seq: 1
+            http:
+              method: GET
+              url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: delete_by_id
+              type: http
+              seq: 2
+            http:
+              method: DELETE
+              url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+  - info:
+      name: 03_generic_secret
+      type: folder
+      seq: 3
+    items:
+      - info:
+          name: create
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AiCore_AI_API_URL}}/v2/admin/secrets'
+          headers:
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          body:
+            type: json
+            data: |-
+              {
+                "name": "{{generic_secret}}",
+                "data": {
+                  "description": "{{repository-description}}",
+                  "url": "{{repository-url}}",
+                  "authentication": "{{repository-authentication}}",
+                  "clientId": "{{repository-clientId}}",
+                  "clientSecret": "{{repository-clientSecret}}",
+                  "tokenServiceURL": "{{repository-tokenServiceURL}}"
+                },
+                "labels": [
+                  {
+                    "key": "ext.ai.sap.com/document-grounding",
+                    "value": "true"
+                  },
+                  {
+                    "key": "ext.ai.sap.com/documentRepositoryType",
+                    "value": "MSSharePoint"
+                  }
+                ]
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        runtime:
+          scripts:
+            - type: before-request
+              code: |-
+                const sharepointUrl = (bru.getEnvVar("SharePoint_URL") || "").trim();
+                const entraTenantId = (bru.getEnvVar("MS_Entra_Tenant_ID") || "").trim();
+                const clientId = (bru.getEnvVar("MS_Entra_Application_ID") || "").trim();
+                const clientSecret = (bru.getEnvVar("MS_Entra_Application_Client_Secret") || "").trim();
+
+                if (!sharepointUrl) throw new Error("Environment variable 'SharePoint_URL' is not defined.");
+                if (!entraTenantId) throw new Error("Environment variable 'MS_Entra_Tenant_ID' is not defined.");
+                if (!clientId) throw new Error("Environment variable 'MS_Entra_Application_ID' is not defined.");
+                if (!clientSecret) throw new Error("Environment variable 'MS_Entra_Application_Client_Secret' is not defined.");
+
+                const tokenServiceURL = `https://login.microsoft.com/${entraTenantId}/oauth2/v2.0/token`;
+
+                const toB64 = (s) => Buffer.from(s, "utf-8").toString("base64");
+
+                bru.setVar("repository-description", toB64("Microsoft SharePoint"));
+                bru.setVar("repository-url", toB64(sharepointUrl));
+                bru.setVar("repository-authentication", toB64("OAuth2ClientCredentials"));
+                bru.setVar("repository-clientId", toB64(clientId));
+                bru.setVar("repository-clientSecret", toB64(clientSecret));
+                bru.setVar("repository-tokenServiceURL", toB64(tokenServiceURL));
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: Additional requests
+          type: folder
+          seq: 2
+        request:
+          auth: inherit
+        items:
+          - info:
+              name: get_all
+              type: http
+              seq: 1
+            http:
+              method: GET
+              url: '{{AiCore_AI_API_URL}}/v2/admin/secrets'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: delete_dy_id
+              type: http
+              seq: 2
+            http:
+              method: DELETE
+              url: '{{AiCore_AI_API_URL}}/v2/admin/secrets/{{generic_secret}}'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+  - info:
+      name: 04_pipeline
+      type: folder
+      seq: 4
+    items:
+      - info:
+          name: create_pipeline
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
+          headers:
+            - name: Content-Type
+              value: application/json
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          body:
+            type: json
+            data: |-
+              {
+                "type": "MSSharePoint",
+                "configuration": {
+                  "destination": "{{generic_secret}}",
+                  "sharePoint": {
+                    "site": {
+                      "name": "<SHAREPOINT_NAME>",
+                      "includePaths": [
+                        "Shared%20Documents/<FOLDER>"
+                      ]
+                    }
+                  }
+                }
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        runtime:
+          scripts:
+            - type: after-response
+              code: |-
+                if (res.getStatus() == 201) {
+                  bru.setEnvVar("pipeline_id", res.body.pipelineId);
+                }
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: restart_pipeline
+          type: http
+          seq: 2
+        http:
+          method: POST
+          url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/trigger'
+          headers:
+            - name: Content-Type
+              value: application/json
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          body:
+            type: json
+            data: |-
+              {
+                "pipelineId": "{{pipeline_id}}",
+                "metadataOnly": false
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: get_pipeline_status
+          type: http
+          seq: 3
+        http:
+          method: GET
+          url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}/status'
+          headers:
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: Additional requests
+          type: folder
+          seq: 4
+        request:
+          auth: inherit
+        items:
+          - info:
+              name: get_all_pipelines
+              type: http
+              seq: 1
+            http:
+              method: GET
+              url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: get_pipeline_by_id
+              type: http
+              seq: 2
+            http:
+              method: GET
+              url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: delete_pipeline_by_id
+              type: http
+              seq: 3
+            http:
+              method: DELETE
+              url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+bundled: true
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
+    exportedAt: '2026-02-22T10:42:18.994Z'
+    exportedUsing: Bruno
