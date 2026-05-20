@@ -1,0 +1,450 @@
+opencollection: 1.0.0
+info:
+  name: aicore-dg-s3
+config:
+  environments:
+    - name: aicore-dg-s3
+      variables:
+        - name: AICore_AI_API_URL
+          value: <PLACEHOLDER>
+        - name: AICore_clientid
+          value: <PLACEHOLDER>
+        - name: AICore_clientsecret
+          value: <PLACEHOLDER>
+        - name: AICore_url
+          value: <PLACEHOLDER>
+        - name: S3_Region
+          value: <PLACEHOLDER>
+        - name: S3_Host
+          value: <PLACEHOLDER>
+        - name: S3_Bucket
+          value: <PLACEHOLDER>
+        - name: S3_Username
+          value: <PLACEHOLDER>
+        - name: S3_Access_Key_ID
+          value: <PLACEHOLDER>
+        - name: S3_Secret_Access_Key
+          value: <PLACEHOLDER>
+        - name: resource_group
+          value: j4c-custom-knowledge
+        - name: generic_secret
+          value: s3
+        - name: pipeline_id
+          value: ''
+items:
+  - info:
+      name: 01_get_token
+      type: folder
+      seq: 1
+    request:
+      auth: inherit
+    items:
+      - info:
+          name: get_token
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AICore_url}}/oauth/token'
+          headers:
+            - name: Content-Type
+              value: application/x-www-form-urlencoded
+          body:
+            type: form-urlencoded
+            data:
+              - name: grant_type
+                value: client_credentials
+              - name: client_id
+                value: '{{AICore_clientid}}'
+              - name: client_secret
+                value: '{{AICore_clientsecret}}'
+        runtime:
+          scripts:
+            - type: after-response
+              code: |-
+                if (res.getStatus() == 200) {
+                  bru.setVar("access_token", res.body.access_token);
+                }
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+  - info:
+      name: 02_resource_group
+      type: folder
+    items:
+      - info:
+          name: create_resource_group
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups'
+          body:
+            type: json
+            data: |-
+              {
+                "resourceGroupId": "{{resource_group}}",
+                "labels": [
+                  {
+                    "key": "ext.ai.sap.com/document-grounding",
+                    "value": "true"
+                  }
+                ]
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: get_resource_group
+          type: http
+          seq: 2
+        http:
+          method: GET
+          url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: Additional commands
+          type: folder
+          seq: 3
+        request:
+          auth: inherit
+        items:
+          - info:
+              name: delete_resource_group
+              type: http
+              seq: 2
+            http:
+              method: DELETE
+              url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: get_all_resource_groups
+              type: http
+              seq: 1
+            http:
+              method: GET
+              url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+  - info:
+      name: 03_generic_secret
+      type: folder
+    items:
+      - info:
+          name: create_generic_secret
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AICore_AI_API_URL}}/v2/admin/secrets'
+          headers:
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          body:
+            type: json
+            data: |-
+              {
+                "name": "{{generic_secret}}",
+                "data": {
+                  "url": "{{repository-url}}",
+                  "authentication": "{{repository-authentication}}",
+                  "description": "{{repository-description}}",
+                  "access_key_id": "{{s3-access-key-id}}",
+                  "bucket": "{{s3-bucket}}",
+                  "host": "{{s3-host}}",
+                  "region": "{{s3-region}}",
+                  "secret_access_key": "{{s3-secret-access-key}}",
+                  "username": "{{s3-username}}"
+                },
+                "labels": [
+                  {
+                    "key": "ext.ai.sap.com/document-grounding",
+                    "value": "true"
+                  },
+                  {
+                    "key": "ext.ai.sap.com/documentRepositoryType",
+                    "value": "S3"
+                  }
+                ]
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        runtime:
+          scripts:
+            - type: before-request
+              code: |-
+                const s3region = (bru.getEnvVar("S3_Region") || "").trim();
+                const s3bucket = (bru.getEnvVar("S3_Bucket") || "").trim();
+                const s3userName = (bru.getEnvVar("S3_Username") || "").trim();
+                const s3accessKeyId = (bru.getEnvVar("S3_Access_Key_ID") || "").trim();
+                const s3secretAccessKey = (bru.getEnvVar("S3_Secret_Access_Key") || "").trim();
+                const s3host = (bru.getEnvVar("S3_Host") || "").trim();
+
+                if (!s3region) throw new Error("Environment variable 'S3_Region' is not defined.");
+                if (!s3bucket) throw new Error("Environment variable 'S3_Bucket' is not defined.");
+                if (!s3userName) throw new Error("Environment variable 'S3_Username' is not defined.");
+                if (!s3accessKeyId) throw new Error("Environment variable 'S3_Access_Key_ID' is not defined.");
+                if (!s3secretAccessKey) throw new Error("Environment variable 'S3_Secret_Access_Key' is not defined.");
+                if (!s3host) throw new Error("Environment variable 'S3_Host' is not defined.");
+
+                const url = `https://s3.${s3region}.amazonaws.com`;
+
+                const toB64 = (s) => Buffer.from(s, "utf-8").toString("base64");
+
+                bru.setVar("repository-url", toB64(url));
+                bru.setVar("repository-authentication", toB64("NoAuthentication"));
+                bru.setVar("repository-description", toB64("AWS S3"));
+                bru.setVar("s3-access-key-id", toB64(s3accessKeyId));
+                bru.setVar("s3-bucket", toB64(s3bucket));
+                bru.setVar("s3-host", toB64(s3host));
+                bru.setVar("s3-region", toB64(s3region));
+                bru.setVar("s3-secret-access-key", toB64(s3secretAccessKey));
+                bru.setVar("s3-username", toB64(s3userName));
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: Additional commands
+          type: folder
+          seq: 2
+        request:
+          auth: inherit
+        items:
+          - info:
+              name: delete_generic_secret
+              type: http
+              seq: 2
+            http:
+              method: DELETE
+              url: '{{AICore_AI_API_URL}}/v2/admin/secrets/{{generic_secret}}'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: get_all_generic_secrets
+              type: http
+              seq: 1
+            http:
+              method: GET
+              url: '{{AICore_AI_API_URL}}/v2/admin/secrets'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+  - info:
+      name: 04_pipeline
+      type: folder
+    items:
+      - info:
+          name: create_pipeline
+          type: http
+          seq: 1
+        http:
+          method: POST
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
+          headers:
+            - name: Content-Type
+              value: application/json
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          body:
+            type: json
+            data: |-
+              {
+                "type": "S3",
+                "configuration": {
+                  "destination": "{{generic_secret}}"
+                }
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        runtime:
+          scripts:
+            - type: after-response
+              code: |-
+                if (res.getStatus() == 201) {
+                  bru.setEnvVar("pipeline_id", res.body.pipelineId);
+                }
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: get_pipeline_status
+          type: http
+          seq: 2
+        http:
+          method: GET
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}/status'
+          headers:
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: restart_pipeline
+          type: http
+          seq: 4
+        http:
+          method: POST
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/trigger'
+          headers:
+            - name: Content-Type
+              value: application/json
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          body:
+            type: json
+            data: |-
+              {
+                "pipelineId": "{{pipeline_id}}",
+                "metadataOnly": false
+              }
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: get_documents
+          type: http
+          seq: 3
+        http:
+          method: GET
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}/documents'
+          headers:
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: Additional commands
+          type: folder
+          seq: 5
+        request:
+          auth: inherit
+        items:
+          - info:
+              name: delete_pipeline
+              type: http
+              seq: 3
+            http:
+              method: DELETE
+              url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: get_all_pipelines
+              type: http
+              seq: 1
+            http:
+              method: GET
+              url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+          - info:
+              name: get_pipeline
+              type: http
+              seq: 2
+            http:
+              method: GET
+              url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
+bundled: true
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
+    exportedAt: '2026-04-29T10:28:46.000Z'
+    exportedUsing: Bruno
