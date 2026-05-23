@@ -1,17 +1,17 @@
 opencollection: 1.0.0
 info:
-  name: j4c-dg-sharepoint
+  name: aicore-dg-sharepoint
 config:
   environments:
-    - name: j4c-dg-sharepoint
+    - name: aicore-dg-sharepoint
       variables:
-        - name: AiCore_AI_API_URL
+        - name: AICore_AI_API_URL
           value: <placeholder>
-        - name: AiCore_clientid
+        - name: AICore_clientid
           value: <placeholder>
-        - name: AiCore_clientsecret
+        - name: AICore_clientsecret
           value: <placeholder>
-        - name: AiCore_url
+        - name: AICore_url
           value: <placeholder>
         - name: MS_Entra_Tenant_ID
           value: <placeholder>
@@ -22,7 +22,7 @@ config:
         - name: SharePoint_URL
           value: <placeholder>
         - name: resource_group
-          value: j4c-custom-documents
+          value: j4c-custom-knowledge
         - name: generic_secret
           value: sharepoint
         - name: pipeline_id
@@ -41,7 +41,7 @@ items:
           seq: 1
         http:
           method: POST
-          url: '{{AiCore_url}}/oauth/token'
+          url: '{{AICore_url}}/oauth/token'
           headers:
             - name: Content-Type
               value: application/x-www-form-urlencoded
@@ -51,9 +51,9 @@ items:
               - name: grant_type
                 value: client_credentials
               - name: client_id
-                value: '{{AiCore_clientid}}'
+                value: '{{AICore_clientid}}'
               - name: client_secret
-                value: '{{AiCore_clientsecret}}'
+                value: '{{AICore_clientsecret}}'
         runtime:
           scripts:
             - type: after-response
@@ -72,12 +72,12 @@ items:
       seq: 2
     items:
       - info:
-          name: create
+          name: create_resource_group
           type: http
           seq: 1
         http:
           method: POST
-          url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups'
+          url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups'
           body:
             type: json
             data: |-
@@ -99,12 +99,12 @@ items:
           followRedirects: true
           maxRedirects: 5
       - info:
-          name: get_by_id
+          name: get_resource_group
           type: http
           seq: 2
         http:
           method: GET
-          url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
+          url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
           auth:
             type: bearer
             token: '{{access_token}}'
@@ -121,12 +121,12 @@ items:
           auth: inherit
         items:
           - info:
-              name: get_all
+              name: get_all_resource_groups
               type: http
               seq: 1
             http:
               method: GET
-              url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups'
+              url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups'
               auth:
                 type: bearer
                 token: '{{access_token}}'
@@ -136,12 +136,12 @@ items:
               followRedirects: true
               maxRedirects: 5
           - info:
-              name: delete_by_id
+              name: delete_resource_group
               type: http
               seq: 2
             http:
               method: DELETE
-              url: '{{AiCore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
+              url: '{{AICore_AI_API_URL}}/v2/admin/resourceGroups/{{resource_group}}'
               auth:
                 type: bearer
                 token: '{{access_token}}'
@@ -156,12 +156,12 @@ items:
       seq: 3
     items:
       - info:
-          name: create
+          name: create_generic_secret
           type: http
           seq: 1
         http:
           method: POST
-          url: '{{AiCore_AI_API_URL}}/v2/admin/secrets'
+          url: '{{AICore_AI_API_URL}}/v2/admin/secrets'
           headers:
             - name: AI-Resource-Group
               value: '{{resource_group}}'
@@ -206,7 +206,7 @@ items:
                 if (!clientId) throw new Error("Environment variable 'MS_Entra_Application_ID' is not defined.");
                 if (!clientSecret) throw new Error("Environment variable 'MS_Entra_Application_Client_Secret' is not defined.");
 
-                const tokenServiceURL = `https://login.microsoft.com/${entraTenantId}/oauth2/v2.0/token`;
+                const tokenServiceURL = `https://login.microsoftonline.com/${entraTenantId}/oauth2/v2.0/token`;
 
                 const toB64 = (s) => Buffer.from(s, "utf-8").toString("base64");
 
@@ -229,12 +229,12 @@ items:
           auth: inherit
         items:
           - info:
-              name: get_all
+              name: get_all_generic_secrets
               type: http
               seq: 1
             http:
               method: GET
-              url: '{{AiCore_AI_API_URL}}/v2/admin/secrets'
+              url: '{{AICore_AI_API_URL}}/v2/admin/secrets'
               headers:
                 - name: AI-Resource-Group
                   value: '{{resource_group}}'
@@ -247,12 +247,12 @@ items:
               followRedirects: true
               maxRedirects: 5
           - info:
-              name: delete_dy_id
+              name: delete_generic_secret
               type: http
               seq: 2
             http:
               method: DELETE
-              url: '{{AiCore_AI_API_URL}}/v2/admin/secrets/{{generic_secret}}'
+              url: '{{AICore_AI_API_URL}}/v2/admin/secrets/{{generic_secret}}'
               headers:
                 - name: AI-Resource-Group
                   value: '{{resource_group}}'
@@ -275,7 +275,7 @@ items:
           seq: 1
         http:
           method: POST
-          url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
           headers:
             - name: Content-Type
               value: application/json
@@ -290,9 +290,9 @@ items:
                   "destination": "{{generic_secret}}",
                   "sharePoint": {
                     "site": {
-                      "name": "<SHAREPOINT_NAME>",
+                      "name": "{{sharepoint_name}}",
                       "includePaths": [
-                        "Shared%20Documents/<FOLDER>"
+                        "/j4c-custom-knowledge"
                       ]
                     }
                   }
@@ -303,6 +303,34 @@ items:
             token: '{{access_token}}'
         runtime:
           scripts:
+            - type: before-request
+              code: |-
+                // Derive the SharePoint site name from SharePoint_URL.
+                // The site identifier is the path segment after "/sites/" or "/teams/".
+                // Examples:
+                //   https://contoso.sharepoint.com/sites/HR%20Team/  -> "HR%20Team"
+                //   https://contoso.sharepoint.com/teams/Marketing   -> "Marketing"
+                const rawUrl = (bru.getEnvVar("SharePoint_URL") || "").trim();
+                if (!rawUrl) {
+                  throw new Error("Environment variable 'SharePoint_URL' is not defined.");
+                }
+
+                // Strip any trailing slashes (one or many) before parsing.
+                const cleanedUrl = rawUrl.replace(/\/+$/, "");
+
+                // Capture the segment after /sites/ or /teams/, stopping at the
+                // next path separator, query string, or fragment. Case-insensitive
+                // so "/Sites/" and "/Teams/" also match.
+                const match = cleanedUrl.match(/\/(?:sites|teams)\/([^\/?#]+)/i);
+                if (!match || !match[1]) {
+                  throw new Error(
+                    `Could not extract SharePoint site name from URL '${rawUrl}'. ` +
+                    `Expected format: https://<tenant>.sharepoint.com/sites/<sitename> ` +
+                    `or https://<tenant>.sharepoint.com/teams/<sitename>`
+                  );
+                }
+
+                bru.setVar("sharepoint_name", match[1]);
             - type: after-response
               code: |-
                 if (res.getStatus() == 201) {
@@ -316,10 +344,10 @@ items:
       - info:
           name: restart_pipeline
           type: http
-          seq: 2
+          seq: 4
         http:
           method: POST
-          url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/trigger'
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/trigger'
           headers:
             - name: Content-Type
               value: application/json
@@ -343,10 +371,28 @@ items:
       - info:
           name: get_pipeline_status
           type: http
+          seq: 2
+        http:
+          method: GET
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}/status'
+          headers:
+            - name: AI-Resource-Group
+              value: '{{resource_group}}'
+          auth:
+            type: bearer
+            token: '{{access_token}}'
+        settings:
+          encodeUrl: true
+          timeout: 0
+          followRedirects: true
+          maxRedirects: 5
+      - info:
+          name: get_documents
+          type: http
           seq: 3
         http:
           method: GET
-          url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}/status'
+          url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}/documents'
           headers:
             - name: AI-Resource-Group
               value: '{{resource_group}}'
@@ -361,7 +407,7 @@ items:
       - info:
           name: Additional requests
           type: folder
-          seq: 4
+          seq: 5
         request:
           auth: inherit
         items:
@@ -371,7 +417,7 @@ items:
               seq: 1
             http:
               method: GET
-              url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
+              url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
               headers:
                 - name: AI-Resource-Group
                   value: '{{resource_group}}'
@@ -384,12 +430,12 @@ items:
               followRedirects: true
               maxRedirects: 5
           - info:
-              name: get_pipeline_by_id
+              name: get_pipeline
               type: http
               seq: 2
             http:
               method: GET
-              url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
+              url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
               headers:
                 - name: AI-Resource-Group
                   value: '{{resource_group}}'
@@ -402,12 +448,12 @@ items:
               followRedirects: true
               maxRedirects: 5
           - info:
-              name: delete_pipeline_by_id
+              name: delete_pipeline
               type: http
               seq: 3
             http:
               method: DELETE
-              url: '{{AiCore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
+              url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines/{{pipeline_id}}'
               headers:
                 - name: AI-Resource-Group
                   value: '{{resource_group}}'

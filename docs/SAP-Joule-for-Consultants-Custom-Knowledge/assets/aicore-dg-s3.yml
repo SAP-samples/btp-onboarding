@@ -6,25 +6,25 @@ config:
     - name: aicore-dg-s3
       variables:
         - name: AICore_AI_API_URL
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: AICore_clientid
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: AICore_clientsecret
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: AICore_url
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: S3_Region
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: S3_Host
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: S3_Bucket
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: S3_Username
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: S3_Access_Key_ID
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: S3_Secret_Access_Key
-          value: <PLACEHOLDER>
+          value: <placeholder>
         - name: resource_group
           value: j4c-custom-knowledge
         - name: generic_secret
@@ -73,6 +73,7 @@ items:
   - info:
       name: 02_resource_group
       type: folder
+      seq: 2
     items:
       - info:
           name: create_resource_group
@@ -117,7 +118,7 @@ items:
           followRedirects: true
           maxRedirects: 5
       - info:
-          name: Additional commands
+          name: Additional requests
           type: folder
           seq: 3
         request:
@@ -156,6 +157,7 @@ items:
   - info:
       name: 03_generic_secret
       type: folder
+      seq: 3
     items:
       - info:
           name: create_generic_secret
@@ -234,7 +236,7 @@ items:
           followRedirects: true
           maxRedirects: 5
       - info:
-          name: Additional commands
+          name: Additional requests
           type: folder
           seq: 2
         request:
@@ -279,6 +281,7 @@ items:
   - info:
       name: 04_pipeline
       type: folder
+      seq: 4
     items:
       - info:
           name: create_pipeline
@@ -380,7 +383,7 @@ items:
           followRedirects: true
           maxRedirects: 5
       - info:
-          name: Additional commands
+          name: Additional requests
           type: folder
           seq: 5
         request:
