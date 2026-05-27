@@ -1,4 +1,31 @@
 <h1>Enhance SAP Joule for Consultants with Custom Knowledge Grounding</h1>
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#toc-hId-1816368705" target="_self">1. Introduction</a><ul>
+<li><a href="#toc-hId-1748937919" target="_self">1.1 Overview</a></li>
+<li><a href="#toc-hId-766370394" target="_self">1.2 Recommendations</a></li>
+</ul></li>
+<li><a href="#toc-hId-198488012" target="_self">2. Data Repositories</a><ul>
+<li><a href="#toc-hId--291428500" target="_self">2.1 Data Repositories - Overview</a></li>
+<li><a href="#toc-hId--880969015" target="_self">2.2 Object Store</a></li>
+<li><a href="#toc-hId--1863536540" target="_self">2.3 Microsoft SharePoint</a></li>
+<li><a href="#toc-hId-1224019912" target="_self">2.4 SAP Build Work Zone</a></li>
+</ul></li>
+<li><a href="#toc-hId-703039085" target="_self">3. AI Core Document Grounding</a><ul>
+<li><a href="#toc-hId-213122573" target="_self">3.1 AI Core Document Grounding - Overview</a></li>
+<li><a href="#toc-hId--1583828786" target="_self">3.2 AI Core instance creation</a></li>
+<li><a href="#toc-hId-1925084490" target="_self">3.3 AI Core Document Grounding with Bruno</a></li>
+<li><a href="#toc-hId-717673646" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a></li>
+<li><a href="#toc-hId--461407384" target="_self">3.5 Support</a></li>
+</ul></li>
+<li><a href="#toc-hId--982388211" target="_self">4. Connection to SAP Joule for Consultants</a><ul>
+<li><a href="#toc-hId--1472304723" target="_self">4.1 Destination Service setup</a></li>
+<li><a href="#toc-hId--2061845238" target="_self">4.2 Admin Console configuration</a></li>
+</ul></li>
+<li><a href="#toc-hId-1712141231" target="_self">5. Testing</a><ul>
+<li><a href="#toc-hId-1222224719" target="_self">5.1 Testing Custom Knowledge Grounding</a></li>
+</ul></li>
+</ul>
 <h2>1. Introduction</h2>
 <h3>1.1 Overview</h3>
 <h4>1.1 a) What Custom Knowledge Grounding Does</h4>
@@ -21,19 +48,19 @@
 <h4>1.1 d) What This Guide Covers</h4>
 <p>The remaining sections walk through the end-to-end setup:</p>
 <ul>
-<li><strong><a href="#2-data-repositories" target="_self">2. Data Repositories</a></strong> &mdash; pick a supported data repository (e.g., Object Store, Microsoft SharePoint, or SAP Build Work Zone) and upload your documents to it.</li>
-<li><strong><a href="#3-ai-core-document-grounding" target="_self">3. AI Core Document Grounding</a></strong> &mdash; provision SAP AI Core with the <code>extended</code> plan, then create a pipeline that ingests, chunks, embeds, and indexes the documents.</li>
-<li><strong><a href="#4-connection-to-sap-joule-for-consultants" target="_self">4. Connection to SAP Joule for Consultants</a></strong> &mdash; configure a Destination Service instance, then enable Custom Knowledge Grounding in the SAP Joule for Consultants Console and connect it to the pipeline.</li>
-<li><strong><a href="#5-testing" target="_self">5. Testing</a></strong> &mdash; verify the setup by asking SAP Joule for Consultants a question whose answer is only available in your uploaded documents.</li>
+<li><strong><a href="#toc-hId-198488012" target="_self">2. Data Repositories</a></strong> &mdash; pick a supported data repository (e.g., Object Store, Microsoft SharePoint, or SAP Build Work Zone) and upload your documents to it.</li>
+<li><strong><a href="#toc-hId-703039085" target="_self">3. AI Core Document Grounding</a></strong> &mdash; provision SAP AI Core with the <code>extended</code> plan, then create a pipeline that ingests, chunks, embeds, and indexes the documents.</li>
+<li><strong><a href="#toc-hId--982388211" target="_self">4. Connection to SAP Joule for Consultants</a></strong> &mdash; configure a Destination Service instance, then enable Custom Knowledge Grounding in the SAP Joule for Consultants Console and connect it to the pipeline.</li>
+<li><strong><a href="#toc-hId-1712141231" target="_self">5. Testing</a></strong> &mdash; verify the setup by asking SAP Joule for Consultants a question whose answer is only available in your uploaded documents.</li>
 </ul>
-<blockquote><strong>Note:</strong> Depending on what is already in place &mdash; an existing AI Core Document Grounding pipeline, ready-to-use data repository credentials, or neither &mdash; you may be able to skip directly to a later section. The next section, <a href="#12-recommendations" target="_self">1.2 Recommendations</a>, opens with a decision tree for choosing the right entry point and then covers data repository choice and subaccount layout.</blockquote>
+<blockquote><strong>Note:</strong> Depending on what is already in place &mdash; an existing AI Core Document Grounding pipeline, ready-to-use data repository credentials, or neither &mdash; you may be able to skip directly to a later section. The next section, <a href="#toc-hId-766370394" target="_self">1.2 Recommendations</a>, opens with a decision tree for choosing the right entry point and then covers data repository choice and subaccount layout.</blockquote>
 <h3>1.2 Recommendations</h3>
 <h4>1.2 a) Where to Start</h4>
 <p>Not every reader has to work through every section of this guide. Use the decision tree below to pick the entry point that matches what you already have in place:</p>
 <ul>
-<li><strong>An AI Core Document Grounding pipeline is already provisioned</strong> (resource group, generic secret, and a pipeline reporting <code>FINISHED</code> against the data repository you intend to use) &rarr; skip ahead to the <a href="#4-connection-to-sap-joule-for-consultants" target="_self">4. Connection to SAP Joule for Consultants</a> section, starting with <a href="#41-destination-service-setup" target="_self">4.1 Destination Service setup</a>. Configure the Destination Service against the existing pipeline and enable Custom Knowledge Grounding in the SAP Joule for Consultants Console.</li>
-<li><strong>The data repository credentials are already available</strong> (e.g., a SharePoint site with the Entra app registered, an S3 bucket, or a Work Zone tenant with Document Grounding enabled) and you have run an AI Core Document Grounding setup before &rarr; skip the <a href="#2-data-repositories" target="_self">2. Data Repositories</a> section and start with the <a href="#3-ai-core-document-grounding" target="_self">3. AI Core Document Grounding</a> section.</li>
-<li><strong>Neither of the above applies</strong> &rarr; start at the <a href="#2-data-repositories" target="_self">2. Data Repositories</a> section with <a href="#22-object-store" target="_self">2.2 Object Store</a>, as described below. It is the fastest path to a working setup and the one the rest of this guide uses as the running example.</li>
+<li><strong>An AI Core Document Grounding pipeline is already provisioned</strong> (resource group, generic secret, and a pipeline reporting <code>FINISHED</code> against the data repository you intend to use) &rarr; skip ahead to the <a href="#toc-hId--982388211" target="_self">4. Connection to SAP Joule for Consultants</a> section, starting with <a href="#toc-hId--1472304723" target="_self">4.1 Destination Service setup</a>. Configure the Destination Service against the existing pipeline and enable Custom Knowledge Grounding in the SAP Joule for Consultants Console.</li>
+<li><strong>The data repository credentials are already available</strong> (e.g., a SharePoint site with the Entra app registered, an S3 bucket, or a Work Zone tenant with Document Grounding enabled) and you have run an AI Core Document Grounding setup before &rarr; skip the <a href="#toc-hId-198488012" target="_self">2. Data Repositories</a> section and start with the <a href="#toc-hId-703039085" target="_self">3. AI Core Document Grounding</a> section.</li>
+<li><strong>Neither of the above applies</strong> &rarr; start at the <a href="#toc-hId-198488012" target="_self">2. Data Repositories</a> section with <a href="#toc-hId--880969015" target="_self">2.2 Object Store</a>, as described below. It is the fastest path to a working setup and the one the rest of this guide uses as the running example.</li>
 </ul>
 <h4>1.2 b) Start with Object Store</h4>
 <p>Custom Knowledge Grounding can read from any of the <a href="https://help.sap.com/docs/sap-ai-core/generative-ai/grounding-035c455a5a424697b60f4a24b6d791fe#data-repositories" target="_self">supported data repositories</a>. For the <strong>initial setup</strong>, Object Store is the recommended choice:</p>
@@ -72,9 +99,9 @@
 <blockquote><strong>Note:</strong> That help page is written for Document Grounding with <strong>SAP Joule for Business</strong>. Only the data repository setup instructions apply here &mdash; the remaining content on the page is specific to SAP Joule for Business and is not relevant for SAP Joule for Consultants.</blockquote>
 <p>The next subsections walk through the setup of three data repositories in more detail:</p>
 <ul>
-<li><a href="#22-object-store" target="_self"><strong>2.2 Object Store</strong></a></li>
-<li><a href="#23-microsoft-sharepoint" target="_self"><strong>2.3 Microsoft SharePoint</strong></a></li>
-<li><a href="#24-sap-build-work-zone" target="_self"><strong>2.4 SAP Build Work Zone</strong></a></li>
+<li><a href="#toc-hId--880969015" target="_self"><strong>2.2 Object Store</strong></a></li>
+<li><a href="#toc-hId--1863536540" target="_self"><strong>2.3 Microsoft SharePoint</strong></a></li>
+<li><a href="#toc-hId-1224019912" target="_self"><strong>2.4 SAP Build Work Zone</strong></a></li>
 </ul>
 <p>The three subsections are independent &mdash; pick the repository (or repositories) you want to use and skip the others. For any data repository not covered here, refer to the SAP Help pages linked above.</p>
 <h3>2.2 Object Store</h3>
@@ -159,7 +186,7 @@ aws s3 ls s3://&lt;bucket&gt;</li-code>
 <li>Sign in to <a href="https://entra.microsoft.com/" target="_self">entra.microsoft.com</a> with an account that can register applications.</li>
 <li>Open <strong>App registrations</strong> and click <strong>New registration</strong>.</li>
 <li>Enter a name (e.g., <code>j4c-sharepoint-grounding</code>), keep the default settings, and click <strong>Register</strong>.</li>
-<li>From the <strong>Overview</strong> tab, copy the <strong>Application (client) ID</strong> and the <strong>Directory (tenant) ID</strong> &mdash; you'll need both for the <a href="#3-ai-core-document-grounding" target="_self">3. AI Core Document Grounding</a> section.</li>
+<li>From the <strong>Overview</strong> tab, copy the <strong>Application (client) ID</strong> and the <strong>Directory (tenant) ID</strong> &mdash; you'll need both for the <a href="#toc-hId-703039085" target="_self">3. AI Core Document Grounding</a> section.</li>
 </ul>
 <p><li-image alt="sharepoint-app-registration-overview.jpeg" align="center" id="414403i89273516D044A15D" size="large" resized="false" sourceType="new"></li-image></p>
 <h4>2.3 b) Grant the Sites.Selected Permission</h4>
@@ -210,7 +237,7 @@ Grant-PnPAzureADAppSitePermission `
 <li>Open the SharePoint site in a browser and upload your documents to a document library.</li>
 <li>Download the sample file <a href="https://raw.githubusercontent.com/SAP-samples/btp-onboarding/main/docs/SAP-Joule-for-Consultants-Custom-Knowledge/assets/Test_document--Heliotrope_Fabricator.pdf" target="_self">Test_document--Heliotrope_Fabricator.pdf</a>. You can append <code>--SharePoint</code> to the filename (e.g., <code>Test_document--Heliotrope_Fabricator--SharePoint.pdf</code>) to mark which storage backend the copy belongs to.</li>
 </ul>
-<p>The Bruno and AI Launchpad subsections in the <a href="#3-ai-core-document-grounding" target="_self">3. AI Core Document Grounding</a> section consume the following SharePoint credentials, which you have now collected:</p>
+<p>The Bruno and AI Launchpad subsections in the <a href="#toc-hId-703039085" target="_self">3. AI Core Document Grounding</a> section consume the following SharePoint credentials, which you have now collected:</p>
 <ul>
 <li><code>MS_Entra_Tenant_ID</code> &mdash; <strong>Directory (tenant) ID</strong> from the Overview tab.</li>
 <li><code>MS_Entra_Application_ID</code> &mdash; <strong>Application (client) ID</strong> from the Overview tab.</li>
@@ -226,7 +253,7 @@ Grant-PnPAzureADAppSitePermission `
 </ul>
 <p>Especially noteworthy are the checks for step 3:</p>
 <ul>
-<li><strong>SharePoint site identifier.</strong> Use the <strong>identifier</strong> from the site URL (e.g., <code>HR%20Team</code> for <code><a href="https://contoso.sharepoint.com/sites/HR%20Team" target="_blank" rel="noopener">https://contoso.sharepoint.com/sites/HR%20Team</a></code>), not the human-readable site title. Mind the URL encoding.</li>
+<li><strong>SharePoint site identifier.</strong> Use the <strong>identifier</strong> from the site URL (e.g., <code>HR%20Team</code> for <code>https://contoso.sharepoint.com/sites/HR%20Team</code>), not the human-readable site title. Mind the URL encoding.</li></li>
 <li><strong>Include paths.</strong> Match the URL path of the folder you want to ground on, relative to the document library &mdash; <code>/teched</code>, not <code>/Shared%20Documents/teched</code>.</li>
 <li><strong>Pipeline created but no documents.</strong> Almost always means the include path is too narrow. Test with no include path first; once replication works, narrow it down.</li>
 </ul>
@@ -243,20 +270,20 @@ Grant-PnPAzureADAppSitePermission `
 <li>Follow <a href="https://help.sap.com/docs/build-work-zone-advanced-edition/sap-build-work-zone-advanced-edition/integration-with-document-grounding" target="_self">Integration With Document Grounding | SAP Help Portal</a>.</li>
 <li>The community blog <a href="https://community.sap.com/t5/technology-blog-posts-by-sap/joule-document-grounding-with-sap-build-work-zone-advanced-edition-rag/ba-p/14260070" target="_self">Joule &mdash; Document Grounding with SAP Build Work Zone, advanced edition | SAP Community</a> walks through the same enablement end-to-end.</li>
 </ul>
-<blockquote><strong>Note:</strong> Stop after <strong>Step 3</strong> of the community blog. <strong>Step 4: Use an Existing Joule Subaccount or Create a New One to Set Up Document Grounding</strong> is replaced by the AI Core Document Grounding setup in the <a href="#3-ai-core-document-grounding" target="_self">3. AI Core Document Grounding</a> section of this guide &mdash; the Destination Service and SAP Joule for Consultants Console steps later on perform the equivalent integration for SAP Joule for Consultants.</blockquote>
+<blockquote><strong>Note:</strong> Stop after <strong>Step 3</strong> of the community blog. <strong>Step 4: Use an Existing Joule Subaccount or Create a New One to Set Up Document Grounding</strong> is replaced by the AI Core Document Grounding setup in the <a href="#toc-hId-703039085" target="_self">3. AI Core Document Grounding</a> section of this guide &mdash; the Destination Service and SAP Joule for Consultants Console steps later on perform the equivalent integration for SAP Joule for Consultants.</blockquote>
 <h4>2.4 c) Upload Documents to Work Zone</h4>
 <ul>
 <li>In the Work Zone workspace configured for Document Grounding, upload your documents to the workspace folder.</li>
 <li>Download the sample file <a href="https://raw.githubusercontent.com/SAP-samples/btp-onboarding/main/docs/SAP-Joule-for-Consultants-Custom-Knowledge/assets/Test_document--Heliotrope_Fabricator.pdf" target="_self">Test_document--Heliotrope_Fabricator.pdf</a>. You can append <code>--Work-Zone</code> to the filename (e.g., <code>Test_document--Heliotrope_Fabricator--Work-Zone.pdf</code>) to mark which storage backend the copy belongs to.</li>
 </ul>
-<p>The Bruno and AI Launchpad subsections in the <a href="#3-ai-core-document-grounding" target="_self">3. AI Core Document Grounding</a> section consume the following Work Zone credentials, which you collected during the Document Grounding enablement above:</p>
+<p>The Bruno and AI Launchpad subsections in the <a href="#toc-hId-703039085" target="_self">3. AI Core Document Grounding</a> section consume the following Work Zone credentials, which you collected during the Document Grounding enablement above:</p>
 <ul>
 <li><code>DWS_URL</code> &mdash; the URL of the Work Zone tenant.</li>
 <li><code>OAuthClient_Key</code> &mdash; the OAuth client key.</li>
 <li><code>OAuthClient_Secret</code> &mdash; the OAuth client secret.</li>
 </ul>
 <h4>2.4 d) Support</h4>
-<p>Issues specific to the Work Zone side of this setup &mdash; Document Grounding capability, OAuth configuration, content not appearing in the workspace folder &mdash; belong to support component <code>EP-WZ-STA</code>. Issues with the AI Core pipeline that reads from Work Zone (indexing, embeddings, pipeline status) belong under <code>CA-ML-RAGE</code>. The <a href="#35-support" target="_self">3.5 Support</a> subsection later in the next section has the full breakdown.</p>
+<p>Issues specific to the Work Zone side of this setup &mdash; Document Grounding capability, OAuth configuration, content not appearing in the workspace folder &mdash; belong to support component <code>EP-WZ-STA</code>. Issues with the AI Core pipeline that reads from Work Zone (indexing, embeddings, pipeline status) belong under <code>CA-ML-RAGE</code>. The <a href="#toc-hId--461407384" target="_self">3.5 Support</a> subsection later in the next section has the full breakdown.</p>
 <h2>3. AI Core Document Grounding</h2>
 <h3>3.1 AI Core Document Grounding - Overview</h3>
 <h4>3.1 a) What AI Core Document Grounding Does</h4>
@@ -265,10 +292,10 @@ Grant-PnPAzureADAppSitePermission `
 <h4>3.1 b) What the Rest of This Section Covers</h4>
 <p>The next subsections walk through the setup of SAP AI Core Document Grounding. The instructions in both the Bruno and AI Launchpad subsections use the Object Store as the example data repository:</p>
 <ul>
-<li><strong><a href="#32-ai-core-instance-creation" target="_self">3.2 AI Core instance creation</a></strong> &mdash; provision SAP AI Core with the <code>extended</code> plan via the AI Core booster, and download the service key.</li>
-<li><strong><a href="#33-ai-core-document-grounding-with-bruno" target="_self">3.3 AI Core Document Grounding with Bruno</a></strong> &mdash; create the resource group, generic secret, and pipeline through the REST API using an importable Bruno collection.</li>
-<li><strong><a href="#34-ai-core-document-grounding-with-ai-launchpad" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a></strong> &mdash; an alternative path that performs the same setup through a UI instead of the REST API.</li>
-<li><strong><a href="#35-support" target="_self">3.5 Support</a></strong> &mdash; where to open tickets when something goes wrong.</li>
+<li><strong><a href="#toc-hId--1583828786" target="_self">3.2 AI Core instance creation</a></strong> &mdash; provision SAP AI Core with the <code>extended</code> plan via the AI Core booster, and download the service key.</li>
+<li><strong><a href="#toc-hId-1925084490" target="_self">3.3 AI Core Document Grounding with Bruno</a></strong> &mdash; create the resource group, generic secret, and pipeline through the REST API using an importable Bruno collection.</li>
+<li><strong><a href="#toc-hId-717673646" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a></strong> &mdash; an alternative path that performs the same setup through a UI instead of the REST API.</li>
+<li><strong><a href="#toc-hId--461407384" target="_self">3.5 Support</a></strong> &mdash; where to open tickets when something goes wrong.</li>
 </ul>
 <blockquote><strong>Note:</strong> The Bruno and AI Launchpad subsections are two interchangeable paths to the same outcome. Bruno is a free, open-source API client; SAP AI Launchpad is an alternative UI-driven route that requires a paid subscription.</blockquote>
 <h4>3.1 c) Pricing</h4>
@@ -365,7 +392,7 @@ Grant-PnPAzureADAppSitePermission `
 </ul>
 <p><li-image alt="ai-core-subaccount.png" align="center" id="414417i2DD3A2372622D7EE" size="large" resized="false" sourceType="new"></li-image></p>
 <h3>3.3 AI Core Document Grounding with Bruno</h3>
-<p>The next two subsections &mdash; <a href="#33-ai-core-document-grounding-with-bruno" target="_self">3.3 AI Core Document Grounding with Bruno</a> and <a href="#34-ai-core-document-grounding-with-ai-launchpad" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a> &mdash; describe two interchangeable paths to the same outcome. Pick one. Bruno is free and open-source; AI Launchpad is a UI-driven alternative that requires a paid subscription.</p>
+<p>The next two subsections &mdash; <a href="#toc-hId-1925084490" target="_self">3.3 AI Core Document Grounding with Bruno</a> and <a href="#toc-hId-717673646" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a> &mdash; describe two interchangeable paths to the same outcome. Pick one. Bruno is free and open-source; AI Launchpad is a UI-driven alternative that requires a paid subscription.</p>
 <h4>3.3 a) Install Bruno and Import the Collection</h4>
 <p>Bruno is an open-source API client for exploring and testing APIs. Use it to create the resource group, register the Object Store credentials as a generic secret, and provision the document grounding pipeline with the AI Core Document Grounding REST API.</p>
 <ul>
@@ -451,11 +478,11 @@ Grant-PnPAzureADAppSitePermission `
 <p><li-image alt="bruno-pipeline-documents.png" align="center" id="414427i33CF6B578E17FBF1" size="large" resized="false" sourceType="new"></li-image></p>
 <blockquote><strong>Note:</strong> If you upload new documents to the Object Store bucket after the pipeline has finished, run the <code>restart_pipeline</code> request to trigger a fresh sync. The pipeline picks up additions and changes, then transitions back to <code>FINISHED</code> once the new documents are indexed.</blockquote>
 <h3>3.4 AI Core Document Grounding with AI Launchpad</h3>
-<p>This subsection is an alternative to <a href="#33-ai-core-document-grounding-with-bruno" target="_self">3.3 AI Core Document Grounding with Bruno</a> &mdash; pick one. The two paths produce the same resource group, generic secret, and pipeline. AI Launchpad is the UI-driven option.</p>
+<p>This subsection is an alternative to <a href="#toc-hId-1925084490" target="_self">3.3 AI Core Document Grounding with Bruno</a> &mdash; pick one. The two paths produce the same resource group, generic secret, and pipeline. AI Launchpad is the UI-driven option.</p>
 <h4>3.4 a) Provision SAP AI Launchpad</h4>
-<p>SAP AI Launchpad is a web-based UI that lets you set up AI Core Document Grounding through a graphical interface &mdash; without writing API requests. Using it is <strong>optional</strong>: the same setup can be completed with Bruno (see <a href="#33-ai-core-document-grounding-with-bruno" target="_self">3.3 AI Core Document Grounding with Bruno</a>). Choose AI Launchpad if you prefer a UI-driven workflow.</p>
+<p>SAP AI Launchpad is a web-based UI that lets you set up AI Core Document Grounding through a graphical interface &mdash; without writing API requests. Using it is <strong>optional</strong>: the same setup can be completed with Bruno (see <a href="#toc-hId-1925084490" target="_self">3.3 AI Core Document Grounding with Bruno</a>). Choose AI Launchpad if you prefer a UI-driven workflow.</p>
 <p>SAP AI Launchpad is a paid subscription service. The <code>standard</code> plan is required. Review the pricing on <a href="https://discovery-center.cloud.sap/serviceCatalog/sap-ai-launchpad?region=all&amp;tab=service_plan" target="_self">SAP Discovery Center Service - SAP AI Launchpad</a> before subscribing.</p>
-<p>SAP AI Launchpad can be set up using the <strong>Set Up Account for SAP AI Launchpad</strong> booster. Follow steps similar to the AI Core booster execution described in <a href="#32-ai-core-instance-creation" target="_self">3.2 AI Core instance creation</a>.</p>
+<p>SAP AI Launchpad can be set up using the <strong>Set Up Account for SAP AI Launchpad</strong> booster. Follow steps similar to the AI Core booster execution described in <a href="#toc-hId--1583828786" target="_self">3.2 AI Core instance creation</a>.</p>
 <p>Access to SAP AI Launchpad and its administrative features requires specific role collections to be assigned to your user. For more information, see <a href="https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/security#loio4ef8499d7a4945ec854e3b4590830bcc" target="_self">SAP AI Launchpad &gt; Roles and Authorizations | SAP Help Portal</a>.</p>
 <h4>3.4 b) Create the AI API Connection</h4>
 <p>Before SAP AI Launchpad can manage the AI Core tenant, register the AI Core service key as an AI API connection.</p>
@@ -643,7 +670,7 @@ Grant-PnPAzureADAppSitePermission `
 </ul>
 <blockquote><strong>Note:</strong> Once the pipeline <strong>Status</strong> shows <strong>Completed</strong>, SAP Joule for Consultants references the grounded knowledge starting with the next new conversation.</blockquote>
 <blockquote><strong>Note:</strong> If the status shows <strong>Completed With Errors</strong>, some documents were not ingested successfully by the document grounding pipeline. Only successfully processed documents are used in answers. For details, check the documents in Bruno or in the SAP AI Launchpad. For support, please open a ticket under component <code>CA-ML-RAGE</code> &mdash; troubleshooting the AI Core Document Grounding pipeline is out of scope for SAP Joule for Consultants.</blockquote>
-<blockquote><strong>Note:</strong> The <strong>Refresh</strong> icon in the console only refreshes the <strong>view</strong> &mdash; it does <strong>not</strong> re-index your data repository. Whether newly uploaded documents become available to SAP Joule for Consultants is decided by re-running the AI Core Document Grounding pipeline itself: the <code>restart_pipeline</code> request in <a href="#33-ai-core-document-grounding-with-bruno" target="_self">3.3 AI Core Document Grounding with Bruno</a>, or the <strong>Synchronize</strong> icon on the pipeline page in <a href="#34-ai-core-document-grounding-with-ai-launchpad" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a>. Until that pipeline run reaches <code>FINISHED</code> / <code>Completed</code>, the new documents are not indexed.</blockquote>
+<blockquote><strong>Note:</strong> The <strong>Refresh</strong> icon in the console only refreshes the <strong>view</strong> &mdash; it does <strong>not</strong> re-index your data repository. Whether newly uploaded documents become available to SAP Joule for Consultants is decided by re-running the AI Core Document Grounding pipeline itself: the <code>restart_pipeline</code> request in <a href="#toc-hId-1925084490" target="_self">3.3 AI Core Document Grounding with Bruno</a>, or the <strong>Synchronize</strong> icon on the pipeline page in <a href="#toc-hId-717673646" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a>. Until that pipeline run reaches <code>FINISHED</code> / <code>Completed</code>, the new documents are not indexed.</blockquote>
 <h4>4.2 d) Troubleshooting</h4>
 <p><strong>Destination shows "not a valid DGS destination":</strong> The destination is missing one or more of the required additional properties (<code>HTML5.DynamicDestination</code>, <code>HTML5.ForwardAuthToken</code>, <code>AI-Resource-Group</code>), or its URL does not point to a valid document grounding endpoint. Edit the destination in the BTP Cockpit, add the missing properties, save it, then click <strong>Recheck Health</strong> in the console.</p>
 <p><strong>Source not appearing in the Select Sources dialog:</strong> Verify that the Destination Service instance whose service key you connected is the same instance where you created the destination. The console only discovers destinations from its own bound Destination Service instance.</p>
