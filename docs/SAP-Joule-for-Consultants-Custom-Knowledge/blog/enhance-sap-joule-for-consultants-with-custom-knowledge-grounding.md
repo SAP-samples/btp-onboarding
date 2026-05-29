@@ -8,7 +8,7 @@
 
 Custom Knowledge Grounding extends SAP Joule for Consultants with your organization's own documents. The documents are uploaded to a data repository, indexed by SAP AI Core Document Grounding, and retrieved at runtime to ground SAP Joule for Consultants' answers. Users get responses that combine the SAP-curated content SAP Joule for Consultants ships with and their firm's own methodologies, policies, and delivery standards.
 
-![Solution diagram showing documents flowing from a data repository through SAP AI Core Document Grounding into SAP Joule for Consultants](1-introduction/images/solution-diagram.png)
+![Solution diagram showing documents flowing from a data repository through SAP AI Core Document Grounding into SAP Joule for Consultants](../1-introduction/images/solution-diagram.png)
 
 #### 1.1 b) Prerequisites
 
@@ -114,13 +114,13 @@ The Object Store provides S3-compatible storage where documents are uploaded for
 - At the global account level, open **Entitlements** → **Service Assignments**.
 - Search for `Object Store` and confirm the `standard` plan is assigned.
 
-![Service assignments screen with the Object Store standard plan highlighted](2-data-repositories/images/service-assignments.png)
+![Service assignments screen with the Object Store standard plan highlighted](../2-data-repositories/images/service-assignments.png)
 
 - In your subaccount, open **Entitlements** and click **Edit**.
 - Click **Add Service Plans**, select **Object Store**, check the `standard` plan, and click **Add 1 Service Plan**.
 - Click **Save** to apply the changes.
 
-![Object Store standard service plan added to the subaccount entitlements](2-data-repositories/images/object-store-service-plan.png)
+![Object Store standard service plan added to the subaccount entitlements](../2-data-repositories/images/object-store-service-plan.png)
 
 #### 2.2 b) Set Up the Cloud Foundry Environment
 
@@ -129,12 +129,12 @@ The Object Store instance runs in the Cloud Foundry runtime, so the subaccount m
 - In your subaccount, open **Overview** and click **Enable Cloud Foundry**.
 - Keep the **Cloud Foundry Runtime** environment and `standard` plan, adjust the **Instance Name** and **Org Name** if needed, then click **Create**.
 
-![Enable Cloud Foundry dialog with the standard plan selected](2-data-repositories/images/cloud-foundry.png)
+![Enable Cloud Foundry dialog with the standard plan selected](../2-data-repositories/images/cloud-foundry.png)
 
 - Once Cloud Foundry is enabled, click **Create Space** on the **Cloud Foundry Environment** tab.
 - Enter a space name (for example, `j4c`), assign yourself the **Space Developer** and **Space Manager** roles, and click **Create**.
 
-![Cloud Foundry space creation dialog with j4c entered as the space name and Space Developer and Space Manager roles assigned](2-data-repositories/images/cf-space.png)
+![Cloud Foundry space creation dialog with j4c entered as the space name and Space Developer and Space Manager roles assigned](../2-data-repositories/images/cf-space.png)
 
 #### 2.2 c) Create the Object Store Instance
 
@@ -147,17 +147,17 @@ The Object Store instance runs in the Cloud Foundry runtime, so the subaccount m
   - **Instance Name:** e.g., `j4c-object-store`
 - Click **Create** to provision the instance.
 
-![Object Store instance creation form with the standard plan and Cloud Foundry runtime selected](2-data-repositories/images/object-store-creation.png)
+![Object Store instance creation form with the standard plan and Cloud Foundry runtime selected](../2-data-repositories/images/object-store-creation.png)
 
 - Click on the instance row to open its details panel on the right.
 - Under **Service Keys**, click **Create**.
 - Enter a name (e.g., `j4c-object-store-sk`) and click **Create**.
 
-![Service key creation dialog for the Object Store instance](2-data-repositories/images/object-store-service-key.png)
+![Service key creation dialog for the Object Store instance](../2-data-repositories/images/object-store-service-key.png)
 
 - Once the key's **Status** shows **Created**, click the **...** menu on the service key row and choose **Download** to save the credentials as a JSON file. You can also choose **View** to inspect them in the browser and copy individual values.
 
-![Service key context menu showing the Download option](2-data-repositories/images/object-store-service-key-download.png)
+![Service key context menu showing the Download option](../2-data-repositories/images/object-store-service-key-download.png)
 
 > **Note:** The service key contains the `access_key_id`, `secret_access_key`, `region`, and `bucket` values needed to upload documents — you'll use them in the next step.
 
@@ -178,7 +178,7 @@ With the service key credentials, you can use the AWS CLI to upload documents to
   aws s3 ls s3://<bucket>
   ```
 
-![AWS CLI terminal showing a successful s3 cp upload followed by an s3 ls listing](2-data-repositories/images/aws-cli-dark.png)
+![AWS CLI terminal showing a successful s3 cp upload followed by an s3 ls listing](../2-data-repositories/images/aws-cli-dark.png)
 
 > **Note:** The bucket name in the service key is prefixed with `hcp-` followed by a unique identifier.
 
@@ -197,7 +197,7 @@ AI Core Document Grounding connects to a SharePoint site through a Microsoft Ent
 - Enter a name (e.g., `j4c-sharepoint-grounding`), keep the default settings, and click **Register**.
 - From the **Overview** tab, copy the **Application (client) ID** and the **Directory (tenant) ID** — you'll need both for the [3. AI Core Document Grounding](#3-ai-core-document-grounding) section.
 
-![Microsoft Entra app registration Overview tab showing the Application (client) ID and Directory (tenant) ID](2-data-repositories/images/sharepoint-app-registration-overview.jpeg)
+![Microsoft Entra app registration Overview tab showing the Application (client) ID and Directory (tenant) ID](../2-data-repositories/images/sharepoint-app-registration-overview.jpeg)
 
 #### 2.3 b) Grant the Sites.Selected Permission
 
@@ -212,7 +212,7 @@ The application needs the `Sites.Selected` Microsoft Graph permission. On its ow
 - Click **Grant admin consent for [Your Org]**. A tenant Global Administrator or Privileged Role Administrator must perform this step.
 - Verify that the **Status** column for `Sites.Selected` shows a green check mark.
 
-![API permissions tab showing Sites.Selected granted with a green check mark in the Status column](2-data-repositories/images/sharepoint-api-permissions.jpeg)
+![API permissions tab showing Sites.Selected granted with a green check mark in the Status column](../2-data-repositories/images/sharepoint-api-permissions.jpeg)
 
 #### 2.3 c) Create a Client Secret
 
@@ -222,7 +222,7 @@ The OAuth2ClientCredentials flow authenticates with a client secret instead of a
 - Enter a description, pick an expiry, and click **Add**.
 - Copy the secret **Value** immediately — it is only displayed once. Store it together with the tenant ID and application ID.
 
-![Certificates & secrets tab showing a newly created client secret with the Value column highlighted](2-data-repositories/images/sharepoint-client-secret.jpeg)
+![Certificates & secrets tab showing a newly created client secret with the Value column highlighted](../2-data-repositories/images/sharepoint-client-secret.jpeg)
 
 #### 2.3 d) Link the Application to the SharePoint Site
 
@@ -403,7 +403,7 @@ Before running the booster, confirm that the `extended` plan of SAP AI Core is a
 - At the global account level, open **Entitlements** → **Service Assignments**.
 - Search for `SAP AI Core` and confirm the `extended` plan is assigned.
 
-![Service assignments screen with the SAP AI Core extended plan highlighted](3-ai-core-document-grounding/images/ai-core-entitlement.png)
+![Service assignments screen with the SAP AI Core extended plan highlighted](../3-ai-core-document-grounding/images/ai-core-entitlement.png)
 
 #### 3.2 b) Launch the AI Core Booster
 
@@ -411,29 +411,29 @@ We shall now execute the AI Core Booster to provision SAP AI Core in your subacc
 
 - In your global account, click on **Boosters**, look for **Set Up Account for SAP AI Core**, and then click on **Start** to launch the booster.
 
-![Boosters page with the Set Up Account for SAP AI Core booster ready to launch](3-ai-core-document-grounding/images/ai-core-booster.png)
+![Boosters page with the Set Up Account for SAP AI Core booster ready to launch](../3-ai-core-document-grounding/images/ai-core-booster.png)
 
 - The booster checks that your user has the required authorizations and that the global account holds the necessary entitlements. Wait for both checks to show **DONE**, then click on **Next Step**.
 
-![AI Core booster step 1 showing the prerequisite checks marked DONE](3-ai-core-document-grounding/images/ai-core-booster-step-1.png)
+![AI Core booster step 1 showing the prerequisite checks marked DONE](../3-ai-core-document-grounding/images/ai-core-booster-step-1.png)
 
 - Select **Select Subaccount** to reuse an existing Cloud Foundry subaccount and click on **Next Step**.
 
 > **Note:** Choose **Create Subaccount** instead if you do not already have a target subaccount.
 
-![AI Core booster step 2 with Select Subaccount chosen](3-ai-core-document-grounding/images/ai-core-booster-step-2.png)
+![AI Core booster step 2 with Select Subaccount chosen](../3-ai-core-document-grounding/images/ai-core-booster-step-2.png)
 
 - Select your target **Subaccount** and **Space**. The **Org** is filled in automatically. Click on **Next Step**.
 
-![AI Core booster step 3 with the target subaccount and space selected and the Org filled in automatically](3-ai-core-document-grounding/images/ai-core-booster-step-3.png)
+![AI Core booster step 3 with the target subaccount and space selected and the Org filled in automatically](../3-ai-core-document-grounding/images/ai-core-booster-step-3.png)
 
 - Validate your selections and click on **Finish**.
 
-![AI Core booster step 4 review screen before the Finish click](3-ai-core-document-grounding/images/ai-core-booster-step-4.png)
+![AI Core booster step 4 review screen before the Finish click](../3-ai-core-document-grounding/images/ai-core-booster-step-4.png)
 
 - The booster assigns the `extended` plan, creates the `default_aicore` instance, and generates a default service key. Once completed, a **Success** message appears. Click on **Navigate to Subaccount**.
 
-![AI Core booster success screen with the Navigate to Subaccount button](3-ai-core-document-grounding/images/ai-core-booster-success.png)
+![AI Core booster success screen with the Navigate to Subaccount button](../3-ai-core-document-grounding/images/ai-core-booster-success.png)
 
 #### 3.2 c) Download the AI Core Service Key
 
@@ -442,7 +442,7 @@ The booster creates the SAP AI Core instance and a service key automatically. Do
 - In the subaccount, open **Instances and Subscriptions** and click the `default_aicore` row to open its details panel on the right.
 - Under **Service Keys**, click the **...** menu next to the default key and select **Download**.
 
-![Subaccount Instances and Subscriptions view with the default_aicore service key Download option open](3-ai-core-document-grounding/images/ai-core-subaccount.png)
+![Subaccount Instances and Subscriptions view with the default_aicore service key Download option open](../3-ai-core-document-grounding/images/ai-core-subaccount.png)
 
 ### 3.3 AI Core Document Grounding with Bruno
 
@@ -459,7 +459,7 @@ Bruno is an open-source API client for exploring and testing APIs. Use it to cre
 - Open Bruno and click the **+** icon next to **Collections** in the left navigation, then select **Import collection**.
 - Pick the `aicore-dg-s3.yml` collection file when prompted.
 
-![Bruno UI showing the Import collection menu open in the Collections sidebar](3-ai-core-document-grounding/images/bruno-import.png)
+![Bruno UI showing the Import collection menu open in the Collections sidebar](../3-ai-core-document-grounding/images/bruno-import.png)
 
 #### 3.3 b) Configure the Environment
 
@@ -472,7 +472,7 @@ The collection ships with an `aicore-dg-s3` environment containing placeholders 
 - Leave `resource_group` and `generic_secret` at their defaults (or adjust to your naming convention). For the Object Store setup, you can use `object-store` as the name for the generic secret. Leave `pipeline_id` empty for now.
 - Click **Save**.
 
-![Bruno environment configuration screen with the AI Core and S3 placeholders ready to be filled in](3-ai-core-document-grounding/images/bruno-environments.png)
+![Bruno environment configuration screen with the AI Core and S3 placeholders ready to be filled in](../3-ai-core-document-grounding/images/bruno-environments.png)
 
 #### 3.3 c) Fetch an Access Token
 
@@ -481,7 +481,7 @@ Every request to the AI Core API requires an OAuth2 bearer token. The collection
 - Open the `01_get_token` folder and select the `get_token` request.
 - Click **Send**. A `200 OK` response with an `access_token` confirms the credentials are correct.
 
-![Bruno response panel showing a 200 OK reply with an access_token field for the get_token request](3-ai-core-document-grounding/images/bruno-token.png)
+![Bruno response panel showing a 200 OK reply with an access_token field for the get_token request](../3-ai-core-document-grounding/images/bruno-token.png)
 
 > **Note:** Occasionally, the token expires. Resend the request above to retrieve a new token.
 
@@ -492,12 +492,12 @@ The resource group isolates document grounding artifacts inside the AI Core tena
 - Open the `02_resource_group` folder and select `create_resource_group`.
 - Click **Send**. A `202 Accepted` response with the `resourceGroupId` confirms the request was queued.
 
-![Bruno response panel showing a 202 Accepted reply with a resourceGroupId for create_resource_group](3-ai-core-document-grounding/images/bruno-resource-group.png)
+![Bruno response panel showing a 202 Accepted reply with a resourceGroupId for create_resource_group](../3-ai-core-document-grounding/images/bruno-resource-group.png)
 
 - Select `get_resource_group` and click **Send** to poll the provisioning status. Initially the `status` field reads `PROVISIONING`.
 - Wait a few minutes and resend the request until `status` reads `PROVISIONED`.
 
-![Bruno response panel showing the resource group status as PROVISIONED](3-ai-core-document-grounding/images/bruno-resource-group-provisioned.png)
+![Bruno response panel showing the resource group status as PROVISIONED](../3-ai-core-document-grounding/images/bruno-resource-group-provisioned.png)
 
 > **Note:** Do not continue to the next step until the resource group is fully `PROVISIONED` — the generic secret cannot be created against a resource group that is still onboarding.
 
@@ -508,7 +508,7 @@ The generic secret stores the S3 credentials inside AI Core so that the document
 - Open the `03_generic_secret` folder and select `create_generic_secret`.
 - Click **Send**. A `200 OK` response with `"message": "secret has been created"` confirms the secret is registered.
 
-![Bruno response panel showing a 200 OK reply with the secret has been created message](3-ai-core-document-grounding/images/bruno-generic-secret.png)
+![Bruno response panel showing a 200 OK reply with the secret has been created message](../3-ai-core-document-grounding/images/bruno-generic-secret.png)
 
 #### 3.3 f) Create the Pipeline
 
@@ -537,16 +537,16 @@ To run the example above, replace the body in the `create_pipeline` request with
 - Open the `04_pipeline` folder and select `create_pipeline`.
 - Click **Send**. A `201 Created` response returns the `pipelineId`.
 
-![Bruno response panel showing a 201 Created reply with a pipelineId for create_pipeline](3-ai-core-document-grounding/images/bruno-pipeline-creation.png)
+![Bruno response panel showing a 201 Created reply with a pipelineId for create_pipeline](../3-ai-core-document-grounding/images/bruno-pipeline-creation.png)
 
 - Note down the returned `pipelineId` for later use.
 - Select `get_pipeline_status` and click **Send** to monitor progress. The pipeline takes a few minutes to finish — longer if more documents are in the bucket. Resend until `status` reads `FINISHED`.
 
-![Bruno response panel showing the pipeline status as FINISHED](3-ai-core-document-grounding/images/bruno-pipeline-finished.png)
+![Bruno response panel showing the pipeline status as FINISHED](../3-ai-core-document-grounding/images/bruno-pipeline-finished.png)
 
 - Select `get_documents` and click **Send** to list the documents picked up by the pipeline. Each document should report `"status": "INDEXED"`.
 
-![Bruno response panel listing pipeline documents each with status INDEXED](3-ai-core-document-grounding/images/bruno-pipeline-documents.png)
+![Bruno response panel listing pipeline documents each with status INDEXED](../3-ai-core-document-grounding/images/bruno-pipeline-documents.png)
 
 > **Note:** If you upload new documents to the Object Store bucket after the pipeline has finished, run the `restart_pipeline` request to trigger a fresh sync. The pipeline picks up additions and changes, then transitions back to `FINISHED` once the new documents are indexed.
 
@@ -573,7 +573,7 @@ Before SAP AI Launchpad can manage the AI Core tenant, register the AI Core serv
 - Next to **Service Key**, click the upload icon and select the AI Core service key file you downloaded earlier. The **AI API URL**, **XSUAA URL**, **Client ID**, and **Client Secret** fields are populated automatically.
 - Click **Create**.
 
-![SAP AI Launchpad Add Connection dialog with the AI Core service key uploaded and the credential fields populated](3-ai-core-document-grounding/images/ai-launchpad-connection.png)
+![SAP AI Launchpad Add Connection dialog with the AI Core service key uploaded and the credential fields populated](../3-ai-core-document-grounding/images/ai-launchpad-connection.png)
 
 #### 3.4 c) Create the Resource Group
 
@@ -584,7 +584,7 @@ The resource group isolates document grounding artifacts inside the AI Core tena
 - Ensure that the `ext.ai.sap.com/document-grounding` label is enabled.
 - Click **Create**.
 
-![SAP AI Launchpad Create Resource Group dialog with the document-grounding label enabled](3-ai-core-document-grounding/images/ai-launchpad-resource-group.png)
+![SAP AI Launchpad Create Resource Group dialog with the document-grounding label enabled](../3-ai-core-document-grounding/images/ai-launchpad-resource-group.png)
 
 > **Note:** The resource group takes a few minutes to transition from `PROVISIONING` to `PROVISIONED`. Do not continue to the next step until the resource group is fully provisioned — the generic secret cannot be created against a resource group that is still onboarding.
 
@@ -592,7 +592,7 @@ The resource group isolates document grounding artifacts inside the AI Core tena
 - Under **Resource Groups**, click the card for the resource group you created (e.g., `j4c-custom-knowledge`). The card should show **Document Grounding: Enabled**.
 - The header at the top of the launchpad now displays the active workspace as `<connection> (<resource-group>)` — for example, `j4c-ai-core (j4c-custom-knowledge)`.
 
-![SAP AI Launchpad Workspaces page with the j4c-custom-knowledge resource group selected and Document Grounding marked Enabled](3-ai-core-document-grounding/images/ai-launchpad-select-resource-group.png)
+![SAP AI Launchpad Workspaces page with the j4c-custom-knowledge resource group selected and Document Grounding marked Enabled](../3-ai-core-document-grounding/images/ai-launchpad-select-resource-group.png)
 
 #### 3.4 d) Create the Generic Secret
 
@@ -603,7 +603,7 @@ The generic secret stores the S3 credentials inside AI Core so that the document
 - Fill in the **Secret** key/value pairs using the Object Store service key.
 - Click **Add**.
 
-![SAP AI Launchpad Add Generic Secret dialog with Amazon S3 selected and Document Grounding toggled on](3-ai-core-document-grounding/images/ai-launchpad-generic-secret.png)
+![SAP AI Launchpad Add Generic Secret dialog with Amazon S3 selected and Document Grounding toggled on](../3-ai-core-document-grounding/images/ai-launchpad-generic-secret.png)
 
 #### 3.4 e) Create the Document Grounding Pipeline
 
@@ -614,7 +614,7 @@ Create a pipeline so AI Core ingests, chunks, embeds, and indexes every document
 - Choose the generic secret you created in the previous step (e.g., `object-store`)
 - Click **Create**.
 
-![SAP AI Launchpad Grounding Management Create Pipeline dialog with the S3 document store type and the object-store generic secret selected](3-ai-core-document-grounding/images/ai-launchpad-pipeline-creation.png)
+![SAP AI Launchpad Grounding Management Create Pipeline dialog with the S3 document store type and the object-store generic secret selected](../3-ai-core-document-grounding/images/ai-launchpad-pipeline-creation.png)
 
 The pipeline will now start ingesting the documents from the data repository. This process will take a few minutes. Open the pipeline to confirm that it finished successfully and that the test document was indexed.
 
@@ -622,7 +622,7 @@ The pipeline will now start ingesting the documents from the data repository. Th
 - Wait until the **Status** in the header switches to **Completed**.
 - Under **Data Repository Content**, the **Documents** list shows every indexed file.
 
-![SAP AI Launchpad pipeline details page with Status Completed and the indexed Documents list under Data Repository Content](3-ai-core-document-grounding/images/ai-launchpad-pipeline-collection.png)
+![SAP AI Launchpad pipeline details page with Status Completed and the indexed Documents list under Data Repository Content](../3-ai-core-document-grounding/images/ai-launchpad-pipeline-collection.png)
 
 > **Note:** If you upload new documents to the Object Store bucket after the pipeline has finished, you can click the **Synchronize** icon in the top-right corner of the pipeline page to trigger a resync.
 
@@ -666,13 +666,13 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 - In your subaccount, open **Instances and Subscriptions** and click **Create**.
 - Select **Destination Service** with the `lite` plan, fill in the required fields, and click **Create** to provision the instance.
 
-![Destination Service instance creation form with the lite plan selected](4-connection-to-j4c/images/destination-service-creation.png)
+![Destination Service instance creation form with the lite plan selected](../4-connection-to-j4c/images/destination-service-creation.png)
 
 - Click the instance row (not the blue instance name) to open its details panel on the right.
 - Under **Service Keys**, click **Create**.
 - Enter a name and click **Create**.
 
-![Destination Service details panel with the Create Service Key dialog open](4-connection-to-j4c/images/destination-service-service-key.png)
+![Destination Service details panel with the Create Service Key dialog open](../4-connection-to-j4c/images/destination-service-service-key.png)
 
 - Download the service key — you'll need it later to connect SAP Joule for Consultants.
 - Then open the instance to configure its destinations — either click the blue instance name in the **Instances** list, or click **Manage Instance** at the top of the details panel on the right. Both navigate to the same instance page.
@@ -681,14 +681,14 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 
 > **Note:** Editing or deleting destinations requires the BTP role collection `Destination Administrator`.
 
-![Destination Service service key download menu](4-connection-to-j4c/images/destination-service-download.png)
+![Destination Service service key download menu](../4-connection-to-j4c/images/destination-service-download.png)
 
 #### 4.1 b) Create the Destination
 
 - In the Destination Service instance, open the **Destinations** section and click **Create**.
 - Select **From Scratch** and click **Create**.
 
-![Destinations page with the New Destination From Scratch option selected](4-connection-to-j4c/images/destination-service-create-scratch.png)
+![Destinations page with the New Destination From Scratch option selected](../4-connection-to-j4c/images/destination-service-create-scratch.png)
 
 - Open the service key of the AI Core instance — you'll copy several values from it.
 - Set **Authentication** to **OAuth2ClientCredentials**, then paste in the **Client ID** and **Client Secret** from the AI Core service key.
@@ -702,11 +702,11 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 
 > **Note:** `AI-Resource-Group` is not available as a predefined value in the value help — enter the key name manually.
 
-![Destination configuration form with OAuth2ClientCredentials authentication, Token Service URL, URL, and the three additional properties filled in](4-connection-to-j4c/images/destination-service-create-destination.png)
+![Destination configuration form with OAuth2ClientCredentials authentication, Token Service URL, URL, and the three additional properties filled in](../4-connection-to-j4c/images/destination-service-create-destination.png)
 
 - Check the connection to verify the destination is configured correctly.
 
-![Destination configuration showing a successful Check Connection result](4-connection-to-j4c/images/destination-service-check-connection.png)
+![Destination configuration showing a successful Check Connection result](../4-connection-to-j4c/images/destination-service-check-connection.png)
 
 ### 4.2 Admin Console configuration
 
@@ -719,7 +719,7 @@ With the Destination Service configured, enable Custom Knowledge Grounding in th
 - In the SAP Joule for Consultants Console, open the **Settings** menu from the left navigation and select **Custom Knowledge Grounding**.
 - Toggle the switch to enable the feature.
 
-![SAP Joule for Consultants Console Settings page with the Custom Knowledge Grounding feature toggled on](4-connection-to-j4c/images/console-enable-custom-knowledge.png)
+![SAP Joule for Consultants Console Settings page with the Custom Knowledge Grounding feature toggled on](../4-connection-to-j4c/images/console-enable-custom-knowledge.png)
 
 #### 4.2 b) Connect to the SAP Destination Service
 
@@ -731,7 +731,7 @@ With the Destination Service configured, enable Custom Knowledge Grounding in th
 
 > **Note:** Use the service key from the Destination Service instance — not the AI Core service key.
 
-![Connect dialog with the JSON credentials option selected and the Destination Service service key pasted in](4-connection-to-j4c/images/console-connect-json.png)
+![Connect dialog with the JSON credentials option selected and the Destination Service service key pasted in](../4-connection-to-j4c/images/console-connect-json.png)
 
 Once connected, the console retrieves the document grounding instances available through the destination.
 
@@ -739,13 +739,13 @@ Once connected, the console retrieves the document grounding instances available
 - Use **Recheck Health** if you recently updated a source and want to refresh its validation status.
 - Click **Save**.
 
-![Select Sources dialog showing available document grounding instances with green checkmarks](4-connection-to-j4c/images/console-select-sources.png)
+![Select Sources dialog showing available document grounding instances with green checkmarks](../4-connection-to-j4c/images/console-select-sources.png)
 
 #### 4.2 c) Manage Sources & Pipelines
 
 The selected sources appear under **Sources & Pipelines**. Expand a source to inspect its pipelines.
 
-![Sources & Pipelines view with a source expanded to show its pipelines](4-connection-to-j4c/images/console-sources-pipelines.png)
+![Sources & Pipelines view with a source expanded to show its pipelines](../4-connection-to-j4c/images/console-sources-pipelines.png)
 
 The pipeline table shows the following columns:
 
@@ -788,7 +788,7 @@ SAP Joule for Consultants references the grounded documents in any new conversat
 - In SAP Joule for Consultants, click **New Conversation** in the left navigation.
 - Enter a prompt that targets content from the test document, here: `Explain the Heliotrope Fabricator`.
 
-![SAP Joule for Consultants new conversation with the prompt Explain the Heliotrope Fabricator entered](5-testing/images/j4c-new-conversation.png)
+![SAP Joule for Consultants new conversation with the prompt Explain the Heliotrope Fabricator entered](../5-testing/images/j4c-new-conversation.png)
 
 > **Note:** The Heliotrope Fabricator is fictional content contained only in `Test_document--Heliotrope_Fabricator.pdf`. If SAP Joule for Consultants returns a meaningful explanation, the document grounding is working as expected.
 
@@ -799,7 +799,7 @@ SAP Joule for Consultants cites the documents it used to ground its answer. Open
 - Once SAP Joule for Consultants has answered, click **Sources** below the response.
 - A panel opens on the right listing the cited documents.
 
-![Sources panel listing Test_document--Heliotrope_Fabricator.pdf as a Customer Document with a citation index and page reference](5-testing/images/j4c-test-document.png)
+![Sources panel listing Test_document--Heliotrope_Fabricator.pdf as a Customer Document with a citation index and page reference](../5-testing/images/j4c-test-document.png)
 
 The panel header reads **Sources** and lists every document the answer was grounded on. Entries provided through Custom Knowledge Grounding are grouped under the **Customer** category, with each entry labeled **Customer Document** to distinguish it from SAP-managed content. The cited file is shown with the citation index from the answer (e.g., `[1]`) and a page reference (e.g., `(pg 1)`).
 
