@@ -169,7 +169,7 @@ With the service key credentials, you can use the AWS CLI to upload documents to
 
 > **Note:** If you prefer a graphical client, [Cyberduck](https://cyberduck.io/download/) supports S3 with the same service key credentials.
 
-- Download the sample file [Test_document--Heliotrope_Fabricator.pdf](assets/Test_document--Heliotrope_Fabricator.pdf?raw=true). You can append `--Object-Store` to the filename (e.g., `Test_document--Heliotrope_Fabricator--Object-Store.pdf`) to mark which storage backend the copy belongs to.
+- Download the sample file [Test_document--Heliotrope_Fabricator.pdf](../assets/Test_document--Heliotrope_Fabricator.pdf?raw=true). You can append `--Object-Store` to the filename (e.g., `Test_document--Heliotrope_Fabricator--Object-Store.pdf`) to mark which storage backend the copy belongs to.
 - Run `aws configure` and paste in the credentials when prompted — the default output format can be left blank.
 - Upload the document to the bucket and list its contents to verify:
 
@@ -256,7 +256,7 @@ After admin consent, the application still cannot read any site. You now have to
 #### 2.3 e) Upload Documents to the SharePoint Site
 
 - Open the SharePoint site in a browser and upload your documents to a document library.
-- Download the sample file [Test_document--Heliotrope_Fabricator.pdf](assets/Test_document--Heliotrope_Fabricator.pdf?raw=true). You can append `--SharePoint` to the filename (e.g., `Test_document--Heliotrope_Fabricator--SharePoint.pdf`) to mark which storage backend the copy belongs to.
+- Download the sample file [Test_document--Heliotrope_Fabricator.pdf](../assets/Test_document--Heliotrope_Fabricator.pdf?raw=true). You can append `--SharePoint` to the filename (e.g., `Test_document--Heliotrope_Fabricator--SharePoint.pdf`) to mark which storage backend the copy belongs to.
 
 The Bruno and AI Launchpad subsections in the [3. AI Core Document Grounding](#3-ai-core-document-grounding) section consume the following SharePoint credentials, which you have now collected:
 
@@ -300,7 +300,7 @@ Once the Work Zone tenant is up, enable Document Grounding so AI Core can ingest
 #### 2.4 c) Upload Documents to Work Zone
 
 - In the Work Zone workspace configured for Document Grounding, upload your documents to the workspace folder.
-- Download the sample file [Test_document--Heliotrope_Fabricator.pdf](assets/Test_document--Heliotrope_Fabricator.pdf?raw=true). You can append `--Work-Zone` to the filename (e.g., `Test_document--Heliotrope_Fabricator--Work-Zone.pdf`) to mark which storage backend the copy belongs to.
+- Download the sample file [Test_document--Heliotrope_Fabricator.pdf](../assets/Test_document--Heliotrope_Fabricator.pdf?raw=true). You can append `--Work-Zone` to the filename (e.g., `Test_document--Heliotrope_Fabricator--Work-Zone.pdf`) to mark which storage backend the copy belongs to.
 
 The Bruno and AI Launchpad subsections in the [3. AI Core Document Grounding](#3-ai-core-document-grounding) section consume the following Work Zone credentials, which you collected during the Document Grounding enablement above:
 
@@ -366,7 +366,7 @@ Every Bruno collection expects the **AI Core service key** values. In addition, 
 
 ##### AWS S3
 
-Bruno collection: [aicore-dg-s3.yml](assets/aicore-dg-s3.yml?raw=true)
+Bruno collection: [aicore-dg-s3.yml](../assets/aicore-dg-s3.yml?raw=true)
 
 - `S3_Region`, `S3_Host`, `S3_Bucket`, `S3_Username`, `S3_Access_Key_ID`, `S3_Secret_Access_Key`
 
@@ -374,14 +374,14 @@ Bruno collection: [aicore-dg-s3.yml](assets/aicore-dg-s3.yml?raw=true)
 
 ##### Microsoft SharePoint
 
-Bruno collection: [aicore-dg-sharepoint.yml](assets/aicore-dg-sharepoint.yml?raw=true)
+Bruno collection: [aicore-dg-sharepoint.yml](../assets/aicore-dg-sharepoint.yml?raw=true)
 
 - Microsoft Entra application: `MS_Entra_Tenant_ID`, `MS_Entra_Application_ID`, `MS_Entra_Application_Client_Secret`
 - SharePoint site: `SharePoint_URL`
 
 ##### SAP Build Work Zone
 
-Bruno collection: [aicore-dg-workzone.yml](assets/aicore-dg-workzone.yml?raw=true)
+Bruno collection: [aicore-dg-workzone.yml](../assets/aicore-dg-workzone.yml?raw=true)
 
 - Advanced Work Zone: `DWS_URL`, `OAuthClient_Key`, `OAuthClient_Secret`
 
@@ -389,10 +389,10 @@ Bruno collection: [aicore-dg-workzone.yml](assets/aicore-dg-workzone.yml?raw=tru
 
 Sample documents are provided to verify the end-to-end setup. Each file contains fictional content written with unique terminology, and the matching **test prompt is included on the first page** of the document so you can copy it straight into SAP Joule for Consultants. Upload at least one to your data repository:
 
-- [Test_document--Aurora_Phase_Conductor.pdf](assets/Test_document--Aurora_Phase_Conductor.pdf?raw=true)
-- [Test_document--Heliotrope_Fabricator.pdf](assets/Test_document--Heliotrope_Fabricator.pdf?raw=true)
-- [Test_document--Obsidian_Flux_Harmonizer.pdf](assets/Test_document--Obsidian_Flux_Harmonizer.pdf?raw=true)
-- [Test_document--Verdant_Chronoweaver.pdf](assets/Test_document--Verdant_Chronoweaver.pdf?raw=true)
+- [Test_document--Aurora_Phase_Conductor.pdf](../assets/Test_document--Aurora_Phase_Conductor.pdf?raw=true)
+- [Test_document--Heliotrope_Fabricator.pdf](../assets/Test_document--Heliotrope_Fabricator.pdf?raw=true)
+- [Test_document--Obsidian_Flux_Harmonizer.pdf](../assets/Test_document--Obsidian_Flux_Harmonizer.pdf?raw=true)
+- [Test_document--Verdant_Chronoweaver.pdf](../assets/Test_document--Verdant_Chronoweaver.pdf?raw=true)
 
 ### 3.2 AI Core instance creation
 
