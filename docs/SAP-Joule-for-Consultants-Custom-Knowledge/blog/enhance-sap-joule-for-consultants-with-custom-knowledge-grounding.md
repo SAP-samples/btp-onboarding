@@ -712,7 +712,7 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 
 > **Note:** `AI-Resource-Group` is not available as a predefined value in the value help — enter the key name manually.
 
-> **Note:** Optionally, add the subaccount ID to the destination **Description**. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.
+> **Note:** Optionally, add the AI Core subaccount ID to the destination **Description**. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.
 
 ![Destination configuration form with OAuth2ClientCredentials authentication, Token Service URL, URL, and the three additional properties filled in](../4-connection-to-j4c/images/destination-service-create-destination.png)
 
