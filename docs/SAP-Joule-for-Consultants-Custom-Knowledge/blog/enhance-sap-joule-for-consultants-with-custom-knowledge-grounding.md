@@ -26,6 +26,10 @@ Custom Knowledge Grounding relies on paid SAP services that are billed separatel
 
 Review the pricing of each service before subscribing.
 
+The screenshot below shows an example calculation of the SAP AI Core consumption.
+
+![SAP BTP Cockpit usage analytics showing SAP AI Core consumption](../1-introduction/images/ai-core-consumption-tracking.png)
+
 #### 1.1 d) What This Guide Covers
 
 The remaining sections walk through the end-to-end setup:
@@ -81,7 +85,7 @@ The starting point for the AI Core Document Grounding documentation is [Groundin
 
 #### 2.1 b) Supported Data Repositories
 
-AI Core Document Grounding can read content from the following data repositories:
+AI Core Document Grounding can read content from the following [data repositories](https://help.sap.com/docs/sap-ai-core/generative-ai/grounding-035c455a5a424697b60f4a24b6d791fe#data-repositories):
 
 - Microsoft SharePoint
 - AWS S3
@@ -192,6 +196,8 @@ With the service key credentials, you can use the AWS CLI to upload documents to
 
 AI Core Document Grounding connects to a SharePoint site through a Microsoft Entra application using the OAuth2ClientCredentials flow. Start by registering the application in Microsoft Entra.
 
+> **Note:** Only classic SharePoint sites addressed via `/sites/<name>` are currently supported. Sites backing a Microsoft Teams team, addressed via `/teams/<name>`, are not yet supported — support for them is on the roadmap.
+
 - Sign in to [entra.microsoft.com](https://entra.microsoft.com/) with an account that can register applications.
 - Open **App registrations** and click **New registration**.
 - Enter a name (e.g., `j4c-sharepoint-grounding`), keep the default settings, and click **Register**.
@@ -228,7 +234,7 @@ The OAuth2ClientCredentials flow authenticates with a client secret instead of a
 
 After admin consent, the application still cannot read any site. You now have to bind it explicitly to the SharePoint site that hosts your grounding documents. The easiest path is the [PnP.PowerShell](https://pnp.github.io/powershell/) module.
 
-> **Note:** The account running the grant command must have the **Site Collection Administrator** role on the target SharePoint site (a tenant Global Administrator works as well). Owners of the Microsoft 365 Group or Teams team that backs a SharePoint site automatically have this role. If you don't have it, ask a SharePoint administrator to grant it temporarily. `Sites.Selected` on its own is not enough to perform the grant.
+> **Note:** The account running the grant command must have the **Site Collection Administrator** role on the target SharePoint site (a tenant Global Administrator works as well). Owners of the Microsoft 365 Group that backs a SharePoint site automatically have this role. If you don't have it, ask a SharePoint administrator to grant it temporarily. `Sites.Selected` on its own is not enough to perform the grant.
 
 - Install **PowerShell 7.2 or later** — see [Install PowerShell on Windows, Linux, and macOS | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell).
 - Install the PnP.PowerShell module — see [Installing PnP PowerShell | PnP PowerShell](https://pnp.github.io/powershell/articles/installation.html).
@@ -425,6 +431,8 @@ We shall now execute the AI Core Booster to provision SAP AI Core in your subacc
 
 - Select your target **Subaccount** and **Space**. The **Org** is filled in automatically. Click on **Next Step**.
 
+> **Note:** Make sure the `extended` plan is chosen — the free `standard` plan does not support document grounding.
+
 ![AI Core booster step 3 with the target subaccount and space selected and the Org filled in automatically](../3-ai-core-document-grounding/images/ai-core-booster-step-3.png)
 
 - Validate your selections and click on **Finish**.
@@ -452,9 +460,9 @@ The next two subsections — [3.3 AI Core Document Grounding with Bruno](#33-ai-
 
 Bruno is an open-source API client for exploring and testing APIs. Use it to create the resource group, register the Object Store credentials as a generic secret, and provision the document grounding pipeline with the AI Core Document Grounding REST API.
 
-- Download and install the latest version of [Bruno](https://www.usebruno.com/downloads).
+- Download and install [Bruno](https://www.usebruno.com/downloads) **v3 or higher**.
 
-> **Note:** The templates collections are stored as `.yml` files. Older Bruno versions do not support the YAML import format, so make sure to install the latest release.
+> **Note:** The templates collections are stored as `.yml` files. Bruno versions older than v3 do not support the YAML import format, so make sure to install v3 or higher.
 
 - Open Bruno and click the **+** icon next to **Collections** in the left navigation, then select **Import collection**.
 - Pick the `aicore-dg-s3.yml` collection file when prompted.
@@ -532,7 +540,7 @@ A request body that limits indexing to a folder inside the bucket looks like thi
 }
 ```
 
-To run the example above, replace the body in the `create_pipeline` request with the snippet.
+Only replace the body of the `create_pipeline` request with the snippet above if you want to restrict indexing to a specific subfolder (via `includePaths`). To index the entire bucket, leave the request body unchanged.
 
 - Open the `04_pipeline` folder and select `create_pipeline`.
 - Click **Send**. A `201 Created` response returns the `pipelineId`.
@@ -663,6 +671,8 @@ Once the pipeline reports **FINISHED** (Bruno) or **Completed** (AI Launchpad), 
 
 A Destination Service connects AI Core Document Grounding to SAP Joule for Consultants. Configure it as follows.
 
+> **Note:** The Destination Service instance runs in the Cloud Foundry runtime, so the subaccount needs Cloud Foundry enabled with a space available — see [2.2 b) Set Up the Cloud Foundry Environment](#22-object-store). If you set up Object Store earlier, this is already in place.
+
 - In your subaccount, open **Instances and Subscriptions** and click **Create**.
 - Select **Destination Service** with the `lite` plan, fill in the required fields, and click **Create** to provision the instance.
 
@@ -701,6 +711,8 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
   - `AI-Resource-Group`: name of your resource group
 
 > **Note:** `AI-Resource-Group` is not available as a predefined value in the value help — enter the key name manually.
+
+> **Note:** Optionally, add the subaccount ID to the destination **Description**. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.
 
 ![Destination configuration form with OAuth2ClientCredentials authentication, Token Service URL, URL, and the three additional properties filled in](../4-connection-to-j4c/images/destination-service-create-destination.png)
 
@@ -762,6 +774,8 @@ The three action icons in the top-right corner of the page are:
 - **Pencil** — configure document grounding instances (connect or disconnect sources).
 - **Bin** — delete the selected source.
 - **Refresh** — re-read the pipeline metadata from AI Core Document Grounding and update what the console shows (status, last sync timestamp, document count).
+
+> **Note:** Access to each pipeline can be restricted per pipeline from this view via **Manage Access Control** (Allow All, Deny All, or Restricted to specific SAP Cloud Identity Services groups). New pipelines default to **Allow All** — all authenticated users. See [Managing Access Control for Custom Knowledge Grounding | SAP Help Portal](https://help.sap.com/docs/joule/serviceguide/managing-access-control-for-custom-knowledge-grounding).
 
 > **Note:** Once the pipeline **Status** shows **Completed**, SAP Joule for Consultants references the grounded knowledge starting with the next new conversation.
 

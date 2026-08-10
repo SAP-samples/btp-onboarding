@@ -306,10 +306,11 @@ items:
             - type: before-request
               code: |-
                 // Derive the SharePoint site name from SharePoint_URL.
-                // The site identifier is the path segment after "/sites/" or "/teams/".
-                // Examples:
+                // The site identifier is the path segment after "/sites/".
+                // Example:
                 //   https://contoso.sharepoint.com/sites/HR%20Team/  -> "HR%20Team"
-                //   https://contoso.sharepoint.com/teams/Marketing   -> "Marketing"
+                // Note: Teams-backed sites addressed via "/teams/" are not yet
+                // supported by AI Core Document Grounding.
                 const rawUrl = (bru.getEnvVar("SharePoint_URL") || "").trim();
                 if (!rawUrl) {
                   throw new Error("Environment variable 'SharePoint_URL' is not defined.");
@@ -318,15 +319,14 @@ items:
                 // Strip any trailing slashes (one or many) before parsing.
                 const cleanedUrl = rawUrl.replace(/\/+$/, "");
 
-                // Capture the segment after /sites/ or /teams/, stopping at the
-                // next path separator, query string, or fragment. Case-insensitive
-                // so "/Sites/" and "/Teams/" also match.
-                const match = cleanedUrl.match(/\/(?:sites|teams)\/([^\/?#]+)/i);
+                // Capture the segment after /sites/, stopping at the next path
+                // separator, query string, or fragment. Case-insensitive so
+                // "/Sites/" also matches.
+                const match = cleanedUrl.match(/\/sites\/([^\/?#]+)/i);
                 if (!match || !match[1]) {
                   throw new Error(
                     `Could not extract SharePoint site name from URL '${rawUrl}'. ` +
-                    `Expected format: https://<tenant>.sharepoint.com/sites/<sitename> ` +
-                    `or https://<tenant>.sharepoint.com/teams/<sitename>`
+                    `Expected format: https://<tenant>.sharepoint.com/sites/<sitename>`
                   );
                 }
 
