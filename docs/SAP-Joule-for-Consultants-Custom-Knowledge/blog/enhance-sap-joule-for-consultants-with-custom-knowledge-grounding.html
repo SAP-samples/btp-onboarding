@@ -229,9 +229,12 @@ aws s3 ls s3://&lt;bucket&gt;</li-code>
 <ul>
 <li>Install <strong>PowerShell 7.2 or later</strong> &mdash; see <a href="https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell" target="_self">Install PowerShell on Windows, Linux, and macOS | Microsoft Learn</a>.</li>
 <li>Install the PnP.PowerShell module &mdash; see <a href="https://pnp.github.io/powershell/articles/installation.html" target="_self">Installing PnP PowerShell | PnP PowerShell</a>.</li>
-<li>On first use in the tenant, register PnP's own Entra application by running <code>Register-PnPEntraIDApp</code> and following the prompts. The resulting <strong>Client ID</strong> is the helper-app ID used to sign in with <code>Connect-PnPOnline</code> &mdash; it is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
+<li>On first use in the tenant, register PnP's own Entra application. This creates a <strong>second, separate helper app</strong> used only to sign in with <code>Connect-PnPOnline</code> &mdash; give it its <strong>own name</strong>, not the name of the application you registered in <strong>2.3 a) Register the Microsoft Entra Application</strong>:
+<pre>Register-PnPEntraIDApp -ApplicationName "PnP-PowerShell-Helper" -Tenant &lt;tenant-id&gt;</pre>
+</li>
+<li>Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end &mdash; depending on tenant settings, an administrator may need to grant it, as in <strong>2.3 b) Grant the Sites.Selected Permission</strong>. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's <strong>Client ID</strong>: this is the value for <code>-ClientId</code> in <code>Connect-PnPOnline</code> below. It is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
 </ul>
-<blockquote><strong>Note:</strong> <code>Register-PnPEntraIDApp</code> is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized.</blockquote>
+<blockquote><strong>Note:</strong> <code>Register-PnPEntraIDApp</code> is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized &mdash; in that case, reuse the existing helper app's Client ID (find it in Entra under App registrations).</blockquote>
 <ul>
 <li>Sign in to the target SharePoint site and grant the Sites.Selected application read access:
 <pre>Connect-PnPOnline -Url "&lt;site-url&gt;" -Interactive -ClientId "&lt;pnp-helper-app-client-id&gt;"
@@ -319,7 +322,7 @@ Grant-PnPAzureADAppSitePermission `
 </ul>
 <p>If you take the AI Launchpad path, note that SAP AI Launchpad with the <code>standard</code> plan is also a paid subscription: <a href="https://discovery-center.cloud.sap/serviceCatalog/sap-ai-launchpad" target="_self">SAP AI Launchpad &mdash; SAP Discovery Center</a>.</p>
 <h4>3.1 d) Supported Data Repositories</h4>
-<p>AI Core Document Grounding can index content from the following data repositories:</p>
+<p>AI Core Document Grounding can index content from the following <a href="https://help.sap.com/docs/sap-ai-core/generative-ai/grounding-035c455a5a424697b60f4a24b6d791fe#data-repositories" target="_self">data repositories</a>:</p>
 <ul>
 <li>Microsoft SharePoint</li>
 <li>AWS S3</li>
@@ -428,7 +431,7 @@ Grant-PnPAzureADAppSitePermission `
 <li><code>S3_Region</code>, <code>S3_Host</code>, <code>S3_Bucket</code>, <code>S3_Username</code>, <code>S3_Access_Key_ID</code>, <code>S3_Secret_Access_Key</code> &mdash; from the Object Store service key.</li>
 </ul>
 </li>
-<li>Leave <code>resource_group</code> and <code>generic_secret</code> at their defaults (or adjust to your naming convention). For the Object Store setup, you can use <code>object-store</code> as the name for the generic secret. Leave <code>pipeline_id</code> empty for now.</li>
+<li>You can leave <code>resource_group</code> and <code>generic_secret</code> at their defaults or set your own names. For the Object Store setup, you can use <code>object-store</code> as the name for the generic secret. Leave <code>pipeline_id</code> empty for now.</li>
 <li>Click <strong>Save</strong>.</li>
 </ul>
 <p><li-image alt="bruno-environments.png" align="center" id="414426iDCBBDC771BEED990" size="large" resized="false" sourceType="new"></li-image></p>
@@ -476,6 +479,7 @@ Grant-PnPAzureADAppSitePermission `
   }
 }</li-code>
 <p>Only replace the body of the <code>create_pipeline</code> request with the snippet above if you want to restrict indexing to a specific subfolder (via <code>includePaths</code>). To index the entire bucket, leave the request body unchanged.</p>
+<blockquote><strong>Note:</strong> The SharePoint collection (<code>aicore-dg-sharepoint.yml</code>) already sets <code>includePaths</code> to <code>/j4c-custom-knowledge</code> in its <code>create_pipeline</code> body. Either create a folder named <code>j4c-custom-knowledge</code> in your SharePoint document library, or adjust the <code>includePaths</code> value in the request body to match your own folder. Remove <code>includePaths</code> entirely to index the whole document library.</blockquote>
 <ul>
 <li>Open the <code>04_pipeline</code> folder and select <code>create_pipeline</code>.</li>
 <li>Click <strong>Send</strong>. A <code>201 Created</code> response returns the <code>pipelineId</code>.</li>

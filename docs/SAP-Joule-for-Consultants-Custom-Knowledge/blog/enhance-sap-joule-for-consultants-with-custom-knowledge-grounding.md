@@ -238,9 +238,15 @@ After admin consent, the application still cannot read any site. You now have to
 
 - Install **PowerShell 7.2 or later** — see [Install PowerShell on Windows, Linux, and macOS | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell).
 - Install the PnP.PowerShell module — see [Installing PnP PowerShell | PnP PowerShell](https://pnp.github.io/powershell/articles/installation.html).
-- On first use in the tenant, register PnP's own Entra application by running `Register-PnPEntraIDApp` and following the prompts. The resulting **Client ID** is the helper-app ID used to sign in with `Connect-PnPOnline` — it is **not** the ID of the application you registered in the previous sections.
+- On first use in the tenant, register PnP's own Entra application. This creates a **second, separate helper app** used only to sign in with `Connect-PnPOnline` — give it its **own name**, not the name of the application you registered in **2.3 a) Register the Microsoft Entra Application**:
 
-> **Note:** `Register-PnPEntraIDApp` is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized.
+  ```powershell
+  Register-PnPEntraIDApp -ApplicationName "PnP-PowerShell-Helper" -Tenant <tenant-id>
+  ```
+
+- Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end — depending on tenant settings, an administrator may need to grant it, as in **2.3 b) Grant the Sites.Selected Permission**. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's **Client ID**: this is the value for `-ClientId` in `Connect-PnPOnline` below. It is **not** the ID of the application you registered in the previous sections.
+
+> **Note:** `Register-PnPEntraIDApp` is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized — in that case, reuse the existing helper app's Client ID (find it in Entra under App registrations).
 
 - Sign in to the target SharePoint site and grant the Sites.Selected application read access:
 
@@ -350,7 +356,7 @@ If you take the AI Launchpad path, note that SAP AI Launchpad with the `standard
 
 #### 3.1 d) Supported Data Repositories
 
-AI Core Document Grounding can index content from the following data repositories:
+AI Core Document Grounding can index content from the following [data repositories](https://help.sap.com/docs/sap-ai-core/generative-ai/grounding-035c455a5a424697b60f4a24b6d791fe#data-repositories):
 
 - Microsoft SharePoint
 - AWS S3
@@ -477,7 +483,7 @@ The collection ships with an `aicore-dg-s3` environment containing placeholders 
 - Replace each `<placeholder>` with the corresponding value:
   - `AICore_AI_API_URL`, `AICore_clientid`, `AICore_clientsecret`, `AICore_url` — from the AI Core service key.
   - `S3_Region`, `S3_Host`, `S3_Bucket`, `S3_Username`, `S3_Access_Key_ID`, `S3_Secret_Access_Key` — from the Object Store service key.
-- Leave `resource_group` and `generic_secret` at their defaults (or adjust to your naming convention). For the Object Store setup, you can use `object-store` as the name for the generic secret. Leave `pipeline_id` empty for now.
+- You can leave `resource_group` and `generic_secret` at their defaults or set your own names. For the Object Store setup, you can use `object-store` as the name for the generic secret. Leave `pipeline_id` empty for now.
 - Click **Save**.
 
 ![Bruno environment configuration screen with the AI Core and S3 placeholders ready to be filled in](../3-ai-core-document-grounding/images/bruno-environments.png)
@@ -541,6 +547,8 @@ A request body that limits indexing to a folder inside the bucket looks like thi
 ```
 
 Only replace the body of the `create_pipeline` request with the snippet above if you want to restrict indexing to a specific subfolder (via `includePaths`). To index the entire bucket, leave the request body unchanged.
+
+> **Note:** The SharePoint collection (`aicore-dg-sharepoint.yml`) already sets `includePaths` to `/j4c-custom-knowledge` in its `create_pipeline` body. Either create a folder named `j4c-custom-knowledge` in your SharePoint document library, or adjust the `includePaths` value in the request body to match your own folder. Remove `includePaths` entirely to index the whole document library.
 
 - Open the `04_pipeline` folder and select `create_pipeline`.
 - Click **Send**. A `201 Created` response returns the `pipelineId`.
