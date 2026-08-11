@@ -244,9 +244,9 @@ After admin consent, the application still cannot read any site. You now have to
   Register-PnPEntraIDApp -ApplicationName "PnP-PowerShell-Helper" -Tenant <tenant-id>
   ```
 
-- Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end — depending on tenant settings, an administrator may need to grant it, as in **2.3 b) Grant the Sites.Selected Permission**. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's **Client ID**: this is the value for `-ClientId` in `Connect-PnPOnline` below. It is **not** the ID of the application you registered in the previous sections.
-
 > **Note:** `Register-PnPEntraIDApp` is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized — in that case, reuse the existing helper app's Client ID (find it in Entra under App registrations).
+
+- Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end — depending on tenant settings, an administrator may need to grant it, as in **2.3 b) Grant the Sites.Selected Permission**. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's **Client ID**: this is the value for `-ClientId` in `Connect-PnPOnline` below. It is **not** the ID of the application you registered in the previous sections.
 
 - Sign in to the target SharePoint site and grant the Sites.Selected application read access:
 
@@ -708,9 +708,8 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 
 ![Destinations page with the New Destination From Scratch option selected](../4-connection-to-j4c/images/destination-service-create-scratch.png)
 
-- Open the service key of the AI Core instance — you'll copy several values from it.
 - Set **Authentication** to **OAuth2ClientCredentials**, then paste in the **Client ID** and **Client Secret** from the AI Core service key.
-- Fill in the following fields, replacing the placeholders with the values from the service key:
+- Fill in the following fields, replacing the placeholders with the values from the AI Core service key:
   - **Token Service URL:** `<url>/oauth/token`
   - **URL:** `<AI_API_URL>/v2/lm/document-grounding`
 - Add the following **Additional Properties**:
@@ -720,7 +719,7 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 
 > **Note:** `AI-Resource-Group` is not available as a predefined value in the value help — enter the key name manually.
 
-> **Note:** Optionally, add the AI Core subaccount ID to the destination **Description**. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.
+> **Note:** Optionally, add the ID of the subaccount in which AI Core was instantiated to the destination **Description**. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.
 
 ![Destination configuration form with OAuth2ClientCredentials authentication, Token Service URL, URL, and the three additional properties filled in](../4-connection-to-j4c/images/destination-service-create-destination.png)
 

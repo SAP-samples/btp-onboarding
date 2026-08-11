@@ -232,10 +232,10 @@ aws s3 ls s3://&lt;bucket&gt;</li-code>
 <li>On first use in the tenant, register PnP's own Entra application. This creates a <strong>second, separate helper app</strong> used only to sign in with <code>Connect-PnPOnline</code> &mdash; give it its <strong>own name</strong>, not the name of the application you registered in <strong>2.3 a) Register the Microsoft Entra Application</strong>:
 <pre>Register-PnPEntraIDApp -ApplicationName "PnP-PowerShell-Helper" -Tenant &lt;tenant-id&gt;</pre>
 </li>
-<li>Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end &mdash; depending on tenant settings, an administrator may need to grant it, as in <strong>2.3 b) Grant the Sites.Selected Permission</strong>. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's <strong>Client ID</strong>: this is the value for <code>-ClientId</code> in <code>Connect-PnPOnline</code> below. It is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
 </ul>
 <blockquote><strong>Note:</strong> <code>Register-PnPEntraIDApp</code> is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized &mdash; in that case, reuse the existing helper app's Client ID (find it in Entra under App registrations).</blockquote>
 <ul>
+<li>Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end &mdash; depending on tenant settings, an administrator may need to grant it, as in <strong>2.3 b) Grant the Sites.Selected Permission</strong>. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's <strong>Client ID</strong>: this is the value for <code>-ClientId</code> in <code>Connect-PnPOnline</code> below. It is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
 <li>Sign in to the target SharePoint site and grant the Sites.Selected application read access:
 <pre>Connect-PnPOnline -Url "&lt;site-url&gt;" -Interactive -ClientId "&lt;pnp-helper-app-client-id&gt;"
 Grant-PnPAzureADAppSitePermission `
@@ -601,9 +601,8 @@ Grant-PnPAzureADAppSitePermission `
 </ul>
 <p><li-image alt="destination-service-create-scratch.png" align="center" id="414439i6FAAE9F571BC4F3C" size="large" resized="false" sourceType="new"></li-image></p>
 <ul>
-<li>Open the service key of the AI Core instance &mdash; you'll copy several values from it.</li>
 <li>Set <strong>Authentication</strong> to <strong>OAuth2ClientCredentials</strong>, then paste in the <strong>Client ID</strong> and <strong>Client Secret</strong> from the AI Core service key.</li>
-<li>Fill in the following fields, replacing the placeholders with the values from the service key:
+<li>Fill in the following fields, replacing the placeholders with the values from the AI Core service key:
 <ul>
 <li><strong>Token Service URL:</strong> <code>&lt;url&gt;/oauth/token</code></li>
 <li><strong>URL:</strong> <code>&lt;AI_API_URL&gt;/v2/lm/document-grounding</code></li>
@@ -618,7 +617,7 @@ Grant-PnPAzureADAppSitePermission `
 </li>
 </ul>
 <blockquote><strong>Note:</strong> <code>AI-Resource-Group</code> is not available as a predefined value in the value help &mdash; enter the key name manually.</blockquote>
-<blockquote><strong>Note:</strong> Optionally, add the AI Core subaccount ID to the destination <strong>Description</strong>. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.</blockquote>
+<blockquote><strong>Note:</strong> Optionally, add the ID of the subaccount in which AI Core was instantiated to the destination <strong>Description</strong>. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.</blockquote>
 <p><li-image alt="destination-service-create-destination.png" align="center" id="444250iA34A5684B20CD04F" size="large" resized="false" sourceType="new"></li-image></p>
 <ul>
 <li>Check the connection to verify the destination is configured correctly.</li>
