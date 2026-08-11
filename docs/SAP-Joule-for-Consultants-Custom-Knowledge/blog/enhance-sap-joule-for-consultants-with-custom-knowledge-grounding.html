@@ -55,6 +55,8 @@
 <li><strong>SAP AI Launchpad (<code>standard</code> plan)</strong> is optional &mdash; needed only if you prefer the UI-driven setup over the REST API path. See <a href="https://discovery-center.cloud.sap/serviceCatalog/sap-ai-launchpad?region=all&amp;tab=service_plan" target="_self">Pricing</a>.</li>
 </ul>
 <p>Review the pricing of each service before subscribing.</p>
+<p>The screenshot below shows an example calculation of the SAP AI Core consumption.</p>
+<p><li-image alt="ai-core-consumption-tracking.png" align="center" id="444288i5B2E8AB8AFA3B321" size="large" resized="false" sourceType="new"></li-image></p>
 <h4>1.1 d) What This Guide Covers</h4>
 <p>The remaining sections walk through the end-to-end setup:</p>
 <ul>
@@ -95,7 +97,7 @@
 <p>AI Core Document Grounding does not host the source documents itself &mdash; it reads them from an external data repository and serves the resulting index to SAP Joule for Consultants. The data repository is the system of record where you upload and maintain the documents you want to ground SAP Joule for Consultants' answers on.</p>
 <p>The starting point for the AI Core Document Grounding documentation is <a href="https://help.sap.com/docs/sap-ai-core/generative-ai/grounding-035c455a5a424697b60f4a24b6d791fe" target="_self">Grounding | SAP Help Portal</a>.</p>
 <h4>2.1 b) Supported Data Repositories</h4>
-<p>AI Core Document Grounding can read content from the following data repositories:</p>
+<p>AI Core Document Grounding can read content from the following <a href="https://help.sap.com/docs/sap-ai-core/generative-ai/grounding-035c455a5a424697b60f4a24b6d791fe#data-repositories" target="_self">data repositories</a>:</p>
 <ul>
 <li>Microsoft SharePoint</li>
 <li>AWS S3</li>
@@ -192,6 +194,7 @@ aws s3 ls s3://&lt;bucket&gt;</li-code>
 </blockquote>
 <h4>2.3 a) Register the Microsoft Entra Application</h4>
 <p>AI Core Document Grounding connects to a SharePoint site through a Microsoft Entra application using the OAuth2ClientCredentials flow. Start by registering the application in Microsoft Entra.</p>
+<blockquote><strong>Note:</strong> Only classic SharePoint sites addressed via <code>/sites/&lt;name&gt;</code> are currently supported. Sites backing a Microsoft Teams team, addressed via <code>/teams/&lt;name&gt;</code>, are not yet supported &mdash; support for them is on the roadmap.</blockquote>
 <ul>
 <li>Sign in to <a href="https://entra.microsoft.com/" target="_self">entra.microsoft.com</a> with an account that can register applications.</li>
 <li>Open <strong>App registrations</strong> and click <strong>New registration</strong>.</li>
@@ -222,13 +225,16 @@ aws s3 ls s3://&lt;bucket&gt;</li-code>
 <p><li-image alt="sharepoint-client-secret.jpeg" align="center" id="414398i4CAD24B6D06B041E" size="large" resized="false" sourceType="new"></li-image></p>
 <h4>2.3 d) Link the Application to the SharePoint Site</h4>
 <p>After admin consent, the application still cannot read any site. You now have to bind it explicitly to the SharePoint site that hosts your grounding documents. The easiest path is the <a href="https://pnp.github.io/powershell/" target="_self">PnP.PowerShell</a> module.</p>
-<blockquote><strong>Note:</strong> The account running the grant command must have the <strong>Site Collection Administrator</strong> role on the target SharePoint site (a tenant Global Administrator works as well). Owners of the Microsoft 365 Group or Teams team that backs a SharePoint site automatically have this role. If you don't have it, ask a SharePoint administrator to grant it temporarily. <code>Sites.Selected</code> on its own is not enough to perform the grant.</blockquote>
+<blockquote><strong>Note:</strong> The account running the grant command must have the <strong>Site Collection Administrator</strong> role on the target SharePoint site (a tenant Global Administrator works as well). Owners of the Microsoft 365 Group that backs a SharePoint site automatically have this role. If you don't have it, ask a SharePoint administrator to grant it temporarily. <code>Sites.Selected</code> on its own is not enough to perform the grant.</blockquote>
 <ul>
 <li>Install <strong>PowerShell 7.2 or later</strong> &mdash; see <a href="https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell" target="_self">Install PowerShell on Windows, Linux, and macOS | Microsoft Learn</a>.</li>
 <li>Install the PnP.PowerShell module &mdash; see <a href="https://pnp.github.io/powershell/articles/installation.html" target="_self">Installing PnP PowerShell | PnP PowerShell</a>.</li>
-<li>On first use in the tenant, register PnP's own Entra application by running <code>Register-PnPEntraIDApp</code> and following the prompts. The resulting <strong>Client ID</strong> is the helper-app ID used to sign in with <code>Connect-PnPOnline</code> &mdash; it is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
+<li>On first use in the tenant, register PnP's own Entra application. This creates a <strong>second, separate helper app</strong> used only to sign in with <code>Connect-PnPOnline</code> &mdash; give it its <strong>own name</strong>, not the name of the application you registered in <strong>2.3 a) Register the Microsoft Entra Application</strong>:
+<pre>Register-PnPEntraIDApp -ApplicationName "PnP-PowerShell-Helper" -Tenant &lt;tenant-id&gt;</pre>
+</li>
+<li>Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end &mdash; depending on tenant settings, an administrator may need to grant it, as in <strong>2.3 b) Grant the Sites.Selected Permission</strong>. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's <strong>Client ID</strong>: this is the value for <code>-ClientId</code> in <code>Connect-PnPOnline</code> below. It is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
 </ul>
-<blockquote><strong>Note:</strong> <code>Register-PnPEntraIDApp</code> is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized.</blockquote>
+<blockquote><strong>Note:</strong> <code>Register-PnPEntraIDApp</code> is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized &mdash; in that case, reuse the existing helper app's Client ID (find it in Entra under App registrations).</blockquote>
 <ul>
 <li>Sign in to the target SharePoint site and grant the Sites.Selected application read access:
 <pre>Connect-PnPOnline -Url "&lt;site-url&gt;" -Interactive -ClientId "&lt;pnp-helper-app-client-id&gt;"
@@ -316,7 +322,7 @@ Grant-PnPAzureADAppSitePermission `
 </ul>
 <p>If you take the AI Launchpad path, note that SAP AI Launchpad with the <code>standard</code> plan is also a paid subscription: <a href="https://discovery-center.cloud.sap/serviceCatalog/sap-ai-launchpad" target="_self">SAP AI Launchpad &mdash; SAP Discovery Center</a>.</p>
 <h4>3.1 d) Supported Data Repositories</h4>
-<p>AI Core Document Grounding can index content from the following data repositories:</p>
+<p>AI Core Document Grounding can index content from the following <a href="https://help.sap.com/docs/sap-ai-core/generative-ai/grounding-035c455a5a424697b60f4a24b6d791fe#data-repositories" target="_self">data repositories</a>:</p>
 <ul>
 <li>Microsoft SharePoint</li>
 <li>AWS S3</li>
@@ -385,6 +391,7 @@ Grant-PnPAzureADAppSitePermission `
 <ul>
 <li>Select your target <strong>Subaccount</strong> and <strong>Space</strong>. The <strong>Org</strong> is filled in automatically. Click on <strong>Next Step</strong>.</li>
 </ul>
+<blockquote><strong>Note:</strong> Make sure the <code>extended</code> plan is chosen &mdash; the free <code>standard</code> plan does not support document grounding.</blockquote>
 <p><li-image alt="ai-core-booster-step-3.png" align="center" id="414411iD39FF9952B9D17A6" size="large" resized="false" sourceType="new"></li-image></p>
 <ul>
 <li>Validate your selections and click on <strong>Finish</strong>.</li>
@@ -406,9 +413,9 @@ Grant-PnPAzureADAppSitePermission `
 <h4>3.3 a) Install Bruno and Import the Collection</h4>
 <p>Bruno is an open-source API client for exploring and testing APIs. Use it to create the resource group, register the Object Store credentials as a generic secret, and provision the document grounding pipeline with the AI Core Document Grounding REST API.</p>
 <ul>
-<li>Download and install the latest version of <a href="https://www.usebruno.com/downloads" target="_self">Bruno</a>.</li>
+<li>Download and install <a href="https://www.usebruno.com/downloads" target="_self">Bruno</a> <strong>v3 or higher</strong>.</li>
 </ul>
-<blockquote><strong>Note:</strong> The templates collections are stored as <code>.yml</code> files. Older Bruno versions do not support the YAML import format, so make sure to install the latest release.</blockquote>
+<blockquote><strong>Note:</strong> The templates collections are stored as <code>.yml</code> files. Bruno versions older than v3 do not support the YAML import format, so make sure to install v3 or higher.</blockquote>
 <ul>
 <li>Open Bruno and click the <strong>+</strong> icon next to <strong>Collections</strong> in the left navigation, then select <strong>Import collection</strong>.</li>
 <li>Pick the <code>aicore-dg-s3.yml</code> collection file when prompted.</li>
@@ -424,7 +431,7 @@ Grant-PnPAzureADAppSitePermission `
 <li><code>S3_Region</code>, <code>S3_Host</code>, <code>S3_Bucket</code>, <code>S3_Username</code>, <code>S3_Access_Key_ID</code>, <code>S3_Secret_Access_Key</code> &mdash; from the Object Store service key.</li>
 </ul>
 </li>
-<li>Leave <code>resource_group</code> and <code>generic_secret</code> at their defaults (or adjust to your naming convention). For the Object Store setup, you can use <code>object-store</code> as the name for the generic secret. Leave <code>pipeline_id</code> empty for now.</li>
+<li>You can leave <code>resource_group</code> and <code>generic_secret</code> at their defaults or set your own names. For the Object Store setup, you can use <code>object-store</code> as the name for the generic secret. Leave <code>pipeline_id</code> empty for now.</li>
 <li>Click <strong>Save</strong>.</li>
 </ul>
 <p><li-image alt="bruno-environments.png" align="center" id="414426iDCBBDC771BEED990" size="large" resized="false" sourceType="new"></li-image></p>
@@ -471,7 +478,8 @@ Grant-PnPAzureADAppSitePermission `
     }
   }
 }</li-code>
-<p>To run the example above, replace the body in the <code>create_pipeline</code> request with the snippet.</p>
+<p>Only replace the body of the <code>create_pipeline</code> request with the snippet above if you want to restrict indexing to a specific subfolder (via <code>includePaths</code>). To index the entire bucket, leave the request body unchanged.</p>
+<blockquote><strong>Note:</strong> The SharePoint collection (<code>aicore-dg-sharepoint.yml</code>) already sets <code>includePaths</code> to <code>/j4c-custom-knowledge</code> in its <code>create_pipeline</code> body. Either create a folder named <code>j4c-custom-knowledge</code> in your SharePoint document library, or adjust the <code>includePaths</code> value in the request body to match your own folder. Remove <code>includePaths</code> entirely to index the whole document library.</blockquote>
 <ul>
 <li>Open the <code>04_pipeline</code> folder and select <code>create_pipeline</code>.</li>
 <li>Click <strong>Send</strong>. A <code>201 Created</code> response returns the <code>pipelineId</code>.</li>
@@ -567,6 +575,7 @@ Grant-PnPAzureADAppSitePermission `
 <h3>4.1 Destination Service setup</h3>
 <h4>4.1 a) Configure the Destination Service</h4>
 <p>A Destination Service connects AI Core Document Grounding to SAP Joule for Consultants. Configure it as follows.</p>
+<blockquote><strong>Note:</strong> The Destination Service instance runs in the Cloud Foundry runtime, so the subaccount needs Cloud Foundry enabled with a space available &mdash; see <strong>2.2 b) Set Up the Cloud Foundry Environment</strong>. If you set up Object Store earlier, this is already in place.</blockquote>
 <ul>
 <li>In your subaccount, open <strong>Instances and Subscriptions</strong> and click <strong>Create</strong>.</li>
 <li>Select <strong>Destination Service</strong> with the <code>lite</code> plan, fill in the required fields, and click <strong>Create</strong> to provision the instance.</li>
@@ -609,7 +618,8 @@ Grant-PnPAzureADAppSitePermission `
 </li>
 </ul>
 <blockquote><strong>Note:</strong> <code>AI-Resource-Group</code> is not available as a predefined value in the value help &mdash; enter the key name manually.</blockquote>
-<p><li-image alt="destination-service-create-destination.png" align="center" id="414440i96928E29E62B38DA" size="large" resized="false" sourceType="new"></li-image></p>
+<blockquote><strong>Note:</strong> Optionally, add the AI Core subaccount ID to the destination <strong>Description</strong>. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.</blockquote>
+<p><li-image alt="destination-service-create-destination.png" align="center" id="444250iA34A5684B20CD04F" size="large" resized="false" sourceType="new"></li-image></p>
 <ul>
 <li>Check the connection to verify the destination is configured correctly.</li>
 </ul>
@@ -678,6 +688,7 @@ Grant-PnPAzureADAppSitePermission `
 <li><strong>Bin</strong> &mdash; delete the selected source.</li>
 <li><strong>Refresh</strong> &mdash; re-read the pipeline metadata from AI Core Document Grounding and update what the console shows (status, last sync timestamp, document count).</li>
 </ul>
+<blockquote><strong>Note:</strong> Access to each pipeline can be restricted per pipeline from this view via <strong>Manage Access Control</strong> (Allow All, Deny All, or Restricted to specific SAP Cloud Identity Services groups). New pipelines default to <strong>Allow All</strong> &mdash; all authenticated users. See <a href="https://help.sap.com/docs/joule/serviceguide/managing-access-control-for-custom-knowledge-grounding" target="_self">Managing Access Control for Custom Knowledge Grounding | SAP Help Portal</a>.</blockquote>
 <blockquote><strong>Note:</strong> Once the pipeline <strong>Status</strong> shows <strong>Completed</strong>, SAP Joule for Consultants references the grounded knowledge starting with the next new conversation.</blockquote>
 <blockquote><strong>Note:</strong> If the status shows <strong>Completed With Errors</strong>, some documents were not ingested successfully by the document grounding pipeline. Only successfully processed documents are used in answers. For details, check the documents in Bruno or in the SAP AI Launchpad. For support, please open a ticket under component <code>CA-ML-RAGE</code> &mdash; troubleshooting the AI Core Document Grounding pipeline is out of scope for SAP Joule for Consultants.</blockquote>
 <blockquote><strong>Note:</strong> The <strong>Refresh</strong> icon in the console only refreshes the <strong>view</strong> &mdash; it does <strong>not</strong> re-index your data repository. Whether newly uploaded documents become available to SAP Joule for Consultants is decided by re-running the AI Core Document Grounding pipeline itself: the <code>restart_pipeline</code> request in <a href="#toc-hId-1728570985" target="_self">3.3 AI Core Document Grounding with Bruno</a>, or the <strong>Synchronize</strong> icon on the pipeline page in <a href="#toc-hId-521160141" target="_self">3.4 AI Core Document Grounding with AI Launchpad</a>. Until that pipeline run reaches <code>FINISHED</code> / <code>Completed</code>, the new documents are not indexed.</blockquote>
