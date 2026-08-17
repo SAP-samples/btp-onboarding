@@ -798,6 +798,15 @@ The three action icons in the top-right corner of the page are:
 
 **No pipelines appear after saving:** Allow a few minutes for the pipeline to initialize and the first sync to complete. Use the **Refresh** icon on the **Sources & Pipelines** page to update the view.
 
+**Connection issues caused by leftover pipelines:** Repeated failed pipeline creations can accumulate in AI Core Document Grounding and interfere with the connection to SAP Joule for Consultants. If the source keeps failing its health check or behaves unexpectedly, prune the stale pipelines so that only the ones you actually need remain. The Bruno collection in [3.3 AI Core Document Grounding with Bruno](#33-ai-core-document-grounding-with-bruno) includes a `delete_all_other_pipelines` request (under `04_pipeline` → **Additional requests**) that removes every pipeline **except** the one currently stored in the `pipeline_id` environment variable — useful when you want to end up with a single, known-good pipeline.
+
+- **Check first what you would lose.** Run `get_all_pipelines` and note the IDs you want to keep. Make sure `pipeline_id` holds the one pipeline you intend to preserve — `delete_all_other_pipelines` deletes everything else, so this step is your safeguard against removing a pipeline that is still in use.
+- **Trigger the cleanup.** Send `delete_all_other_pipelines`. It first lists all current pipelines, then issues a delete for each one whose ID does not match `pipeline_id`. The console output reports how many pipelines were found, how many are being deleted, and which ID is kept.
+- **Wait for deletion to complete.** Deletion is asynchronous — the request returns before AI Core has finished removing the pipelines. Give it a short while to settle.
+- **Verify.** Re-run `get_all_pipelines` in the meantime and repeat until only the pipeline(s) you meant to keep are listed. Then return to the console and click **Recheck Health** on the source.
+
+> **Note:** `delete_all_other_pipelines` keeps exactly one pipeline. If you need to keep several, delete the unwanted ones individually instead: run `get_all_pipelines`, then for each pipeline you want to remove, set `pipeline_id` to its ID and send `delete_pipeline`.
+
 ## 5. Testing
 
 ### 5.1 Testing Custom Knowledge Grounding
