@@ -232,10 +232,10 @@ aws s3 ls s3://&lt;bucket&gt;</li-code>
 <li>On first use in the tenant, register PnP's own Entra application. This creates a <strong>second, separate helper app</strong> used only to sign in with <code>Connect-PnPOnline</code> &mdash; give it its <strong>own name</strong>, not the name of the application you registered in <strong>2.3 a) Register the Microsoft Entra Application</strong>:
 <pre>Register-PnPEntraIDApp -ApplicationName "PnP-PowerShell-Helper" -Tenant &lt;tenant-id&gt;</pre>
 </li>
-<li>Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end &mdash; depending on tenant settings, an administrator may need to grant it, as in <strong>2.3 b) Grant the Sites.Selected Permission</strong>. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's <strong>Client ID</strong>: this is the value for <code>-ClientId</code> in <code>Connect-PnPOnline</code> below. It is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
 </ul>
 <blockquote><strong>Note:</strong> <code>Register-PnPEntraIDApp</code> is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized &mdash; in that case, reuse the existing helper app's Client ID (find it in Entra under App registrations).</blockquote>
 <ul>
+<li>Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end &mdash; depending on tenant settings, an administrator may need to grant it, as in <strong>2.3 b) Grant the Sites.Selected Permission</strong>. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's <strong>Client ID</strong>: this is the value for <code>-ClientId</code> in <code>Connect-PnPOnline</code> below. It is <strong>not</strong> the ID of the application you registered in the previous sections.</li>
 <li>Sign in to the target SharePoint site and grant the Sites.Selected application read access:
 <pre>Connect-PnPOnline -Url "&lt;site-url&gt;" -Interactive -ClientId "&lt;pnp-helper-app-client-id&gt;"
 Grant-PnPAzureADAppSitePermission `
@@ -434,6 +434,7 @@ Grant-PnPAzureADAppSitePermission `
 <li>You can leave <code>resource_group</code> and <code>generic_secret</code> at their defaults or set your own names. For the Object Store setup, you can use <code>object-store</code> as the name for the generic secret. Leave <code>pipeline_id</code> empty for now.</li>
 <li>Click <strong>Save</strong>.</li>
 </ul>
+<blockquote><strong>Note:</strong> In Bruno v4, the environment editor splits values across a <strong>Variables</strong> tab and a separate <strong>Secrets</strong> tab. Sensitive values such as <code>AICore_clientsecret</code> and <code>S3_Secret_Access_Key</code> may be stored under <strong>Secrets</strong> rather than <strong>Variables</strong>, so check both tabs if a placeholder seems to be missing.</blockquote>
 <p><li-image alt="bruno-environments.png" align="center" id="414426iDCBBDC771BEED990" size="large" resized="false" sourceType="new"></li-image></p>
 <h4>3.3 c) Fetch an Access Token</h4>
 <p>Every request to the AI Core API requires an OAuth2 bearer token. The collection retrieves it once and reuses it across the other requests via a collection-level script.</p>
@@ -601,9 +602,8 @@ Grant-PnPAzureADAppSitePermission `
 </ul>
 <p><li-image alt="destination-service-create-scratch.png" align="center" id="414439i6FAAE9F571BC4F3C" size="large" resized="false" sourceType="new"></li-image></p>
 <ul>
-<li>Open the service key of the AI Core instance &mdash; you'll copy several values from it.</li>
 <li>Set <strong>Authentication</strong> to <strong>OAuth2ClientCredentials</strong>, then paste in the <strong>Client ID</strong> and <strong>Client Secret</strong> from the AI Core service key.</li>
-<li>Fill in the following fields, replacing the placeholders with the values from the service key:
+<li>Fill in the following fields, replacing the placeholders with the values from the AI Core service key:
 <ul>
 <li><strong>Token Service URL:</strong> <code>&lt;url&gt;/oauth/token</code></li>
 <li><strong>URL:</strong> <code>&lt;AI_API_URL&gt;/v2/lm/document-grounding</code></li>
@@ -618,8 +618,8 @@ Grant-PnPAzureADAppSitePermission `
 </li>
 </ul>
 <blockquote><strong>Note:</strong> <code>AI-Resource-Group</code> is not available as a predefined value in the value help &mdash; enter the key name manually.</blockquote>
-<blockquote><strong>Note:</strong> Optionally, add the AI Core subaccount ID to the destination <strong>Description</strong>. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.</blockquote>
-<p><li-image alt="destination-service-create-destination.png" align="center" id="444250iA34A5684B20CD04F" size="large" resized="false" sourceType="new"></li-image></p>
+<blockquote><strong>Note:</strong> Optionally, add the ID of the subaccount in which AI Core was instantiated to the destination <strong>Description</strong>. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.</blockquote>
+<p><li-image alt="destination-service-create-destination.png" align="center" id="444852i0AAB1D7AE21695F7" size="large" resized="false" sourceType="new"></li-image></p>
 <ul>
 <li>Check the connection to verify the destination is configured correctly.</li>
 </ul>
@@ -696,6 +696,14 @@ Grant-PnPAzureADAppSitePermission `
 <p><strong>Destination shows "not a valid DGS destination":</strong> The destination is missing one or more of the required additional properties (<code>HTML5.DynamicDestination</code>, <code>HTML5.ForwardAuthToken</code>, <code>AI-Resource-Group</code>), or its URL does not point to a valid document grounding endpoint. Edit the destination in the BTP Cockpit, add the missing properties, save it, then click <strong>Recheck Health</strong> in the console.</p>
 <p><strong>Source not appearing in the Select Sources dialog:</strong> Verify that the Destination Service instance whose service key you connected is the same instance where you created the destination. The console only discovers destinations from its own bound Destination Service instance.</p>
 <p><strong>No pipelines appear after saving:</strong> Allow a few minutes for the pipeline to initialize and the first sync to complete. Use the <strong>Refresh</strong> icon on the <strong>Sources &amp; Pipelines</strong> page to update the view.</p>
+<p><strong>Connection issues caused by leftover pipelines:</strong> Repeated failed pipeline creations can accumulate in AI Core Document Grounding and interfere with the connection to SAP Joule for Consultants. If the source keeps failing its health check or behaves unexpectedly, prune the stale pipelines so that only the ones you actually need remain. The Bruno collection in <a href="#toc-hId-1728570985" target="_self">3.3 AI Core Document Grounding with Bruno</a> includes a <code>delete_all_other_pipelines</code> request (under <code>04_pipeline</code> &rarr; <strong>Additional requests</strong>) that removes every pipeline <strong>except</strong> the one currently stored in the <code>pipeline_id</code> environment variable &mdash; useful when you want to end up with a single, known-good pipeline.</p>
+<ul>
+<li><strong>Check first what you would lose.</strong> Run <code>get_all_pipelines</code> and note the IDs you want to keep. Make sure <code>pipeline_id</code> holds the one pipeline you intend to preserve &mdash; <code>delete_all_other_pipelines</code> deletes everything else, so this step is your safeguard against removing a pipeline that is still in use.</li>
+<li><strong>Trigger the cleanup.</strong> Send <code>delete_all_other_pipelines</code>. It first lists all current pipelines, then issues a delete for each one whose ID does not match <code>pipeline_id</code>. The console output reports how many pipelines were found, how many are being deleted, and which ID is kept.</li>
+<li><strong>Wait for deletion to complete.</strong> Deletion is asynchronous &mdash; the request returns before AI Core has finished removing the pipelines. Give it a short while to settle.</li>
+<li><strong>Verify.</strong> Re-run <code>get_all_pipelines</code> in the meantime and repeat until only the pipeline(s) you meant to keep are listed. Then return to the console and click <strong>Recheck Health</strong> on the source.</li>
+</ul>
+<blockquote><strong>Note:</strong> <code>delete_all_other_pipelines</code> keeps exactly one pipeline. If you need to keep several, delete the unwanted ones individually instead: run <code>get_all_pipelines</code>, then for each pipeline you want to remove, set <code>pipeline_id</code> to its ID and send <code>delete_pipeline</code>.</blockquote>
 <h2>5. Testing</h2>
 <h3>5.1 Testing Custom Knowledge Grounding</h3>
 <h4>5.1 a) Start a New Conversation</h4>

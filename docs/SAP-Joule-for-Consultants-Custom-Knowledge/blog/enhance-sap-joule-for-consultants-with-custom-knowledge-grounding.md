@@ -244,9 +244,9 @@ After admin consent, the application still cannot read any site. You now have to
   Register-PnPEntraIDApp -ApplicationName "PnP-PowerShell-Helper" -Tenant <tenant-id>
   ```
 
-- Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end — depending on tenant settings, an administrator may need to grant it, as in **2.3 b) Grant the Sites.Selected Permission**. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's **Client ID**: this is the value for `-ClientId` in `Connect-PnPOnline` below. It is **not** the ID of the application you registered in the previous sections.
-
 > **Note:** `Register-PnPEntraIDApp` is a one-time setup per tenant. Skip it if PnP.PowerShell has already been initialized — in that case, reuse the existing helper app's Client ID (find it in Entra under App registrations).
+
+- Sign in when prompted with an account that can register applications and approve the consent prompt that opens at the end — depending on tenant settings, an administrator may need to grant it, as in **2.3 b) Grant the Sites.Selected Permission**. The warning "No permissions specified, using default permissions" can be ignored; the defaults are fine for this scenario. The output shows the helper app's **Client ID**: this is the value for `-ClientId` in `Connect-PnPOnline` below. It is **not** the ID of the application you registered in the previous sections.
 
 - Sign in to the target SharePoint site and grant the Sites.Selected application read access:
 
@@ -486,6 +486,8 @@ The collection ships with an `aicore-dg-s3` environment containing placeholders 
 - You can leave `resource_group` and `generic_secret` at their defaults or set your own names. For the Object Store setup, you can use `object-store` as the name for the generic secret. Leave `pipeline_id` empty for now.
 - Click **Save**.
 
+> **Note:** In Bruno v4, the environment editor splits values across a **Variables** tab and a separate **Secrets** tab. Sensitive values such as `AICore_clientsecret` and `S3_Secret_Access_Key` may be stored under **Secrets** rather than **Variables**, so check both tabs if a placeholder seems to be missing.
+
 ![Bruno environment configuration screen with the AI Core and S3 placeholders ready to be filled in](../3-ai-core-document-grounding/images/bruno-environments.png)
 
 #### 3.3 c) Fetch an Access Token
@@ -708,9 +710,8 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 
 ![Destinations page with the New Destination From Scratch option selected](../4-connection-to-j4c/images/destination-service-create-scratch.png)
 
-- Open the service key of the AI Core instance — you'll copy several values from it.
 - Set **Authentication** to **OAuth2ClientCredentials**, then paste in the **Client ID** and **Client Secret** from the AI Core service key.
-- Fill in the following fields, replacing the placeholders with the values from the service key:
+- Fill in the following fields, replacing the placeholders with the values from the AI Core service key:
   - **Token Service URL:** `<url>/oauth/token`
   - **URL:** `<AI_API_URL>/v2/lm/document-grounding`
 - Add the following **Additional Properties**:
@@ -720,7 +721,7 @@ A Destination Service connects AI Core Document Grounding to SAP Joule for Consu
 
 > **Note:** `AI-Resource-Group` is not available as a predefined value in the value help — enter the key name manually.
 
-> **Note:** Optionally, add the AI Core subaccount ID to the destination **Description**. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.
+> **Note:** Optionally, add the ID of the subaccount in which AI Core was instantiated to the destination **Description**. This makes it easier to identify the source later, for example when several sources are listed in the SAP Joule for Consultants Console.
 
 ![Destination configuration form with OAuth2ClientCredentials authentication, Token Service URL, URL, and the three additional properties filled in](../4-connection-to-j4c/images/destination-service-create-destination.png)
 
@@ -798,6 +799,15 @@ The three action icons in the top-right corner of the page are:
 **Source not appearing in the Select Sources dialog:** Verify that the Destination Service instance whose service key you connected is the same instance where you created the destination. The console only discovers destinations from its own bound Destination Service instance.
 
 **No pipelines appear after saving:** Allow a few minutes for the pipeline to initialize and the first sync to complete. Use the **Refresh** icon on the **Sources & Pipelines** page to update the view.
+
+**Connection issues caused by leftover pipelines:** Repeated failed pipeline creations can accumulate in AI Core Document Grounding and interfere with the connection to SAP Joule for Consultants. If the source keeps failing its health check or behaves unexpectedly, prune the stale pipelines so that only the ones you actually need remain. The Bruno collection in [3.3 AI Core Document Grounding with Bruno](#33-ai-core-document-grounding-with-bruno) includes a `delete_all_other_pipelines` request (under `04_pipeline` → **Additional requests**) that removes every pipeline **except** the one currently stored in the `pipeline_id` environment variable — useful when you want to end up with a single, known-good pipeline.
+
+- **Check first what you would lose.** Run `get_all_pipelines` and note the IDs you want to keep. Make sure `pipeline_id` holds the one pipeline you intend to preserve — `delete_all_other_pipelines` deletes everything else, so this step is your safeguard against removing a pipeline that is still in use.
+- **Trigger the cleanup.** Send `delete_all_other_pipelines`. It first lists all current pipelines, then issues a delete for each one whose ID does not match `pipeline_id`. The console output reports how many pipelines were found, how many are being deleted, and which ID is kept.
+- **Wait for deletion to complete.** Deletion is asynchronous — the request returns before AI Core has finished removing the pipelines. Give it a short while to settle.
+- **Verify.** Re-run `get_all_pipelines` in the meantime and repeat until only the pipeline(s) you meant to keep are listed. Then return to the console and click **Recheck Health** on the source.
+
+> **Note:** `delete_all_other_pipelines` keeps exactly one pipeline. If you need to keep several, delete the unwanted ones individually instead: run `get_all_pipelines`, then for each pipeline you want to remove, set `pipeline_id` to its ID and send `delete_pipeline`.
 
 ## 5. Testing
 

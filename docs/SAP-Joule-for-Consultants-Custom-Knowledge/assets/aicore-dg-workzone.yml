@@ -426,6 +426,61 @@ items:
               timeout: 0
               followRedirects: true
               maxRedirects: 5
+          - info:
+              name: delete_all_other_pipelines
+              type: http
+              seq: 4
+            http:
+              method: GET
+              url: '{{AICore_AI_API_URL}}/v2/lm/document-grounding/pipelines'
+              headers:
+                - name: AI-Resource-Group
+                  value: '{{resource_group}}'
+              auth:
+                type: bearer
+                token: '{{access_token}}'
+            runtime:
+              scripts:
+                - type: after-response
+                  code: |-
+                    const axios = require('axios');
+
+                    if (res.getStatus() !== 200) {
+                      throw new Error(`Could not list pipelines (status ${res.getStatus()})`);
+                    }
+
+                    const keepId = (bru.getEnvVar("pipeline_id") || "").trim();
+                    const body = res.body || {};
+                    const pipelines = Array.isArray(body) ? body : (body.resources || body.pipelines || []);
+
+                    const baseUrl = bru.getEnvVar("AICore_AI_API_URL");
+                    const token = bru.getVar("access_token");
+                    const resourceGroup = bru.getEnvVar("resource_group");
+
+                    const targets = pipelines
+                      .map(p => p.id || p.pipelineId)
+                      .filter(id => id && id !== keepId);
+
+                    console.log(`Found ${pipelines.length} pipeline(s), deleting ${targets.length}, keeping "${keepId || '(none)'}"`);
+
+                    for (const id of targets) {
+                      try {
+                        const r = await axios.delete(`${baseUrl}/v2/lm/document-grounding/pipelines/${id}`, {
+                          headers: {
+                            Authorization: `Bearer ${token}`,
+                            "AI-Resource-Group": resourceGroup
+                          }
+                        });
+                        console.log(`Deleted pipeline ${id} -> HTTP ${r.status}`);
+                      } catch (e) {
+                        console.log(`Failed to delete pipeline ${id}: ${e.message}`);
+                      }
+                    }
+            settings:
+              encodeUrl: true
+              timeout: 0
+              followRedirects: true
+              maxRedirects: 5
 bundled: true
 extensions:
   bruno:
