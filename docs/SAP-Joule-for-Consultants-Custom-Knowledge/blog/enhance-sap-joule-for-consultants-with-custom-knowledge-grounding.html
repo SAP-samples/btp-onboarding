@@ -434,6 +434,7 @@ Grant-PnPAzureADAppSitePermission `
 <li>You can leave <code>resource_group</code> and <code>generic_secret</code> at their defaults or set your own names. For the Object Store setup, you can use <code>object-store</code> as the name for the generic secret. Leave <code>pipeline_id</code> empty for now.</li>
 <li>Click <strong>Save</strong>.</li>
 </ul>
+<blockquote><strong>Note:</strong> In Bruno v4, the environment editor splits values across a <strong>Variables</strong> tab and a separate <strong>Secrets</strong> tab. Sensitive values such as <code>AICore_clientsecret</code> and <code>S3_Secret_Access_Key</code> may be stored under <strong>Secrets</strong> rather than <strong>Variables</strong>, so check both tabs if a placeholder seems to be missing.</blockquote>
 <p><li-image alt="bruno-environments.png" align="center" id="414426iDCBBDC771BEED990" size="large" resized="false" sourceType="new"></li-image></p>
 <h4>3.3 c) Fetch an Access Token</h4>
 <p>Every request to the AI Core API requires an OAuth2 bearer token. The collection retrieves it once and reuses it across the other requests via a collection-level script.</p>

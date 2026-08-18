@@ -486,6 +486,8 @@ The collection ships with an `aicore-dg-s3` environment containing placeholders 
 - You can leave `resource_group` and `generic_secret` at their defaults or set your own names. For the Object Store setup, you can use `object-store` as the name for the generic secret. Leave `pipeline_id` empty for now.
 - Click **Save**.
 
+> **Note:** In Bruno v4, the environment editor splits values across a **Variables** tab and a separate **Secrets** tab. Sensitive values such as `AICore_clientsecret` and `S3_Secret_Access_Key` may be stored under **Secrets** rather than **Variables**, so check both tabs if a placeholder seems to be missing.
+
 ![Bruno environment configuration screen with the AI Core and S3 placeholders ready to be filled in](../3-ai-core-document-grounding/images/bruno-environments.png)
 
 #### 3.3 c) Fetch an Access Token
