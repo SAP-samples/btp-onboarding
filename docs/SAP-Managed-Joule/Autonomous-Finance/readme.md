@@ -23,9 +23,12 @@ Autonomous-Finance/
 | [Sales Operations Assistant (Public)](./3_Assistant-Provisioning-1-Public/Sales-Operation-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Sales-Operation-Assistant/) | Planned | Available |
 | [Financial Closing Assistant (Public)](./3_Assistant-Provisioning-1-Public/Financial-Closing-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Financial-Closing-Assistant/) | Available | Available |
 | [Accounts Receivable Assistant (Public)](./3_Assistant-Provisioning-1-Public/Accounts-Receivable-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Accounts-Receivable-Assistant/) | Planned | Available |
-| [Recurring Receivables Assistant (Public)](./3_Assistant-Provisioning-1-Public/Recurring-Receivables-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Recurring-Receivables-Assistant/) | Planned | Available |
-| [Accounts Payable Assistant (Public)](./3_Assistant-Provisioning-1-Public/Accounts-Payable-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Accounts-Payable-Assistant/) | Planned | Planned |
-| [Cash and Treasury Assistant (Public)](./3_Assistant-Provisioning-1-Public/Cash-and-Treasury-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Cash-and-Treasury-Assistant/) | Planned | Planned |
+| [Recurring Receivables Assistant (PCE)](./4_Assistant-Provisioning-1-PCE/Recurring-Receivables-Assistant/) | — | Available |
+| [Accounts Payable Assistant (Public)](./3_Assistant-Provisioning-1-Public/Accounts-Payable-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Accounts-Payable-Assistant/) | Available | Planned |
+| [Cash and Treasury Assistant (Public)](./3_Assistant-Provisioning-1-Public/Cash-and-Treasury-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Cash-and-Treasury-Assistant/) | Available | Planned |
+| Financial Consolidation Assistant | Planned | Planned |
+| Tax and Compliance Assistant | Planned | Planned |
+| Governance, Risk, and Compliance Assistant | Planned | Planned |
 
 ## How to Navigate
 
