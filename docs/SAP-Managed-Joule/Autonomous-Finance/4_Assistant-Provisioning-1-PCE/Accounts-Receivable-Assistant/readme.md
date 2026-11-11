@@ -17,7 +17,6 @@ The Accounts Receivable Assistant supports AR accountants and collection special
 | Dunning Insights Agent | Analyses dunning history and levels, identifies risk, and provides actionable recommendations |
 | Dispute Creation Agent | Creates dispute cases from billing documents and unstructured inputs such as user prompts and emails |
 | Dispute Resolution Agent | Retrieves comprehensive dispute data, validates claims, and provides tailored resolution recommendations |
-| Receivables and Payables Clearing Agent | Generates clearing proposals for open receivable and payable items |
 
 ## Mission Structure
 
@@ -31,10 +30,9 @@ The Accounts Receivable Assistant supports AR accountants and collection special
 | [4.6 — Dunning Insights Agent](./4.6_Dunning_Insights_Agent.md) | Objective, capabilities, and example prompts |
 | [4.7 — Dispute Creation Agent](./4.7_Dispute_Creation_Agent.md) | Objective, capabilities, and example prompts |
 | [4.8 — Dispute Resolution Agent](./4.8_Dispute_Resolution_Agent.md) | Objective, capabilities, and example prompts |
-| [4.9 — Receivables and Payables Clearing Agent](./4.9_Receivables_and_Payables_Clearing_Agent.md) | Objective, capabilities, and example prompts |
-| [4.10 — CIS Authorizations / AMS Policies](./4.10_CIS_Authorizations_AMS_Policies.md) | User group assignment in SAP Cloud Identity Services |
-| [4.11 — Test Scripts](./4.11_Test_Scripts.md) | Validation scenarios after provisioning |
-| [4.12 — Support Contact](./4.12_Support_Contact.md) | Support channels and useful resources |
+| [4.9 — CIS Authorizations / AMS Policies](./4.9_CIS_Authorizations_AMS_Policies.md) | User group assignment in SAP Cloud Identity Services |
+| [4.10 — Test Scripts](./4.10_Test_Scripts.md) | Validation scenarios after provisioning |
+| [4.11 — Support Contact](./4.11_Support_Contact.md) | Support channels and useful resources |
 
 ## How to Navigate
 
@@ -42,4 +40,4 @@ The Accounts Receivable Assistant supports AR accountants and collection special
 2. Follow [4.1](./4.1_Provisioning_in_SAP4Me.md) to activate the assistant in SAP for Me.
 3. Run [4.2](./4.2_Post-Provisioning_Validations.md) to verify BTP and CIS configuration.
 4. Review the individual agent files to understand what each agent can do and test with the provided example prompts.
-5. Assign users via [4.10](./4.10_CIS_Authorizations_AMS_Policies.md).
+5. Assign users via [4.9](./4.9_CIS_Authorizations_AMS_Policies.md).

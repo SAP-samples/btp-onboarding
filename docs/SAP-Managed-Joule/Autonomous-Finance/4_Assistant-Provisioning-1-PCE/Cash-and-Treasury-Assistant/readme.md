@@ -22,9 +22,10 @@ The Cash and Treasury Assistant helps treasury teams manage cash positioning and
 | [4.2 — Post-Provisioning Validations](./4.2_Post-Provisioning_Validations.md) | BTP resources, formation, and CIS groups validation |
 | [4.3 — Cash Positioning Agent](./4.3_Cash_Positioning_Agent.md) | Objective, capabilities, and example prompts |
 | [4.4 — Bank Relationship Agent](./4.4_Bank_Relationship_Agent.md) | Objective, capabilities, and example prompts |
-| [4.5 — CIS Authorizations / AMS Policies](./4.5_CIS_Authorizations_AMS_Policies.md) | User group assignment in SAP Cloud Identity Services |
-| [4.6 — Test Scripts](./4.6_Test_Scripts.md) | Validation scenarios after provisioning |
-| [4.7 — Support Contact](./4.7_Support_Contact.md) | Support channels and useful resources |
+| [4.5 — Cash and Treasury Orchestration Agent](./4.5_Cash_and_Treasury_Orchestration_Agent.md) | Objective, sub-agents coordinated, and example prompts |
+| [4.6 — CIS Authorizations / AMS Policies](./4.6_CIS_Authorizations_AMS_Policies.md) | User group assignment in SAP Cloud Identity Services |
+| [4.7 — Test Scripts](./4.7_Test_Scripts.md) | Validation scenarios after provisioning |
+| [4.8 — Support Contact](./4.8_Support_Contact.md) | Support channels and useful resources |
 
 ## How to Navigate
 
@@ -32,4 +33,4 @@ The Cash and Treasury Assistant helps treasury teams manage cash positioning and
 2. Follow [4.1](./4.1_Provisioning_in_SAP4Me.md) to activate the assistant in SAP for Me.
 3. Run [4.2](./4.2_Post-Provisioning_Validations.md) to verify BTP and CIS configuration.
 4. Review the individual agent files to understand what each agent can do and test with the provided example prompts.
-5. Assign users via [4.5](./4.5_CIS_Authorizations_AMS_Policies.md).
+5. Assign users via [4.6](./4.6_CIS_Authorizations_AMS_Policies.md).
