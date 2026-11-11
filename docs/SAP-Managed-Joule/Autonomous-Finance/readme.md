@@ -20,11 +20,11 @@ Autonomous-Finance/
 
 | Assistant | SAP S/4HANA Cloud Public Edition | SAP S/4HANA Cloud Private Edition |
 |-----------|-------------|---------------------|
-| [Sales Operation Assistant](./4_Assistant-Provisioning-1-PCE/Sales-Operation-Assistant/) | Planned | Available |
-| Financial Closing Assistant | Planned | Planned |
+| [Sales Operations Assistant](./4_Assistant-Provisioning-1-PCE/Sales-Operation-Assistant/) | Planned | Available |
+| Financial Closing Assistant | Available | Available |
+| Accounts Receivable Assistant | Planned | Available |
+| Recurring Receivables Assistant | — | EAC |
 | Accounts Payable Assistant | Planned | Planned |
-| Accounts Receivable Assistant | Planned | Planned |
-| Recurring Receivables Assistant | Planned | Planned |
 | Cash and Treasury Assistant | Planned | Planned |
 
 ## How to Navigate
