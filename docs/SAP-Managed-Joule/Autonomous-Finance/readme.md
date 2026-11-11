@@ -23,7 +23,7 @@ Autonomous-Finance/
 | [Sales Operations Assistant](./4_Assistant-Provisioning-1-PCE/Sales-Operation-Assistant/) | Planned | Available |
 | Financial Closing Assistant | Available | Available |
 | Accounts Receivable Assistant | Planned | Available |
-| Recurring Receivables Assistant | — | EAC |
+| Recurring Receivables Assistant | — | Available (EAC) |
 | Accounts Payable Assistant | Planned | Planned |
 | Cash and Treasury Assistant | Planned | Planned |
 
