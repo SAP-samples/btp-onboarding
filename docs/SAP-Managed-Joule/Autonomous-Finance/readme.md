@@ -18,7 +18,7 @@ Autonomous-Finance/
 
 ## Assistants
 
-| Assistant | Public Cloud | Private Cloud (PCE) |
+| Assistant | SAP S/4HANA Cloud Public Edition | SAP S/4HANA Cloud Private Edition |
 |-----------|-------------|---------------------|
 | [Sales Operation Assistant](./4_Assistant-Provisioning-1-PCE/Sales-Operation-Assistant/) | Planned | Available |
 | Financial Closing Assistant | Planned | Planned |

@@ -1,3 +1,3 @@
-## Cash-and-Treasury-Assistant — Private Edition (PCE)
+## Cash-and-Treasury-Assistant — SAP S/4HANA Cloud Private Edition
 
 > **Note:** Content will be added here once available.

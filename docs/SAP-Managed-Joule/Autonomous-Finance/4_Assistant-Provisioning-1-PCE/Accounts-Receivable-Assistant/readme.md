@@ -1,3 +1,3 @@
-## Accounts-Receivable-Assistant — Private Edition (PCE)
+## Accounts-Receivable-Assistant — SAP S/4HANA Cloud Private Edition
 
 > **Note:** Content will be added here once available.
