@@ -18,17 +18,19 @@ Autonomous-Finance/
 
 ## Assistants
 
+The specific agents available within each assistant may differ between SAP S/4HANA Cloud Public Edition and SAP S/4HANA Cloud Private Edition.
+
 | Assistant | SAP S/4HANA Cloud Public Edition | SAP S/4HANA Cloud Private Edition |
 |-----------|-------------|---------------------|
-| [Sales Operations Assistant (Public)](./3_Assistant-Provisioning-1-Public/Sales-Operation-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Sales-Operation-Assistant/) | Planned | Available |
+| [Sales Operations Assistant](./4_Assistant-Provisioning-1-PCE/Sales-Operation-Assistant/) | — | Available |
 | [Financial Closing Assistant (Public)](./3_Assistant-Provisioning-1-Public/Financial-Closing-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Financial-Closing-Assistant/) | Available | Available |
-| [Accounts Receivable Assistant (Public)](./3_Assistant-Provisioning-1-Public/Accounts-Receivable-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Accounts-Receivable-Assistant/) | Planned | Available |
-| [Recurring Receivables Assistant (PCE)](./4_Assistant-Provisioning-1-PCE/Recurring-Receivables-Assistant/) | — | Available |
-| [Accounts Payable Assistant (Public)](./3_Assistant-Provisioning-1-Public/Accounts-Payable-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Accounts-Payable-Assistant/) | Available | Planned |
-| [Cash and Treasury Assistant (Public)](./3_Assistant-Provisioning-1-Public/Cash-and-Treasury-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Cash-and-Treasury-Assistant/) | Available | Planned |
-| Financial Consolidation Assistant | Planned | Planned |
-| Tax and Compliance Assistant | Planned | Planned |
-| Governance, Risk, and Compliance Assistant | Planned | Planned |
+| [Accounts Receivable Assistant (Public)](./3_Assistant-Provisioning-1-Public/Accounts-Receivable-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Accounts-Receivable-Assistant/) | Available | Available |
+| [Recurring Receivables Assistant](./4_Assistant-Provisioning-1-PCE/Recurring-Receivables-Assistant/) | — | Available |
+| [Accounts Payable Assistant (Public)](./3_Assistant-Provisioning-1-Public/Accounts-Payable-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Accounts-Payable-Assistant/) | Available | Available |
+| [Cash and Treasury Assistant (Public)](./3_Assistant-Provisioning-1-Public/Cash-and-Treasury-Assistant/) / [PCE](./4_Assistant-Provisioning-1-PCE/Cash-and-Treasury-Assistant/) | Available | Available |
+| Financial Consolidation Assistant | Available | — |
+| Tax and Compliance Assistant | Available | — |
+| Governance, Risk, and Compliance Assistant | Available | — |
 
 ## How to Navigate
 
