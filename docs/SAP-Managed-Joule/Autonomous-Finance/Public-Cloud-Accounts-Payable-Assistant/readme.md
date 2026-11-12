@@ -22,8 +22,9 @@ The Accounts Payable Assistant helps AP accountants manage supplier invoice proc
 | [3.2 — Post-Provisioning Validations](./3.2_Post-Provisioning_Validations.md) | BTP resources, formation, and CIS groups validation |
 | [3.3 — Payment Inquiry Handling Agent](./3.3_Payment_Inquiry_Handling_Agent.md) | Objective, capabilities, and example prompts |
 | [3.4 — Receivables and Payables Clearing Agent](./3.4_Receivables_and_Payables_Clearing_Agent.md) | Objective, capabilities, and example prompts |
-| [3.5 — Test Scripts](./3.5_Test_Scripts.md) | Validation scenarios after provisioning |
-| [3.6 — Support Contact](./3.6_Support_Contact.md) | Support channels and useful resources |
+| [3.5 — Accounts Payable Orchestration Agent](./3.5_Accounts_Payable_Orchestration_Agent.md) | Objective, sub-agents coordinated, and example prompts |
+| [3.6 — Test Scripts](./3.6_Test_Scripts.md) | Validation scenarios after provisioning |
+| [3.7 — Support Contact](./3.7_Support_Contact.md) | Support channels and useful resources |
 
 ## How to Navigate
 
@@ -31,4 +32,4 @@ The Accounts Payable Assistant helps AP accountants manage supplier invoice proc
 2. Follow [3.1](./3.1_Provisioning_in_SAP4Me.md) to activate the assistant in SAP for Me.
 3. Run [3.2](./3.2_Post-Provisioning_Validations.md) to verify BTP and CIS configuration.
 4. Review the individual agent files to understand what each agent can do and test with the provided example prompts.
-5. Run validation scenarios from [3.5 — Test Scripts](./3.5_Test_Scripts.md).
+5. Run validation scenarios from [3.6 — Test Scripts](./3.6_Test_Scripts.md).

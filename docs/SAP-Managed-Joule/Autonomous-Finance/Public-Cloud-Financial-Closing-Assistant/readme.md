@@ -28,8 +28,9 @@ The Financial Closing Assistant supports finance teams to manage the period clos
 | [3.4 — Analytical Business Insights Agent](./3.4_Analytical_Business_Insights_Agent.md) | Objective, capabilities, and example prompts |
 | [3.5 — Journal Entry Agent](./3.5_Journal_Entry_Agent.md) | Objective, capabilities, and example prompts |
 | [3.6 — Receivables and Payables Clearing Agent](./3.6_Receivables_and_Payables_Clearing_Agent.md) | Objective, capabilities, and example prompts |
-| [3.7 — Test Scripts](./3.7_Test_Scripts.md) | Validation scenarios after provisioning |
-| [3.8 — Support Contact](./3.8_Support_Contact.md) | Support channels and useful resources |
+| [3.7 — Financial Closing Orchestration Agent](./3.7_Financial_Closing_Orchestration_Agent.md) | Objective, sub-agents coordinated, and example prompts |
+| [3.8 — Test Scripts](./3.8_Test_Scripts.md) | Validation scenarios after provisioning |
+| [3.9 — Support Contact](./3.9_Support_Contact.md) | Support channels and useful resources |
 
 ## How to Navigate
 
@@ -37,4 +38,4 @@ The Financial Closing Assistant supports finance teams to manage the period clos
 2. Follow [3.1](./3.1_Provisioning_in_SAP4Me.md) to activate the assistant in SAP for Me.
 3. Run [3.2](./3.2_Post-Provisioning_Validations.md) to verify BTP and CIS configuration.
 4. Review the individual agent files to understand what each agent can do and test with the provided example prompts.
-5. Run validation scenarios from [3.7 — Test Scripts](./3.7_Test_Scripts.md).
+5. Run validation scenarios from [3.8 — Test Scripts](./3.8_Test_Scripts.md).
