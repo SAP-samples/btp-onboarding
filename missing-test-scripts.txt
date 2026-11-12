@@ -1,0 +1,43 @@
+MISSING TEST SCRIPTS
+====================
+
+1. Private-Cloud-Accounts-Receivable-Assistant
+   - No test scripts provided for:
+     * Receivable Account Analysis Agent
+     * Collection Account Preparation Agent
+     * Collections Email Outreach Agent
+     * Dunning Insights Agent
+     * Dispute Creation Agent
+     * Dispute Resolution Agent
+
+2. Private-Cloud-Cash-and-Treasury-Assistant
+   - No test scripts provided for any C&T agent:
+     * Cash and Treasury Orchestration Agent
+     * Cash Positioning Agent
+     * Bank Relationship Agent
+
+3. All Public Cloud assistant folders
+   - Public-Cloud-Accounts-Payable-Assistant
+   - Public-Cloud-Accounts-Receivable-Assistant
+   - Public-Cloud-Cash-and-Treasury-Assistant
+   - Public-Cloud-Financial-Closing-Assistant
+   - Public-Cloud-Recurring-Receivables-Assistant
+   - Public-Cloud-Sales-Operation-Assistant
+   (Sales Operations Public Cloud has files but content is still placeholder)
+
+NOTE
+----
+The file 2026_E2E_APAR_AGENTS_AR.docx covers the Receivables and Payables
+Clearing Agent (AR side), which belongs to both the Financial Closing Assistant
+and the Accounts Receivable Assistant. It has been added to both.
+
+The file 2026_E2E_APAR_AGENTS_AP.docx covers the Receivables and Payables
+Clearing Agent (AP side), which belongs to the Accounts Payable Assistant.
+
+The files "Payment Inquiry Handling Agent Internal Test Scripts.docx" and
+"Accounts Payable Assistant Internal Test Scripts.docx" have been added to
+Private-Cloud-Accounts-Payable-Assistant (4.3_Test_Scripts.md), covering:
+  * Accounts Payable Assistant (orchestrator) — 8 scripted tests
+  * Payment Inquiry Handling Agent — 20 test cases (happy path, behavior,
+    edge cases, guardrails)
+  * Receivables and Payables Clearing Agent — AP side (already present)
