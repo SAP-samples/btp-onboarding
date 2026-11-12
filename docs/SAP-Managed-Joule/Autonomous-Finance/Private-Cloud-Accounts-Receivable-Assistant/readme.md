@@ -24,14 +24,15 @@ The Accounts Receivable Assistant supports AR accountants and collection special
 |------|---------|
 | [4.1 — Provisioning in SAP for Me](./4.1_Provisioning_in_SAP4Me.md) | Step-by-step activation wizard in SAP for Me |
 | [4.2 — Post-Provisioning Validations](./4.2_Post-Provisioning_Validations.md) | BTP resources, formation, and CIS groups validation |
-| [4.3 — Receivable Account Analysis Agent](./4.3_Receivable_Account_Analysis_Agent.md) | Objective, capabilities, and example prompts |
-| [4.4 — Collection Account Preparation Agent](./4.4_Collection_Account_Preparation_Agent.md) | Objective, capabilities, and example prompts |
-| [4.5 — Collections Email Outreach Agent](./4.5_Collections_Email_Outreach_Agent.md) | Objective, capabilities, and example prompts |
-| [4.6 — Dunning Insights Agent](./4.6_Dunning_Insights_Agent.md) | Objective, capabilities, and example prompts |
-| [4.7 — Dispute Creation Agent](./4.7_Dispute_Creation_Agent.md) | Objective, capabilities, and example prompts |
-| [4.8 — Dispute Resolution Agent](./4.8_Dispute_Resolution_Agent.md) | Objective, capabilities, and example prompts |
-| [4.9 — Test Scripts](./4.9_Test_Scripts.md) | Validation scenarios after provisioning |
-| [4.10 — Support Contact](./4.10_Support_Contact.md) | Support channels and useful resources |
+| [4.3 — Accounts Receivable Orchestration Agent](./4.3_Accounts_Receivable_Orchestration_Agent.md) | Objective, capabilities, and example prompts |
+| [4.4 — Receivable Account Analysis Agent](./4.4_Receivable_Account_Analysis_Agent.md) | Objective, capabilities, and example prompts |
+| [4.5 — Collection Account Preparation Agent](./4.5_Collection_Account_Preparation_Agent.md) | Objective, capabilities, and example prompts |
+| [4.6 — Collections Email Outreach Agent](./4.6_Collections_Email_Outreach_Agent.md) | Objective, capabilities, and example prompts |
+| [4.7 — Dunning Insights Agent](./4.7_Dunning_Insights_Agent.md) | Objective, capabilities, and example prompts |
+| [4.8 — Dispute Creation Agent](./4.8_Dispute_Creation_Agent.md) | Objective, capabilities, and example prompts |
+| [4.9 — Dispute Resolution Agent](./4.9_Dispute_Resolution_Agent.md) | Objective, capabilities, and example prompts |
+| [4.10 — Test Scripts](./4.10_Test_Scripts.md) | Validation scenarios after provisioning |
+| [4.11 — Support Contact](./4.11_Support_Contact.md) | Support channels and useful resources |
 
 ## How to Navigate
 

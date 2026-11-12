@@ -30,7 +30,7 @@ The Financial Closing Assistant supports finance teams to manage the period clos
 | [4.6 — Financial Consistency Analysis Agent](./4.6_Financial_Consistency_Analysis_Agent.md) | Objective, capabilities, and example prompts |
 | [4.7 — Journal Entry Agent](./4.7_Journal_Entry_Agent.md) | Objective, capabilities, and example prompts |
 | [4.8 — Receivables and Payables Clearing Agent](./4.8_Receivables_and_Payables_Clearing_Agent.md) | Objective, capabilities, and example prompts |
-| [4.9 — CIS Authorizations / AMS Policies](./4.9_CIS_Authorizations_AMS_Policies.md) | User group assignment in SAP Cloud Identity Services |
+| [4.9 — Financial Closing Orchestration Agent](./4.9_Financial_Closing_Orchestration_Agent.md) | Objective, capabilities, and example prompts |
 | [4.10 — Test Scripts](./4.10_Test_Scripts.md) | Validation scenarios after provisioning |
 | [4.11 — Support Contact](./4.11_Support_Contact.md) | Support channels and useful resources |
 
@@ -40,4 +40,3 @@ The Financial Closing Assistant supports finance teams to manage the period clos
 2. Follow [4.1](./4.1_Provisioning_in_SAP4Me.md) to activate the assistant in SAP for Me.
 3. Run [4.2](./4.2_Post-Provisioning_Validations.md) to verify BTP and CIS configuration.
 4. Review the individual agent files to understand what each agent can do and test with the provided example prompts.
-5. Assign users via [4.9](./4.9_CIS_Authorizations_AMS_Policies.md).
