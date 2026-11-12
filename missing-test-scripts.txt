@@ -10,11 +10,12 @@ MISSING TEST SCRIPTS
      * Dispute Creation Agent
      * Dispute Resolution Agent
 
-2. Private-Cloud-Cash-and-Treasury-Assistant
-   - No test scripts provided for any C&T agent:
-     * Cash and Treasury Orchestration Agent
-     * Cash Positioning Agent
-     * Bank Relationship Agent
+2. Private-Cloud-Cash-and-Treasury-Assistant — NOW COVERED
+   - "Cash_and_Treasury_Assistant___End_User_Testing_Guide.pdf" added to
+     4.6_Test_Scripts.md covering:
+     * Cash and Treasury Assistant (orchestrator) — 11 scripted tests + 6 exploratory
+     * Cash Positioning Agent (daily positioning, transfer proposals, HITL approval)
+     * Bank Relationship Agent (full report, specific bank, bank comparison, investments)
 
 3. All Public Cloud assistant folders
    - Public-Cloud-Accounts-Payable-Assistant
