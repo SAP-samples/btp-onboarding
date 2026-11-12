@@ -2,13 +2,15 @@ MISSING TEST SCRIPTS
 ====================
 
 1. Private-Cloud-Accounts-Receivable-Assistant
-   - No test scripts provided for:
+   - CONFIRMED NOT YET AVAILABLE (SAP Autonomous Finance Setup & Configuration Guide, Nov 2026, p.42):
+     Test scripts for the following agents are not yet available from SAP:
      * Receivable Account Analysis Agent
      * Collection Account Preparation Agent
      * Collections Email Outreach Agent
      * Dunning Insights Agent
      * Dispute Creation Agent
      * Dispute Resolution Agent
+   - Only the Receivables and Payables Clearing Agent (AR side) has scripts (4.9_Test_Scripts.md).
 
 2. Private-Cloud-Cash-and-Treasury-Assistant — NOW COVERED
    - "Cash_and_Treasury_Assistant___End_User_Testing_Guide.pdf" added to

@@ -30,9 +30,8 @@ The Accounts Receivable Assistant supports AR accountants and collection special
 | [4.6 — Dunning Insights Agent](./4.6_Dunning_Insights_Agent.md) | Objective, capabilities, and example prompts |
 | [4.7 — Dispute Creation Agent](./4.7_Dispute_Creation_Agent.md) | Objective, capabilities, and example prompts |
 | [4.8 — Dispute Resolution Agent](./4.8_Dispute_Resolution_Agent.md) | Objective, capabilities, and example prompts |
-| [4.9 — CIS Authorizations / AMS Policies](./4.9_CIS_Authorizations_AMS_Policies.md) | User group assignment in SAP Cloud Identity Services |
-| [4.10 — Test Scripts](./4.10_Test_Scripts.md) | Validation scenarios after provisioning |
-| [4.11 — Support Contact](./4.11_Support_Contact.md) | Support channels and useful resources |
+| [4.9 — Test Scripts](./4.9_Test_Scripts.md) | Validation scenarios after provisioning |
+| [4.10 — Support Contact](./4.10_Support_Contact.md) | Support channels and useful resources |
 
 ## How to Navigate
 
@@ -40,4 +39,4 @@ The Accounts Receivable Assistant supports AR accountants and collection special
 2. Follow [4.1](./4.1_Provisioning_in_SAP4Me.md) to activate the assistant in SAP for Me.
 3. Run [4.2](./4.2_Post-Provisioning_Validations.md) to verify BTP and CIS configuration.
 4. Review the individual agent files to understand what each agent can do and test with the provided example prompts.
-5. Assign users via [4.9](./4.9_CIS_Authorizations_AMS_Policies.md).
+5. Run validation scenarios from [4.9 — Test Scripts](./4.9_Test_Scripts.md).
