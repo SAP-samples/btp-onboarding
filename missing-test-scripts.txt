@@ -1,0 +1,46 @@
+MISSING TEST SCRIPTS
+====================
+
+1. Private-Cloud-Accounts-Receivable-Assistant
+   - CONFIRMED NOT YET AVAILABLE (SAP Autonomous Finance Setup & Configuration Guide, Nov 2026, p.42):
+     Test scripts for the following agents are not yet available from SAP:
+     * Receivable Account Analysis Agent
+     * Collection Account Preparation Agent
+     * Collections Email Outreach Agent
+     * Dunning Insights Agent
+     * Dispute Creation Agent
+     * Dispute Resolution Agent
+   - Only the Receivables and Payables Clearing Agent (AR side) has scripts (4.9_Test_Scripts.md).
+
+2. Private-Cloud-Cash-and-Treasury-Assistant — NOW COVERED
+   - "Cash_and_Treasury_Assistant___End_User_Testing_Guide.pdf" added to
+     4.6_Test_Scripts.md covering:
+     * Cash and Treasury Assistant (orchestrator) — 11 scripted tests + 6 exploratory
+     * Cash Positioning Agent (daily positioning, transfer proposals, HITL approval)
+     * Bank Relationship Agent (full report, specific bank, bank comparison, investments)
+
+3. All Public Cloud assistant folders
+   - Public-Cloud-Accounts-Payable-Assistant
+   - Public-Cloud-Accounts-Receivable-Assistant
+   - Public-Cloud-Cash-and-Treasury-Assistant
+   - Public-Cloud-Financial-Closing-Assistant
+   - Public-Cloud-Recurring-Receivables-Assistant
+   - Public-Cloud-Sales-Operation-Assistant
+   (Sales Operations Public Cloud has files but content is still placeholder)
+
+NOTE
+----
+The file 2026_E2E_APAR_AGENTS_AR.docx covers the Receivables and Payables
+Clearing Agent (AR side), which belongs to both the Financial Closing Assistant
+and the Accounts Receivable Assistant. It has been added to both.
+
+The file 2026_E2E_APAR_AGENTS_AP.docx covers the Receivables and Payables
+Clearing Agent (AP side), which belongs to the Accounts Payable Assistant.
+
+The files "Payment Inquiry Handling Agent Internal Test Scripts.docx" and
+"Accounts Payable Assistant Internal Test Scripts.docx" have been added to
+Private-Cloud-Accounts-Payable-Assistant (4.3_Test_Scripts.md), covering:
+  * Accounts Payable Assistant (orchestrator) — 8 scripted tests
+  * Payment Inquiry Handling Agent — 20 test cases (happy path, behavior,
+    edge cases, guardrails)
+  * Receivables and Payables Clearing Agent — AP side (already present)
