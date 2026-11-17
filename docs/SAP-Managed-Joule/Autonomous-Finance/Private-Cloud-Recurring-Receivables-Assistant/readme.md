@@ -2,8 +2,6 @@
 
 This directory contains the provisioning documentation for the **Recurring Receivables Assistant** on **SAP S/4HANA Cloud Private Edition**.
 
-> **Note:** This assistant is currently part of an SAP Early Adopter Care (EAC) program. Contact your SAP Account Executive for access.
-
 ## About this Assistant
 
 The Recurring Receivables Assistant helps manage subscription contracts, convergent invoicing, and contract accounting collections. It targets businesses that operate recurring billing models and require automated management of subscription lifecycle, invoicing execution, and collections insights for contract accounting (FI-CA) customers.
