@@ -5,10 +5,10 @@
 
 ## Support Components — Missing
 
-The following assistants still have no confirmed SAP support component:
+The following assistants have no support component — confirmed not available, leave empty:
 
-- **Tax and Compliance Assistant (Public Cloud)** — not in component list
-- **International Trade Assistant (Public Cloud)** — `FT-ITR-CLS` confirmed from source doc but not in component list; keeping until verified
+- **Tax and Compliance Assistant (Public Cloud)**
+- **Recurring Receivables Assistant (Public Cloud)**
 
 Confirmed components (all updated in support contact files):
 - **FIN-AIA-AP** — Accounts Payable Assistant (PCE + Public Cloud)
